@@ -1,4 +1,4 @@
-for(let y=2026;y>=2010;y--)document.write(`<option>${y}</option>`)
+for(let y=2026;y>=1940;y--)document.write(`<option>${y}</option>`)
 
 // ── ADDON TOGGLE ──
 function toggleAddon(el) {
