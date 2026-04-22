@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DetailedByAustin — Premium Auto Detailing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">DETAILED<em>BY</em>AUSTIN</a>
+    <ul class="nav-links">
+      <li><a href="#services-wrap">Services</a></li>
+      <li><a href="#pricing-wrap">Pricing</a></li>
+      <li><a href="#testi-wrap">Reviews</a></li>
+      <li><a href="#contact-wrap">Contact</a></li>
+      <li><button class="btn-r" onclick="openBooking()">Book Now</button></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="mob-menu" id="mob-menu">
+    <a href="#services-wrap" onclick="closeMob()">Services</a>
+    <a href="#pricing-wrap" onclick="closeMob()">Pricing</a>
+    <a href="#testi-wrap" onclick="closeMob()">Reviews</a>
+    <a href="#contact-wrap" onclick="closeMob()">Contact</a>
+    <button class="btn-r" onclick="closeMob();openBooking()">Book Now</button>
+  </div>
+</nav>
+
+<!-- PROMO FLOAT BUTTON -->
+<div id="promo-float" style="display: block;">
+  <button onclick="reopenPromo()">
+    <span style="font-size:18px">🏷️</span>
+    10% OFF <span>First Visit</span>
+  </button>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="loaded">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Premium Auto Detailing</p>
+    <h1 class="hero-h1">Perfection<br><span class="dim">In Every</span><br><span class="accent">Detail</span></h1>
+    <p class="hero-sub">Professional car detailing that goes beyond clean. We deliver showroom-quality results, every time.</p>
+    <div class="hero-btns">
+      <button class="btn-r" style="padding:15px 32px;font-size:12px" onclick="openBooking()">Book Your Detail &nbsp;→</button>
+      <a href="#services-wrap" class="btn-outline">View Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="h-stat-val">500+</div><div class="h-stat-label">Cars Detailed</div></div>
+    <div><div class="h-stat-val">5★</div><div class="h-stat-label">Avg Rating</div></div>
+    <div><div class="h-stat-val">4–6yr</div><div class="h-stat-label">Nano Protection</div></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services-wrap">
+  <div class="sec">
+    <div class="reveal">
+      <p class="eyebrow">What We Do</p>
+      <h2 class="sec-h">Our <span class="acc">Services</span></h2>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc reveal" style="transition-delay:.05s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Exterior wash"></div>
+        <div class="svc-body">
+          <div class="svc-tag">Exterior</div>
+          <div class="svc-name">Exterior Wash</div>
+          <div class="svc-desc">Thorough hand wash and dry, wheel &amp; tire cleaning, and tire shine. Your car looking sharp — fast.</div>
+          <div class="svc-footer"><span class="svc-price">$80</span><span class="svc-dur">1–2 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc reveal" style="transition-delay:.1s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Interior clean"></div>
+        <div class="svc-body">
+          <div class="svc-tag">Interior</div>
+          <div class="svc-name">Interior Clean</div>
+          <div class="svc-desc">Full vacuum, plastics &amp; leathers wiped, windows cleaned inside, and floor mats thoroughly cleaned.</div>
+          <div class="svc-footer"><span class="svc-price">$200</span><span class="svc-dur">2–3 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc reveal" style="transition-delay:.15s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Combo detail"></div>
+        <div class="svc-body">
+          <div class="svc-tag" style="color:#EAB308">★ Best Value</div>
+          <div class="svc-name">Combo Detail</div>
+          <div class="svc-desc">Deeper full interior plus complete exterior detail — the best value package for regular maintenance.</div>
+          <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">4–5 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc reveal" style="transition-delay:.2s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Full detail"></div>
+        <div class="svc-body">
+          <div class="svc-tag">Full Detail</div>
+          <div class="svc-name">Full Detail</div>
+          <div class="svc-desc">Intense interior &amp; exterior clean, paint decontamination, polish, and any additional services required.</div>
+          <div class="svc-footer"><span class="svc-price">$600</span><span class="svc-dur">6+ hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc reveal" style="transition-delay:.25s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/4489737/pexels-photo-4489737.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Paint polish"></div>
+        <div class="svc-body">
+          <div class="svc-tag">Paint Correction</div>
+          <div class="svc-name">Polish</div>
+          <div class="svc-desc">Machine polish to remove light scratches, swirl marks, and oxidation — restoring a deep, mirror-like gloss to your paint before any coating or protection is applied.</div>
+          <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">2–4 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc reveal" style="transition-delay:.3s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Diamond fusion"></div>
+        <div class="svc-body">
+          <div class="svc-tag">♦ Premium Protection</div>
+          <div class="svc-name">Diamond Fusion</div>
+          <div class="svc-desc">A professional-grade glass and paint sealant that chemically bonds to your vehicle's surfaces, creating an ultra-slick hydrophobic barrier. Repels water, road grime, and UV damage — keeping your car cleaner longer between washes.</div>
+          <div class="svc-footer"><span class="svc-price">$150</span><span class="svc-dur">2–3 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="svc nano-svc reveal" style="transition-delay:.35s">
+        <div class="svc-img-wrap"><img class="svc-img" src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Nano ceramic coating"></div>
+        <div class="svc-body">
+          <div class="nano-badge2">🛡 Nano Ceramic</div>
+          <div class="svc-name" style="font-size:26px;letter-spacing:3px">Nano Armor Protection Package</div>
+          <div class="svc-desc" style="max-width:520px">Full exterior wash, paint decontamination, full polish, then a professional dual-coat nano ceramic coating applied for lasting gloss and defense against the elements.</div>
+          <ul class="nano-feat-list">
+            <li>Full exterior wash</li><li>Paint decontamination</li>
+            <li>Full polish</li><li>Professional dual coat nano ceramic</li>
+          </ul>
+          <div class="nano-shield"><span style="font-size:20px;flex-shrink:0">🛡</span><div><strong>Protection lasts 4–6 years</strong>Bonds to your paint for lasting gloss and all-season protection.</div></div>
+          <div class="svc-footer" style="margin-top:18px">
+            <span class="svc-price" style="color:#7aa0d4;font-size:40px">$1,250</span>
+            <button class="btn-r" onclick="openBooking(&#39;nano&#39;)" style="padding:11px 22px">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing-wrap">
+  <div class="sec">
+    <div class="reveal"><p class="eyebrow">Packages</p><h2 class="sec-h">Choose Your <span class="acc">Package</span></h2></div>
+    <div class="pkg-grid reveal">
+      <div class="pkg" onclick="openBooking(&#39;exterior&#39;)" role="button" tabindex="0">
+        <div class="pkg-name">Exterior</div><div class="pkg-blurb">Quick refresh for your car's exterior.</div>
+        <div class="pkg-price"><sup>$</sup>80</div>
+        <ul class="pkg-list"><li>Exterior wash &amp; dry</li><li>Wheels &amp; tires cleaned</li><li>Tire shine applied</li><li>1–2 hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+      <div class="pkg" onclick="openBooking(&#39;interior&#39;)" role="button" tabindex="0">
+        <div class="pkg-name">Interior</div><div class="pkg-blurb">Deep clean inside your vehicle.</div>
+        <div class="pkg-price"><sup>$</sup>200</div>
+        <ul class="pkg-list"><li>Full vacuum</li><li>Plastics &amp; leathers wiped</li><li>Windows cleaned</li><li>Floor mats cleaned</li><li>2–3 hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+      <div class="pkg feat" onclick="openBooking(&#39;combo&#39;)" role="button" tabindex="0">
+        <div class="pkg-pop">★ Most Popular</div>
+        <div class="pkg-name">Combo</div><div class="pkg-blurb">Best value for regular maintenance.</div>
+        <div class="pkg-price"><sup>$</sup>300</div>
+        <ul class="pkg-list"><li>Deeper full interior detail</li><li>Full exterior detail</li><li>Best value package</li><li>4–5 hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+    </div>
+    <div class="pkg-grid two reveal" style="margin-top:16px">
+      <div class="pkg" onclick="openBooking(&#39;polish&#39;)" role="button" tabindex="0">
+        <div class="pkg-name">Polish</div><div class="pkg-blurb">Restore your paint's true depth and shine.</div>
+        <div class="pkg-price"><sup>$</sup>300</div>
+        <ul class="pkg-list"><li>Machine polish application</li><li>Removes light swirls &amp; scratches</li><li>Eliminates oxidation</li><li>Deep mirror gloss finish</li><li>2–4 hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+      <div class="pkg" onclick="openBooking(&#39;diamond&#39;)" role="button" tabindex="0">
+        <div class="pkg-pop">♦ Premium Sealant</div>
+        <div class="pkg-name">Diamond Fusion</div><div class="pkg-blurb">Next-level hydrophobic paint &amp; glass sealant.</div>
+        <div class="pkg-price"><sup>$</sup>150</div>
+        <ul class="pkg-list"><li>Ultra-slick hydrophobic barrier</li><li>Repels water, grime &amp; UV</li><li>2–3 hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+      <div class="pkg" onclick="openBooking(&#39;detail&#39;)" role="button" tabindex="0">
+        <div class="pkg-name">Full Detail</div><div class="pkg-blurb">Complete treatment, serious results.</div>
+        <div class="pkg-price"><sup>$</sup>600</div>
+        <ul class="pkg-list"><li>Intense interior clean</li><li>Intense exterior clean</li><li>Paint decontamination</li><li>Polish included</li><li>Any extra service required</li><li>6+ hours</li></ul>
+        <div class="btn-r pkg-cta">Book This Package</div>
+      </div>
+      <div class="nano-pkg reveal" onclick="openBooking(&#39;nano&#39;)" role="button" tabindex="0" style="cursor:pointer">
+        <div class="nano-pkg-flag">🛡 Top Pick — Long-Term Protection</div>
+        <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+          <div class="nano-badge2">Nano Ceramic</div>
+          <div class="nano-pkg-price"><sup>$</sup>1,250</div>
+          <div class="pkg-name" style="font-size:24px;letter-spacing:3px;margin-bottom:4px">Nano Armor Protection</div>
+          <div class="pkg-blurb">The smartest long-term investment for your paint. One application, years of showroom shine.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;">
+          <ul class="nano-feat-list"><li>Full exterior wash</li><li>Paint decontamination</li><li>Full polish</li><li>Professional dual coat nano ceramic</li></ul>
+          <div class="nano-benefits">
+            <div class="nano-benefit"><span class="nano-benefit-icon">🛡</span><div class="nano-benefit-title">4–6 Year Shield</div><div class="nano-benefit-desc">Bonds to paint for lasting defense.</div></div>
+            <div class="nano-benefit"><span class="nano-benefit-icon">💧</span><div class="nano-benefit-title">Hydrophobic</div><div class="nano-benefit-desc">Water &amp; dirt slide right off.</div></div>
+            <div class="nano-benefit"><span class="nano-benefit-icon">☀️</span><div class="nano-benefit-title">UV Block</div><div class="nano-benefit-desc">Prevents fade &amp; oxidation.</div></div>
+            <div class="nano-benefit"><span class="nano-benefit-icon">✨</span><div class="nano-benefit-title">Deeper Gloss</div><div class="nano-benefit-desc">Richer colour, mirror finish.</div></div>
+            <div class="nano-benefit"><span class="nano-benefit-icon">🚗</span><div class="nano-benefit-title">Easy Wash</div><div class="nano-benefit-desc">Less scrubbing, faster cleans.</div></div>
+          </div>
+          <button class="btn-r" onclick="event.stopPropagation();openBooking(&#39;nano&#39;)" style="padding:13px 32px;align-self:flex-start;margin-top:4px">Book Nano Armor &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section id="addons-wrap">
+  <div class="sec">
+    <div class="reveal"><p class="eyebrow">Customize Your Detail</p><h2 class="sec-h">Popular <span class="acc">Add-Ons</span></h2></div>
+    <div class="addons-grid reveal">
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Engine Bay Cleaning</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$25</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">A thorough degreasing and rinse of the entire engine bay. Removes built-up grease, dirt, and grime — leaving your engine looking clean and making future leak detection easier.</div>
+      </div>
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Pet Hair Removal</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$20</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">Specialized tools and techniques to lift stubborn pet hair embedded deep in carpet fibres and fabric seats — the kind a regular vacuum simply can't reach.</div>
+      </div>
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Heavy Salt Stain Removal</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$25</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">Targeted treatment for white salt deposits left by winter roads and footwear. We break down the mineral buildup and restore your carpets and mats to a clean, even finish.</div>
+      </div>
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Exterior Clay Bar</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$50</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">A professional clay bar treatment that removes bonded surface contaminants — rail dust, tree sap, overspray, and industrial fallout — leaving your paint silky smooth and ready for polish or protection.</div>
+      </div>
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Steam Clean</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$50</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">High-temperature steam sanitization for interior surfaces including vents, seams, cup holders, and upholstery. Kills bacteria and odours without harsh chemicals — perfect for allergy sufferers or heavy use vehicles.</div>
+      </div>
+      <div class="addon" onclick="toggleAddon(this)">
+        <div class="addon-top"><span class="addon-name">Plastic &amp; Trim Dressings</span><div style="display:flex;align-items:center;gap:10px"><span class="addon-price">$15</span><span class="addon-arrow">▼</span></div></div>
+        <div class="addon-desc-panel">A UV-protective dressing applied to all exterior and interior plastic and rubber trim panels. Restores rich, dark colour to faded plastics and helps prevent future cracking and discolouration.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi-wrap">
+  <div class="sec">
+    <div class="reveal"><p class="eyebrow">Reviews</p><h2 class="sec-h">What Clients <span class="acc">Say</span></h2></div>
+    <div class="testi-grid">
+      <div class="testi reveal" style="transition-delay:.05s">
+        <div class="stars" id="stars-0"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star-num">5.0</span></div>
+        <p class="testi-text">"Austin completely transformed my truck. The ceramic coating looks incredible — like it just rolled off the lot. Worth every dollar."</p>
+        <p class="testi-name">Marcus J.</p>
+      </div>
+      <div class="testi reveal" style="transition-delay:.1s">
+        <div class="stars" id="stars-1"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star half">★</span><span class="star-num">4.5</span></div>
+        <p class="testi-text">"Best detailing service around. The pet hair removal was a miracle. My backseat is completely spotless — couldn't believe the results."</p>
+        <p class="testi-name">Sarah W.</p>
+      </div>
+      <div class="testi reveal" style="transition-delay:.15s">
+        <div class="stars" id="stars-2"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star-num">5.0</span></div>
+        <p class="testi-text">"The full detail package was worth every penny. My car hasn't looked this good since the day I bought it. Will be back for sure."</p>
+        <p class="testi-name">David R.</p>
+      </div>
+      <div class="testi reveal" style="transition-delay:.2s">
+        <div class="stars" id="stars-3"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star empty">★</span><span class="star-num">4.2</span></div>
+        <p class="testi-text">"Did the combo deal. Reasonable price for what you get. Interior smells fresh, exterior is spotless. Only small wait for scheduling."</p>
+        <p class="testi-name">Jordan T.</p>
+      </div>
+      <div class="testi reveal" style="transition-delay:.25s">
+        <div class="stars" id="stars-4"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star-num">5.0</span></div>
+        <p class="testi-text">"Nano armor package is elite. Car looks better than when I bought it new. The shine is unreal and I can tell it's built to last."</p>
+        <p class="testi-name">Chris M.</p>
+      </div>
+      <div class="testi reveal" style="transition-delay:.3s">
+        <div class="stars" id="stars-5"><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star half">★</span><span class="star-num">4.8</span></div>
+        <p class="testi-text">"Got the exterior package as a one-time thing and ended up booking the combo the week after. Attention to detail is genuinely impressive."</p>
+        <p class="testi-name">Priya K.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact-wrap">
+  <div class="sec">
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <p class="eyebrow">Get In Touch</p>
+        <h2 class="sec-h" style="margin-bottom:20px">Ready For A<br><span class="acc">Fresh Look?</span></h2>
+        <p style="color:var(--mut);line-height:1.8;margin-bottom:30px;font-size:15px;max-width:380px">Book your appointment today or reach out with any questions. We're here to make your vehicle shine.</p>
+        <button class="btn-r" style="padding:15px 32px;font-size:12px" onclick="openBooking()">Schedule Now &nbsp;→</button>
+      </div>
+      <div class="reveal-right contact-items">
+        <div class="ci"><span class="ci-icon">📞</span><div><div class="ci-label">Phone</div><div class="ci-val" id="contact-phone">(XXX) XXX-XXXX</div></div></div>
+        <div class="ci"><span class="ci-icon">📍</span><div><div class="ci-label">Location</div><div class="ci-val" id="contact-loc">Your City, Province/State</div></div></div>
+        <div class="ci"><span class="ci-icon">🕐</span><div><div class="ci-label">Hours</div><div class="ci-val" id="contact-hours">Mon–Sat: 8:00 AM – 6:00 PM</div><div class="ci-sub" id="contact-closed">Sun: Closed</div></div></div>
+        <div class="ci"><span class="ci-icon">✉️</span><div><div class="ci-label">Email</div><div class="ci-val" id="contact-email">hello@detailedbyaustin.com</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DETAILED<em>BY</em>AUSTIN</div>
+  <div class="footer-soc" id="footer-soc">
+    <a href="#" id="soc-ig" aria-label="Instagram" style="display:none">IG</a>
+    <a href="#" id="soc-tk" aria-label="TikTok" style="display:none">TK</a>
+    <a href="#" id="soc-fb" aria-label="Facebook" style="display:none">FB</a>
+    <a href="#" id="soc-yt" aria-label="YouTube" style="display:none">YT</a>
+    <a href="#" id="soc-tw" aria-label="Twitter/X" style="display:none">𝕏</a>
+  </div>
+  <p class="footer-copy">© 2025 DetailedByAustin. All rights reserved. &nbsp;|&nbsp; <button class="footer-admin-btn" onclick="openAdmin()">Admin</button></p>
+</footer>
+
+<!-- PROMO POPUP -->
+<div id="promo-overlay" class="show">
+  <div class="promo-box animate">
+    <div class="promo-img-wrap">
+      <img class="promo-img" src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Car detail">
+      <div class="promo-badge">10%<small>OFF</small></div>
+    </div>
+    <div class="promo-body">
+      <div id="promo-form-wrap">
+        <p class="promo-eyebrow">First-Time Customer Offer</p>
+        <h3 class="promo-h">Get 10% Off<br>Your First Detail</h3>
+        <p class="promo-p">Enter your email and phone to unlock an exclusive discount code. Valid on any service — one use per customer.</p>
+        <div class="promo-form">
+          <input class="p-input" id="promo-email" type="email" placeholder="your@email.com">
+          <input class="p-input" id="promo-phone" type="tel" placeholder="(555) 555-0100">
+          <button class="p-submit" onclick="submitPromo()">Claim My 10% Off &nbsp;→</button>
+        </div>
+        <button class="p-skip" onclick="closePromo()">No thanks, I'll pay full price</button>
+      </div>
+      <div id="promo-success-wrap" style="display:none" class="promo-success">
+        <div style="font-size:44px;margin-bottom:12px;animation:float 2s infinite">🎉</div>
+        <h3 class="promo-h" style="margin-bottom:8px">Your Code Is Ready!</h3>
+        <p style="font-size:13px;color:var(--mut);margin-bottom:4px">Show this at booking to receive your discount:</p>
+        <div class="p-code-box"><span class="p-code" id="promo-code-display">FIRST10</span><button class="p-copy-btn" onclick="copyCode()">Copy</button></div>
+        <p class="p-code-note">Valid for 10% off any service. One use per customer. Mention at booking.</p>
+        <button class="btn-r" style="margin-top:18px;width:100%;padding:14px" onclick="closePromo();openBooking()">Book Now &amp; Save &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div id="booking-overlay" onclick="bkOvClick(event)">
+  <div class="bk-modal">
+    <div class="bk-header">
+      <span class="bk-logo">DETAILED<em>BY</em>AUSTIN</span>
+      <button class="bk-close" onclick="closeBooking()">✕ Close</button>
+    </div>
+    <div class="bk-body">
+      <div class="steps-bar">
+        <div class="si active" id="si0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="5"></circle><path d="M21 3L9 15"></path></svg><span>Service</span></div>
+        <div class="sl" id="sl0"></div>
+        <div class="si" id="si1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span>Date &amp; Time</span></div>
+        <div class="sl" id="sl1"></div>
+        <div class="si" id="si2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Your Info</span></div>
+        <div class="sl" id="sl2"></div>
+        <div class="si" id="si3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Confirm</span></div>
+      </div>
+      <div class="step-panel active" id="sp0">
+        <h2 class="sp-h">Select Your Services</h2><p class="sp-sub">Pick one or more packages, individual services and add-ons.</p>
+        <div class="svc-opt-label">Packages</div>
+        <div class="svc-opt-grid">
+          <button class="svc-opt" data-id="exterior" data-price="80" data-name="Exterior Wash" onclick="pickSvc(this)"><div class="svc-opt-name">Exterior Wash</div><div class="svc-opt-row"><span class="svc-opt-dur">1–2 hrs</span><span class="svc-opt-price">$80</span></div></button>
+          <button class="svc-opt" data-id="interior" data-price="200" data-name="Interior Clean" onclick="pickSvc(this)"><div class="svc-opt-name">Interior Clean</div><div class="svc-opt-row"><span class="svc-opt-dur">2–3 hrs</span><span class="svc-opt-price">$200</span></div></button>
+          <button class="svc-opt" data-id="combo" data-price="300" data-name="Combo Detail" onclick="pickSvc(this)"><div class="svc-opt-name">Combo — Best Value</div><div class="svc-opt-row"><span class="svc-opt-dur">4–5 hrs</span><span class="svc-opt-price">$300</span></div></button>
+          <button class="svc-opt" data-id="detail" data-price="600" data-name="Full Detail" onclick="pickSvc(this)"><div class="svc-opt-name">Full Detail</div><div class="svc-opt-row"><span class="svc-opt-dur">6+ hrs</span><span class="svc-opt-price">$600</span></div></button>
+        </div>
+        <div class="svc-opt-label">Individual Services</div>
+        <div class="svc-opt-grid">
+          <button class="svc-opt" data-id="polish" data-price="300" data-name="Polish" onclick="pickSvc(this)"><div class="svc-opt-name">Polish</div><div class="svc-opt-row"><span class="svc-opt-dur">2–4 hrs</span><span class="svc-opt-price">$300</span></div></button>
+          <button class="svc-opt" data-id="diamond" data-price="150" data-name="Diamond Fusion" onclick="pickSvc(this)"><div class="svc-opt-name">Diamond Fusion</div><div class="svc-opt-row"><span class="svc-opt-dur">2–3 hrs</span><span class="svc-opt-price">$150</span></div></button>
+          <button class="svc-opt" data-id="nano" data-price="1250" data-name="Nano Armor Ceramic" onclick="pickSvc(this)"><div class="svc-opt-name">Nano Armor Ceramic</div><div class="svc-opt-row"><span class="svc-opt-dur">4–6 yr protection</span><span class="svc-opt-price">$1,250</span></div></button>
+        </div>
+        <div class="svc-opt-label">Add-Ons (Optional)</div>
+        <div class="svc-opt-grid" id="addon-opts-grid">
+          <button class="svc-opt addon-opt" data-id="engine" data-price="25" data-name="Engine Bay Cleaning" onclick="pickAddon(this)"><div class="svc-opt-name">Engine Bay Cleaning</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$25</span></div></button>
+          <button class="svc-opt addon-opt" data-id="pet" data-price="20" data-name="Pet Hair Removal" onclick="pickAddon(this)"><div class="svc-opt-name">Pet Hair Removal</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$20</span></div></button>
+          <button class="svc-opt addon-opt" data-id="salt" data-price="25" data-name="Heavy Salt Stain Removal" onclick="pickAddon(this)"><div class="svc-opt-name">Heavy Salt Stain Removal</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$25</span></div></button>
+          <button class="svc-opt addon-opt" data-id="clay" data-price="50" data-name="Exterior Clay Bar" onclick="pickAddon(this)"><div class="svc-opt-name">Exterior Clay Bar</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$50</span></div></button>
+          <button class="svc-opt addon-opt" data-id="steam" data-price="50" data-name="Steam Clean" onclick="pickAddon(this)"><div class="svc-opt-name">Steam Clean</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$50</span></div></button>
+          <button class="svc-opt addon-opt" data-id="trim" data-price="15" data-name="Plastic &amp; Trim Dressings" onclick="pickAddon(this)"><div class="svc-opt-name">Plastic &amp; Trim Dressings</div><div class="svc-opt-row"><span class="svc-opt-dur">Add-on</span><span class="svc-opt-price">$15</span></div></button>
+        </div>
+        <div class="bk-total-bar">
+          <div><div class="bk-total-lbl">Running Total</div><div class="bk-total-count" id="bk-total-count">No items selected</div></div>
+          <div class="bk-total-val" id="bk-total-val">$0</div>
+        </div>
+      </div>
+      <div class="step-panel" id="sp1">
+        <h2 class="sp-h">Pick Date &amp; Time</h2><p class="sp-sub">Select your preferred appointment date and time slot.</p>
+        <div class="cal-wrap">
+          <div class="mini-cal">
+            <div class="cal-hdr"><button class="cal-nav" onclick="prevMo()">‹</button><span class="cal-month" id="cal-lbl"></span><button class="cal-nav" onclick="nextMo()">›</button></div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+          <div>
+            <div class="slots-lbl">Available Time Slots</div>
+            <div id="slots-hint" style="font-size:13px;color:#52525B">Select a date first</div>
+            <div class="slots-grid" id="slots-grid" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+      <div class="step-panel" id="sp2">
+        <h2 class="sp-h">Your Information</h2><p class="sp-sub">Tell us about yourself and your vehicle.</p>
+        <div class="form-box">
+          <div class="fsec">Personal Details</div>
+          <div class="fg"><label for="fn">Full Name</label><input id="fn" type="text" placeholder="John Doe" oninput="chkNx()"></div>
+          <div class="fg"><label for="fe">Email</label><input id="fe" type="email" placeholder="john@email.com" oninput="chkNx()"></div>
+          <div class="fg full"><label for="fp">Phone</label><input id="fp" type="tel" placeholder="(555) 555-0100" oninput="chkNx()"></div>
+          <div class="fg full"><label for="fc">Promo Code (Optional)</label><input id="fc" type="text" placeholder="e.g. FIRST10" style="text-transform:uppercase"></div>
+          <div class="fsec" style="margin-top:4px">Vehicle Details</div>
+          <div class="fg"><label for="fm">Make</label><select id="fm" onchange="chkNx()"><option value="">Select Make</option><option>Toyota</option><option>Honda</option><option>Ford</option><option>Chevrolet</option><option>BMW</option><option>Mercedes</option><option>Audi</option><option>Tesla</option><option>Lexus</option><option>Porsche</option><option>Dodge</option><option>RAM</option><option>Hyundai</option><option>Kia</option><option>Subaru</option><option>Other</option></select></div>
+          <div class="fg"><label for="fmo">Model</label><input id="fmo" type="text" placeholder="e.g. Camry" oninput="chkNx()"></div>
+          <div class="fg"><label for="fy">Year</label><select id="fy" onchange="chkNx()"><option value="">Select Year</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>2013</option><option>2012</option><option>2011</option><option>2010</option></select></div>
+          <div class="fg full"><label for="fno">Notes (Optional)</label><textarea id="fno" rows="3" placeholder="Special requests or concerns..."></textarea></div>
+        </div>
+      </div>
+      <div class="step-panel" id="sp3">
+        <h2 class="sp-h">Confirm &amp; Pay</h2><p class="sp-sub">Review your booking details before payment.</p>
+        <div class="confirm-box">
+          <div><div class="ci2-lbl">Date</div><div class="ci2-val" id="cf-date">—</div></div>
+          <div><div class="ci2-lbl">Time</div><div class="ci2-val" id="cf-time">—</div></div>
+          <div><div class="ci2-lbl">Customer</div><div class="ci2-val" id="cf-cust">—</div></div>
+          <div><div class="ci2-lbl">Vehicle</div><div class="ci2-val" id="cf-veh">—</div></div>
+          <div class="ci2-div"></div>
+          <div class="cf-items-list" id="cf-items-list"></div>
+          <div class="cf-total-row" style="grid-column:span 2"><div class="cf-total-lbl">Total</div><div class="cf-total-val" id="cf-total">$0</div></div>
+          <div style="grid-column:span 2"><div id="cf-promo-row" style="display:none;padding:10px 14px;background:rgba(255,59,48,.07);border:1px solid rgba(255,59,48,.25);margin-bottom:12px;font-size:13px;color:var(--red)">🎉 Promo <strong id="cf-promo-code"></strong> applied — 10% off!</div><p class="ci2-note" id="cf-note">You'll be redirected to secure payment after confirming.</p></div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-prev" id="bk-prev" onclick="prevBk()" style="visibility:hidden">← Previous</button>
+        <button class="btn-next" id="bk-next" onclick="nextBk()" disabled="">Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="success-overlay">
+  <div class="succ-box">
+    <div class="succ-icon">✅</div>
+    <h2 class="succ-h">Booking Confirmed!</h2>
+    <p class="succ-p">Your appointment has been booked. You'll receive a confirmation with all the details. We can't wait to detail your ride!</p>
+    <button class="btn-r" style="padding:14px 36px" onclick="closeSuccess()">Back to Home</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-overlay">
+  <div class="adm-nav">
+    <span class="adm-logo">DETAILED<em>BY</em>AUSTIN <span>Admin</span></span>
+    <button class="adm-close" onclick="closeAdmin()">✕ Close</button>
+  </div>
+  <div class="adm-body">
+    <div id="adm-login" style="max-width:360px;margin:60px auto;text-align:center">
+      <p class="eyebrow" style="text-align:center;margin-bottom:12px">Admin Access</p>
+      <h2 style="font-family:&#39;Bebas Neue&#39;;font-size:36px;color:#fff;margin-bottom:22px">Sign In</h2>
+      <div style="display:flex;flex-direction:column;gap:10px;background:var(--surf);border:1px solid var(--bdr);padding:26px">
+        <input id="adm-pass" type="password" placeholder="Admin password" style="background:#0A0A0C;border:1px solid var(--bdr);color:#fff;padding:11px 14px;font-family:&#39;Manrope&#39;;font-size:14px;outline:none;width:100%;transition:border-color .25s;" onfocus="this.style.borderColor=&#39;var(--red)&#39;" onblur="this.style.borderColor=&#39;var(--bdr)&#39;" onkeydown="if(event.key===&#39;Enter&#39;)admLogin()">
+        <button class="btn-r" style="padding:12px;width:100%" onclick="admLogin()">Sign In</button>
+        <p id="adm-err" style="display:none;font-size:12px;color:var(--red)">Incorrect password.</p>
+      </div>
+    </div>
+    <div id="adm-dash" style="display:none">
+      <div class="adm-tabs">
+        <button class="adm-tab active" onclick="admTab(this,&#39;tab-ov&#39;)">Overview</button>
+        <button class="adm-tab" onclick="admTab(this,&#39;tab-bk&#39;)">Bookings</button>
+        <button class="adm-tab" onclick="admTab(this,&#39;tab-leads&#39;)">Promo Leads</button>
+        <button class="adm-tab" onclick="admTab(this,&#39;tab-api&#39;);renderApiPanel()">API Access</button>
+        <button class="adm-tab" onclick="admTab(this,&#39;tab-set&#39;)">Settings</button>
+      </div>
+      <!-- Overview -->
+      <div class="adm-panel active" id="tab-ov">
+        <div class="stats-grid">
+          <div class="stat-card red"><div class="stat-label">Total Revenue</div><div class="stat-val" id="stat-rev">$0</div><div class="stat-sub">All time</div></div>
+          <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-val" id="stat-total">0</div><div class="stat-sub">All time</div></div>
+          <div class="stat-card blue"><div class="stat-label">Promo Leads</div><div class="stat-val" id="stat-leads">0</div><div class="stat-sub">Emails collected</div></div>
+          <div class="stat-card green"><div class="stat-label">Pending</div><div class="stat-val" id="stat-pend">0</div><div class="stat-sub">Awaiting confirmation</div></div>
+        </div>
+        <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff;margin-bottom:14px">Recent Bookings</h3>
+        <div class="adm-table-wrap"><table class="adm-table"><thead><tr><th>#</th><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Price</th><th>Status</th><th>Action</th></tr></thead><tbody id="ov-tbody"></tbody></table></div>
+      </div>
+      <!-- Bookings -->
+      <div class="adm-panel" id="tab-bk">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+          <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff">All Bookings</h3>
+          <button class="btn-r" onclick="exportCSV()" style="padding:9px 18px;font-size:10px">Export CSV</button>
+        </div>
+        <div class="adm-table-wrap"><table class="adm-table"><thead><tr><th>#</th><th>Customer</th><th>Email</th><th>Phone</th><th>Vehicle</th><th>Service</th><th>Date</th><th>Time</th><th>Price</th><th>Promo</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bk-tbody"></tbody></table></div>
+      </div>
+      <!-- Promo Leads -->
+      <div class="adm-panel" id="tab-leads">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+          <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff">Promo Code Leads</h3>
+          <button class="btn-r" onclick="exportLeads()" style="padding:9px 18px;font-size:10px">Export CSV</button>
+        </div>
+        <div class="adm-table-wrap"><table class="adm-table"><thead><tr><th>#</th><th>Email</th><th>Phone</th><th>Code</th><th>Claimed</th><th>Status</th></tr></thead><tbody id="leads-tbody"></tbody></table></div>
+      </div>
+      <!-- API Access -->
+      <div class="adm-panel" id="tab-api">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px">
+          <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff">API Access</h3>
+          <button class="btn-r" onclick="regenerateApiKey()" style="padding:9px 18px;font-size:10px">Regenerate Key</button>
+        </div>
+        <!-- API Key Card -->
+        <div style="background:var(--surf);border:1px solid var(--bdr);padding:22px;margin-bottom:20px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin-bottom:10px">Your API Key</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <code id="api-key-display" style="font-family:monospace;font-size:13px;background:#0A0A0C;border:1px solid var(--bdr);padding:10px 14px;color:var(--red);letter-spacing:.05em;flex:1;min-width:200px;word-break:break-all;"></code>
+            <button class="adm-act" onclick="copyApiKey()" style="white-space:nowrap;padding:10px 14px;font-size:11px">Copy Key</button>
+          </div>
+          <p style="font-size:11px;color:#52525B;margin-top:10px;line-height:1.6">Include this key in the <code style="color:var(--mut);font-size:11px">Authorization: Bearer &lt;key&gt;</code> header for all API requests. Keep it private.</p>
+        </div>
+        <!-- Endpoints Reference -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;" class="api-endpoint-grid">
+          <div style="background:var(--surf);border:1px solid var(--bdr);padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span style="background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.3);font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:.1em;">GET</span>
+              <code style="font-size:12px;color:#a78bfa">/api/bookings</code>
+            </div>
+            <div style="font-size:11px;color:var(--mut);margin-bottom:10px;line-height:1.6">Returns all bookings as JSON. Supports <code style="color:#D4D4D8">?status=pending</code> filter.</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#52525B;margin-bottom:6px">Live Response Preview</div>
+            <div style="position:relative;">
+              <pre id="api-bookings-preview" style="background:#050507;border:1px solid var(--bdr);padding:12px;font-size:11px;color:#D4D4D8;overflow:auto;max-height:180px;line-height:1.6;font-family:monospace;white-space:pre-wrap;word-break:break-all;"></pre>
+              <button class="adm-act" onclick="copyApiResponse(&#39;api-bookings-preview&#39;)" style="position:absolute;top:8px;right:8px;font-size:10px">Copy</button>
+            </div>
+          </div>
+          <div style="background:var(--surf);border:1px solid var(--bdr);padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span style="background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.3);font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:.1em;">GET</span>
+              <code style="font-size:12px;color:#a78bfa">/api/leads</code>
+            </div>
+            <div style="font-size:11px;color:var(--mut);margin-bottom:10px;line-height:1.6">Returns all promo leads as JSON. Supports <code style="color:#D4D4D8">?used=false</code> filter.</div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#52525B;margin-bottom:6px">Live Response Preview</div>
+            <div style="position:relative;">
+              <pre id="api-leads-preview" style="background:#050507;border:1px solid var(--bdr);padding:12px;font-size:11px;color:#D4D4D8;overflow:auto;max-height:180px;line-height:1.6;font-family:monospace;white-space:pre-wrap;word-break:break-all;"></pre>
+              <button class="adm-act" onclick="copyApiResponse(&#39;api-leads-preview&#39;)" style="position:absolute;top:8px;right:8px;font-size:10px">Copy</button>
+            </div>
+          </div>
+        </div>
+        <!-- Additional Endpoints -->
+        <div style="background:var(--surf);border:1px solid var(--bdr);padding:22px;margin-bottom:20px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin-bottom:16px">Additional Endpoints</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:#050507;border:1px solid var(--bdr);">
+              <span style="background:rgba(234,179,8,.12);color:#EAB308;border:1px solid rgba(234,179,8,.3);font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:.1em;white-space:nowrap">PATCH</span>
+              <div><code style="font-size:12px;color:#a78bfa">/api/bookings/:id/status</code><div style="font-size:11px;color:var(--mut);margin-top:4px">Update booking status. Body: <code style="color:#D4D4D8">{"status":"confirmed"|"completed"|"cancelled"}</code></div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:#050507;border:1px solid var(--bdr);">
+              <span style="background:rgba(34,197,94,.12);color:#22C55E;border:1px solid rgba(34,197,94,.3);font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:.1em;white-space:nowrap">GET</span>
+              <div><code style="font-size:12px;color:#a78bfa">/api/bookings/stats</code><div style="font-size:11px;color:var(--mut);margin-top:4px">Returns summary stats: total revenue, booking count, pending count, leads count.</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;padding:12px;background:#050507;border:1px solid var(--bdr);">
+              <span style="background:rgba(239,68,68,.12);color:#EF4444;border:1px solid rgba(239,68,68,.3);font-size:10px;font-weight:700;padding:3px 8px;letter-spacing:.1em;white-space:nowrap">DELETE</span>
+              <div><code style="font-size:12px;color:#a78bfa">/api/bookings/:id</code><div style="font-size:11px;color:var(--mut);margin-top:4px">Permanently delete a booking record by ID.</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Webhook / Export note -->
+        <div style="background:rgba(74,111,200,.06);border:1px solid rgba(74,111,200,.2);padding:18px;font-size:12px;color:#7aa0d4;line-height:1.7;">
+          <strong style="display:block;margin-bottom:4px;font-size:13px">Integration Note</strong>
+          The JSON previews above reflect your live local data and can be used directly in integrations. Download the data anytime using the Export CSV buttons on the Bookings and Promo Leads tabs, or copy the JSON above to pipe into any webhook, Zapier, or Make.com workflow.
+        </div>
+      </div>
+      <!-- Settings -->
+      <div class="adm-panel" id="tab-set">
+        <div class="settings-grid">
+          <div class="s-card">
+            <h3>Business Info</h3>
+            <div class="s-row"><label>Business Name</label><input type="text" id="s-name" value="DetailedByAustin"></div>
+            <div class="s-row"><label>Phone</label><input type="tel" id="s-phone" value="(XXX) XXX-XXXX"></div>
+            <div class="s-row"><label>Email</label><input type="email" id="s-email" value="hello@detailedbyaustin.com"></div>
+            <div class="s-row"><label>Location</label><input type="text" id="s-loc" value="Your City, Province/State"></div>
+            <button class="s-save" onclick="saveSettings()">Save Changes</button>
+          </div>
+          <div class="s-card">
+            <h3>Open Days &amp; Hours</h3>
+            <div class="s-row">
+              <label style="margin-bottom:10px">Open Days (check all that apply)</label>
+              <div class="days-check-grid">
+                <label class="day-check"><input type="checkbox" id="day-mon" checked=""><span>Mon</span></label>
+                <label class="day-check"><input type="checkbox" id="day-tue" checked=""><span>Tue</span></label>
+                <label class="day-check"><input type="checkbox" id="day-wed" checked=""><span>Wed</span></label>
+                <label class="day-check"><input type="checkbox" id="day-thu" checked=""><span>Thu</span></label>
+                <label class="day-check"><input type="checkbox" id="day-fri" checked=""><span>Fri</span></label>
+                <label class="day-check"><input type="checkbox" id="day-sat" checked=""><span>Sat</span></label>
+                <label class="day-check"><input type="checkbox" id="day-sun"><span>Sun</span></label>
+              </div>
+            </div>
+            <div class="s-row" style="margin-top:14px"><label>Open Time</label><select id="s-open"><option>7:00 AM</option><option selected="">8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option></select></div>
+            <div class="s-row"><label>Close Time</label><select id="s-close"><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option><option selected="">6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option></select></div>
+            <button class="s-save" onclick="saveSettings()">Save Changes</button>
+          </div>
+          <div class="s-card">
+            <h3>Promo Settings</h3>
+            <div class="s-row"><label>Promo Code</label><input type="text" id="s-code" value="FIRST10"></div>
+            <div class="s-row"><label>Discount %</label><input type="number" id="s-disc" value="10" min="1" max="100"></div>
+            <div class="s-row"><label>Popup Delay (seconds)</label><input type="number" id="s-delay" value="4" min="1" max="30"></div>
+            <div class="s-row"><label>Show Popup &amp; Float Button</label><select id="s-popup"><option value="1">Enabled</option><option value="0">Disabled</option></select></div>
+            <button class="s-save" onclick="saveSettings()">Save Changes</button>
+          </div>
+          <div class="s-card">
+            <h3>Social Media Links</h3>
+            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Leave blank to hide that platform. Changes apply to the footer links.</p>
+            <div class="s-row">
+              <label>Instagram URL</label>
+              <div class="soc-input-row"><span class="soc-icon-label">📷</span><input class="soc-input" type="url" id="soc-ig-url" placeholder="https://instagram.com/yourpage"></div>
+            </div>
+            <div class="s-row">
+              <label>TikTok URL</label>
+              <div class="soc-input-row"><span class="soc-icon-label">🎵</span><input class="soc-input" type="url" id="soc-tk-url" placeholder="https://tiktok.com/@yourpage"></div>
+            </div>
+            <div class="s-row">
+              <label>Facebook URL</label>
+              <div class="soc-input-row"><span class="soc-icon-label">👤</span><input class="soc-input" type="url" id="soc-fb-url" placeholder="https://facebook.com/yourpage"></div>
+            </div>
+            <div class="s-row">
+              <label>YouTube URL</label>
+              <div class="soc-input-row"><span class="soc-icon-label">▶️</span><input class="soc-input" type="url" id="soc-yt-url" placeholder="https://youtube.com/@yourpage"></div>
+            </div>
+            <div class="s-row">
+              <label>Twitter / X URL</label>
+              <div class="soc-input-row"><span class="soc-icon-label">𝕏</span><input class="soc-input" type="url" id="soc-tw-url" placeholder="https://x.com/yourpage"></div>
+            </div>
+            <button class="s-save" onclick="saveSettings()">Save Social Links</button>
+          </div>
+          <div class="s-card">
+            <h3>Stripe Payment</h3>
+            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Redirect customers to your Stripe Payment Link after confirming a booking. Their email &amp; booking ID are auto-attached.</p>
+            <div class="s-row"><label>Stripe Checkout</label><select id="s-stripe-on"><option value="0">Disabled</option><option value="1">Enabled</option></select></div>
+            <div class="s-row"><label>Publishable Key (optional)</label><input type="text" id="s-stripe-pk" placeholder="pk_live_..."></div>
+            <div class="s-row"><label>Payment Link URL</label><input type="url" id="s-stripe-link" placeholder="https://buy.stripe.com/..."></div>
+            <p style="font-size:11px;color:#52525B;line-height:1.6;margin-top:2px">Create one in your <a href="https://dashboard.stripe.com/payment-links" target="_blank" style="color:var(--red);text-decoration:none">Stripe dashboard → Payment Links</a>. Enable <em>"Let customers adjust quantity"</em> or use a link matching your service price.</p>
+            <button class="s-save" onclick="saveSettings()">Save Stripe Settings</button>
+          </div>
+          <div class="s-card">
+            <h3>Change Password</h3>
+            <div class="s-row"><label>Current Password</label><input type="password" id="s-old" placeholder="Current password"></div>
+            <div class="s-row"><label>New Password</label><input type="password" id="s-new" placeholder="New password (min 6 chars)"></div>
+            <div class="s-row"><label>Confirm New Password</label><input type="password" id="s-conf" placeholder="Confirm new password"></div>
+            <button class="s-save" onclick="changePw()">Update Password</button>
+            <p id="pw-msg" style="display:none;margin-top:10px;font-size:12px;line-height:1.5"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
