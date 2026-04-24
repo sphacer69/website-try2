@@ -896,7 +896,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="step-panel active" id="sp0">
         <h2 class="sp-h">Select Your Services</h2><p class="sp-sub">Pick one or more packages, individual services and add-ons.</p>
         <div class="svc-opt-label">Packages</div>
-        <div class="svc-opt-grid">
+        <div class="svc-opt-grid" id="package-opts-grid">
           <button class="svc-opt" data-id="exterior" data-price="80" data-name="Exterior Wash" onclick="pickSvc(this)"><div class="svc-opt-name">Exterior Wash</div><div class="svc-opt-row"><span class="svc-opt-dur">1–2 hrs</span><span class="svc-opt-price">$80</span></div></button>
           <button class="svc-opt" data-id="interior" data-price="200" data-name="Interior Clean" onclick="pickSvc(this)"><div class="svc-opt-name">Interior Clean</div><div class="svc-opt-row"><span class="svc-opt-dur">2–3 hrs</span><span class="svc-opt-price">$200</span></div></button>
           <button class="svc-opt" data-id="combo" data-price="300" data-name="Combo Detail" onclick="pickSvc(this)"><div class="svc-opt-name">Combo — Best Value</div><div class="svc-opt-row"><span class="svc-opt-dur">4–5 hrs</span><span class="svc-opt-price">$300</span></div></button>
@@ -946,8 +946,8 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           <div class="fg full"><label for="fc">Promo Code (Optional)</label><input id="fc" type="text" placeholder="e.g. FIRST10" style="text-transform:uppercase"></div>
           <div class="fsec" style="margin-top:4px">Vehicle Details</div>
           <div class="fg"><label for="fm">Make</label><select id="fm" onchange="chkNx()"><option value="">Select Make</option><option>Toyota</option><option>Honda</option><option>Ford</option><option>Chevrolet</option><option>BMW</option><option>Mercedes</option><option>Audi</option><option>Tesla</option><option>Lexus</option><option>Porsche</option><option>Dodge</option><option>RAM</option><option>Hyundai</option><option>Kia</option><option>Subaru</option><option>Other</option></select></div>
-          <div class="fg"><label for="fmo">Model</label><input id="fmo" type="text" placeholder="e.g. Camry" oninput="chkNx()"></div>
-          <div class="fg"><label for="fy">Year</label><select id="fy" onchange="chkNx()"><option value="">Select Year</option><script>for(let y=2026;y>=2010;y--)document.write(`<option>${y}</option>`)</script><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option><option>2020</option><option>2019</option><option>2018</option><option>2017</option><option>2016</option><option>2015</option><option>2014</option><option>2013</option><option>2012</option><option>2011</option><option>2010</option></select></div>
+          <div class="fg"><label for="fs">Number of Seats</label><input id="fs" type="number" inputmode="numeric" min="1" max="80" step="1" placeholder="e.g. 5" oninput="chkNx()"></div>
+          <div class="fg"><label for="fy">Year</label><input id="fy" type="number" inputmode="numeric" min="1900" max="2100" step="1" placeholder="e.g. 2018" oninput="chkNx()"></div>
           <div class="fg full"><label for="fno">Notes (Optional)</label><textarea id="fno" rows="3" placeholder="Special requests or concerns..."></textarea></div>
         </div>
       </div>
@@ -1150,7 +1150,20 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             <div class="s-row"><label>Discount %</label><input type="number" id="s-disc" value="10" min="1" max="100"></div>
             <div class="s-row"><label>Popup Delay (seconds)</label><input type="number" id="s-delay" value="4" min="1" max="30"></div>
             <div class="s-row"><label>Show Popup &amp; Float Button</label><select id="s-popup"><option value="1">Enabled</option><option value="0">Disabled</option></select></div>
+            <div class="s-row"><label>Included Seats (No Surcharge)</label><input type="number" id="s-seat-base" value="5" min="1" max="80"></div>
+            <div class="s-row"><label>Extra Price Per Seat (Above Included)</label><input type="number" id="s-seat-inc" value="0" min="0" step="1"></div>
             <button class="s-save" onclick="saveSettings()">Save Changes</button>
+          </div>
+          <div class="s-card">
+            <h3>Package Manager</h3>
+            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add, remove, and reprice booking packages. This updates the booking package options without changing page layout.</p>
+            <div id="pkg-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
+              <input type="text" id="pkg-new-name" placeholder="Package name">
+              <input type="number" id="pkg-new-price" min="1" step="1" placeholder="Price">
+              <input type="text" id="pkg-new-dur" placeholder="Duration (e.g. 2-3 hrs)">
+            </div>
+            <button class="s-save" onclick="addPackageAdmin()">Add Package</button>
           </div>
           <div class="s-card">
             <h3>Social Media Links</h3>
@@ -1250,6 +1263,14 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => ro
 let bookings = JSON.parse(localStorage.getItem('dba_bookings') || '[]');
 let leads = JSON.parse(localStorage.getItem('dba_leads') || '[]');
 let settings = JSON.parse(localStorage.getItem('dba_settings') || '{"code":"FIRST10","disc":10,"delay":4,"popup":true,"pass":"admin123","phone":"(XXX) XXX-XXXX","email":"hello@detailedbyaustin.com","loc":"Your City, Province/State","openTime":"8:00 AM","closeTime":"6:00 PM","days":{"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true,"sun":false},"social":{"ig":"","tk":"","fb":"","yt":"","tw":""}}');
+const DEFAULT_PACKAGES = [
+  { id: 'exterior', name: 'Exterior Wash', price: 80, dur: '1–2 hrs' },
+  { id: 'interior', name: 'Interior Clean', price: 200, dur: '2–3 hrs' },
+  { id: 'combo', name: 'Combo Detail', price: 300, dur: '4–5 hrs' },
+  { id: 'detail', name: 'Full Detail', price: 600, dur: '6+ hrs' }
+];
+settings.packages = Array.isArray(settings.packages) && settings.packages.length ? settings.packages : DEFAULT_PACKAGES.slice();
+settings.seatPricing = settings.seatPricing || { baseSeats: 5, perSeat: 0 };
 settings.github = settings.github || { owner: 'sphacer69', repo: 'website-try2', branch: 'main', path: 'settings.json', autoSync: false };
 function getSavedGithubToken() {
   try { return localStorage.getItem('dba_github_token') || ''; } catch (_) { return ''; }
@@ -1291,6 +1312,7 @@ function applySettings() {
   // promo float
   const pf = document.getElementById('promo-float');
   pf.style.display = settings.popup !== false ? 'block' : 'none';
+  renderPackageOptions();
 }
 applySettings();
 hydrateSettingsFromGithub();
@@ -1379,8 +1401,15 @@ function prevBk() { if (bkStep > 0) { bkStep--; updateSteps(); } }
 function computeSubtotal() {
   return bk.items.reduce((s, x) => s + x.price, 0) + bk.addons.reduce((s, x) => s + x.price, 0);
 }
+function computeSeatSurcharge() {
+  const seatCount = parseInt(document.getElementById('fs')?.value || '0', 10) || 0;
+  const seatCfg = settings.seatPricing || { baseSeats: 5, perSeat: 0 };
+  const baseSeats = Math.max(1, parseInt(seatCfg.baseSeats, 10) || 5);
+  const perSeat = Math.max(0, parseInt(seatCfg.perSeat, 10) || 0);
+  return Math.max(0, seatCount - baseSeats) * perSeat;
+}
 function updateTotal() {
-  const subtotal = computeSubtotal();
+  const subtotal = computeSubtotal() + computeSeatSurcharge();
   const tv = document.getElementById('bk-total-val');
   const tc = document.getElementById('bk-total-count');
   if (tv) tv.textContent = `$${subtotal.toLocaleString()}`;
@@ -1433,13 +1462,14 @@ function showSlots() {
   chkNx();
 }
 function pickTime(t) { bk.time = t; document.querySelectorAll('.slot-btn').forEach(b => b.classList.toggle('sel', b.textContent === t)); chkNx(); }
-function validStep2() { return ['fn','fe','fp'].every(id => document.getElementById(id).value.trim()) && document.getElementById('fm').value && document.getElementById('fmo').value.trim() && document.getElementById('fy').value; }
+function validStep2() { return ['fn','fe','fp'].every(id => document.getElementById(id).value.trim()) && document.getElementById('fm').value && (parseInt(document.getElementById('fs').value, 10) > 0) && document.getElementById('fy').value; }
 function fillConfirm() {
   const code = document.getElementById('fc').value.trim().toUpperCase();
   const vc = (settings.code || 'FIRST10').toUpperCase();
   const alreadyUsed = leads.find(l => l.code === code && l.used);
   const promoOk = code && code === vc && !alreadyUsed;
-  const subtotal = computeSubtotal();
+  const seatSurcharge = computeSeatSurcharge();
+  const subtotal = computeSubtotal() + seatSurcharge;
   const disc = promoOk ? Math.round(subtotal * ((settings.disc || 10) / 100)) : 0;
   const fp = subtotal - disc;
   // Items list
@@ -1451,13 +1481,14 @@ function fillConfirm() {
   bk.addons.forEach(it => {
     html += `<div class="cf-item-row"><div class="cf-item-name"><span class="cf-item-tag">Add-on</span>${it.name}</div><div class="cf-item-price">$${it.price}</div></div>`;
   });
+  if (seatSurcharge > 0) html += `<div class="cf-item-row"><div class="cf-item-name"><span class="cf-item-tag">Seats</span>Seat surcharge</div><div class="cf-item-price">+$${seatSurcharge}</div></div>`;
   if (promoOk) html += `<div class="cf-item-row"><div class="cf-item-name" style="color:var(--red)"><span class="cf-item-tag">Promo</span>${code} (-${settings.disc || 10}%)</div><div class="cf-item-price" style="color:var(--red)">−$${disc}</div></div>`;
   list.innerHTML = html;
   document.getElementById('cf-total').textContent = `$${fp.toLocaleString()}`;
   document.getElementById('cf-date').textContent = bk.dateStr;
   document.getElementById('cf-time').textContent = bk.time;
   document.getElementById('cf-cust').innerHTML = `${document.getElementById('fn').value}<br><span style="color:var(--mut);font-size:12px">${document.getElementById('fe').value}</span>`;
-  document.getElementById('cf-veh').textContent = `${document.getElementById('fy').value} ${document.getElementById('fm').value} ${document.getElementById('fmo').value}`;
+  document.getElementById('cf-veh').textContent = `${document.getElementById('fy').value} ${document.getElementById('fm').value} • ${document.getElementById('fs').value} seats`;
   const pr = document.getElementById('cf-promo-row');
   if (promoOk) { pr.style.display = 'block'; document.getElementById('cf-promo-code').textContent = code; } else pr.style.display = 'none';
   const note = document.getElementById('cf-note');
@@ -1475,7 +1506,7 @@ function doSubmit() {
   const code = document.getElementById('fc').value.trim().toUpperCase();
   const vc = (settings.code || 'FIRST10').toUpperCase();
   const lead = leads.find(l => l.code === code && !l.used);
-  const subtotal = computeSubtotal();
+  const subtotal = computeSubtotal() + computeSeatSurcharge();
   let fp = subtotal;
   if (code === vc && lead) { fp = subtotal - Math.round(subtotal * ((settings.disc || 10) / 100)); lead.used = true; }
   const svcName = [...bk.items.map(i => i.name), ...bk.addons.map(i => `+ ${i.name}`)].join(', ') || 'Booking';
@@ -1485,7 +1516,7 @@ function doSubmit() {
     email: document.getElementById('fe').value,
     phone: document.getElementById('fp').value,
     make: document.getElementById('fm').value,
-    model: document.getElementById('fmo').value,
+    seats: parseInt(document.getElementById('fs').value, 10) || 0,
     year: document.getElementById('fy').value,
     notes: document.getElementById('fno').value,
     svc: svcName,
@@ -1519,7 +1550,7 @@ function doSubmit() {
 }
 function resetBooking() {
   bkStep = 0; bk = { items: [], addons: [], date: null, dateStr: '', time: null }; calY = undefined; calMo = undefined;
-  ['fn','fe','fp','fc','fmo','fno'].forEach(id => document.getElementById(id).value = '');
+  ['fn','fe','fp','fc','fs','fno'].forEach(id => document.getElementById(id).value = '');
   ['fm','fy'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('slots-grid').style.display = 'none'; document.getElementById('slots-hint').style.display = 'block';
   document.querySelectorAll('.svc-opt').forEach(b => b.classList.remove('sel'));
@@ -1584,7 +1615,7 @@ function renderBkTable(id, data, full) {
   data.forEach(b => {
     const tr = document.createElement('tr');
     tr.innerHTML = full
-      ? `<td>#${b.id}</td><td><strong>${b.name}</strong></td><td style="color:var(--mut)">${b.email}</td><td style="color:var(--mut)">${b.phone}</td><td style="color:var(--mut)">${b.year} ${b.make} ${b.model}</td><td>${b.svc}</td><td>${b.date}</td><td>${b.time}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${b.price}</td><td>${b.promo ? `<span style="color:var(--red);font-weight:700">${b.promo}</span>` : '—'}</td><td>${sbBadge(b.status)}</td><td><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button><button class="adm-act g" onclick="setSt(${b.id},'completed')">Done</button><button class="adm-act" onclick="setSt(${b.id},'cancelled')">Cancel</button></td>`
+      ? `<td>#${b.id}</td><td><strong>${b.name}</strong></td><td style="color:var(--mut)">${b.email}</td><td style="color:var(--mut)">${b.phone}</td><td style="color:var(--mut)">${b.year} ${b.make} • ${b.seats || 0} seats</td><td>${b.svc}</td><td>${b.date}</td><td>${b.time}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${b.price}</td><td>${b.promo ? `<span style="color:var(--red);font-weight:700">${b.promo}</span>` : '—'}</td><td>${sbBadge(b.status)}</td><td><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button><button class="adm-act g" onclick="setSt(${b.id},'completed')">Done</button><button class="adm-act" onclick="setSt(${b.id},'cancelled')">Cancel</button></td>`
       : `<td>#${b.id}</td><td><strong>${b.name}</strong></td><td>${b.svc}</td><td>${b.date}</td><td>${b.time}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${b.price}</td><td>${sbBadge(b.status)}</td><td><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button></td>`;
     tb.appendChild(tr);
   });
@@ -1607,6 +1638,9 @@ function loadSettingsUI() {
   document.getElementById('s-disc').value = settings.disc || 10;
   document.getElementById('s-delay').value = settings.delay || 4;
   document.getElementById('s-popup').value = settings.popup !== false ? '1' : '0';
+  const seatCfg = settings.seatPricing || { baseSeats: 5, perSeat: 0 };
+  const sSeatBase = document.getElementById('s-seat-base'); if (sSeatBase) sSeatBase.value = seatCfg.baseSeats ?? 5;
+  const sSeatInc = document.getElementById('s-seat-inc'); if (sSeatInc) sSeatInc.value = seatCfg.perSeat ?? 0;
   const days = settings.days || { mon:true,tue:true,wed:true,thu:true,fri:true,sat:true,sun:false };
   Object.entries(days).forEach(([k, v]) => { const el = document.getElementById(`day-${k}`); if (el) el.checked = v; });
   document.getElementById('s-open').value = settings.openTime || '8:00 AM';
@@ -1633,6 +1667,59 @@ function loadSettingsUI() {
     });
   }
   updateGithubStatus(githubToken ? 'Token saved on this device and ready to sync.' : 'Token not connected.');
+  renderPackageAdminUI();
+}
+function escHtml(v) {
+  return String(v || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+function renderPackageOptions() {
+  const grid = document.getElementById('package-opts-grid');
+  if (!grid) return;
+  const pkgs = Array.isArray(settings.packages) && settings.packages.length ? settings.packages : DEFAULT_PACKAGES;
+  grid.innerHTML = pkgs.map(p => `<button class="svc-opt" data-id="${escHtml(p.id)}" data-price="${Number(p.price)||0}" data-name="${escHtml(p.name)}" onclick="pickSvc(this)"><div class="svc-opt-name">${escHtml(p.name)}</div><div class="svc-opt-row"><span class="svc-opt-dur">${escHtml(p.dur || '')}</span><span class="svc-opt-price">$${Number(p.price)||0}</span></div></button>`).join('');
+}
+function renderPackageAdminUI() {
+  const wrap = document.getElementById('pkg-admin-list');
+  if (!wrap) return;
+  const pkgs = Array.isArray(settings.packages) ? settings.packages : [];
+  if (!pkgs.length) {
+    wrap.innerHTML = '<p style="font-size:12px;color:var(--mut)">No packages configured.</p>';
+    return;
+  }
+  wrap.innerHTML = pkgs.map((p, i) => `<div style="display:grid;grid-template-columns:1.2fr .6fr 1fr auto;gap:8px;align-items:center"><input type="text" value="${escHtml(p.name)}" oninput="updatePackageField(${i},'name',this.value)"><input type="number" min="1" step="1" value="${Number(p.price)||0}" oninput="updatePackageField(${i},'price',this.value)"><input type="text" value="${escHtml(p.dur||'')}" oninput="updatePackageField(${i},'dur',this.value)"><button class="adm-act" onclick="removePackageAdmin(${i})">Remove</button></div>`).join('');
+}
+function persistPackageChanges() {
+  persist();
+  renderPackageOptions();
+  renderPackageAdminUI();
+  if (settings.github?.autoSync) scheduleGithubSync();
+}
+function updatePackageField(index, key, value) {
+  if (!Array.isArray(settings.packages) || !settings.packages[index]) return;
+  if (key === 'price') settings.packages[index].price = Math.max(1, parseInt(value, 10) || 1);
+  else settings.packages[index][key] = value.trim();
+  if (!settings.packages[index].id) settings.packages[index].id = `pkg_${Date.now()}_${index}`;
+  persistPackageChanges();
+}
+function addPackageAdmin() {
+  const nameEl = document.getElementById('pkg-new-name');
+  const priceEl = document.getElementById('pkg-new-price');
+  const durEl = document.getElementById('pkg-new-dur');
+  const name = (nameEl?.value || '').trim();
+  const price = parseInt(priceEl?.value || '', 10);
+  const dur = (durEl?.value || '').trim();
+  if (!name || !price) { alert('Enter package name and price.'); return; }
+  settings.packages = Array.isArray(settings.packages) ? settings.packages : [];
+  settings.packages.push({ id: `pkg_${Date.now()}`, name, price, dur: dur || 'N/A' });
+  if (nameEl) nameEl.value = '';
+  if (priceEl) priceEl.value = '';
+  if (durEl) durEl.value = '';
+  persistPackageChanges();
+}
+function removePackageAdmin(index) {
+  if (!Array.isArray(settings.packages)) return;
+  settings.packages.splice(index, 1);
+  persistPackageChanges();
 }
 function syncSettingsFromUI() {
   if (!document.getElementById('s-name')) return;
@@ -1644,6 +1731,9 @@ function syncSettingsFromUI() {
   settings.disc = parseInt(document.getElementById('s-disc').value) || 10;
   settings.delay = parseInt(document.getElementById('s-delay').value) || 4;
   settings.popup = document.getElementById('s-popup').value === '1';
+  settings.seatPricing = settings.seatPricing || {};
+  settings.seatPricing.baseSeats = Math.max(1, parseInt(document.getElementById('s-seat-base')?.value || '5', 10) || 5);
+  settings.seatPricing.perSeat = Math.max(0, parseInt(document.getElementById('s-seat-inc')?.value || '0', 10) || 0);
   settings.openTime = document.getElementById('s-open').value;
   settings.closeTime = document.getElementById('s-close').value;
   settings.days = {};
@@ -1693,7 +1783,7 @@ function changePw() {
 function exportCSV() {
   if (!bookings.length) { alert('No bookings to export.'); return; }
   const h = ['ID','Name','Email','Phone','Vehicle','Service','Date','Time','Price','Promo','Status'];
-  const rows = bookings.map(b => [b.id, b.name, b.email, b.phone, `${b.year} ${b.make} ${b.model}`, b.svc, b.date, b.time, `$${b.price}`, b.promo || '', b.status]);
+  const rows = bookings.map(b => [b.id, b.name, b.email, b.phone, `${b.year} ${b.make} • ${b.seats || 0} seats`, b.svc, b.date, b.time, `$${b.price}`, b.promo || '', b.status]);
   const csv = [h, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
   const a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv); a.download = 'bookings.csv'; a.click();
 }
