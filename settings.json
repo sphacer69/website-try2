@@ -2,7 +2,7 @@
   "code": "FIRST10",
   "disc": 10,
   "delay": 4,
-  "popup": false,
+  "popup": true,
   "pass": "admin123",
   "phone": "(780)-257-2310",
   "email": "detailedbyaustin@gmail.com",
@@ -483,5 +483,9 @@
       "id": "other",
       "label": "Other"
     }
-  ]
+  ],
+  "heroStats": {
+    "cars": "",
+    "rating": ""
+  }
 }
