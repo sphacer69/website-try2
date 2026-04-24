@@ -148,7 +148,7 @@
       "features": [],
       "badge": "",
       "banner": "",
-      "featured": true,
+      "featured": false,
       "ui": {
         "emphasize": false,
         "glow": false,
