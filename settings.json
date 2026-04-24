@@ -138,6 +138,25 @@
         "accent": "",
         "glowColor": ""
       }
+    },
+    {
+      "id": "pkg_1777058061361",
+      "name": "nigger bomber",
+      "price": 69,
+      "dur": "forever",
+      "desc": "",
+      "features": [],
+      "badge": "",
+      "banner": "",
+      "featured": true,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
     }
   ],
   "seatPricing": {
