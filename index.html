@@ -1528,9 +1528,8 @@ function resetBooking() {
 // ── ADMIN ──
 let admIn = false;
 let routeManagedNodes = null;
-function canUsePathRouting() { return location.protocol === 'http:' || location.protocol === 'https:'; }
 function isAdminRoute() {
-  return location.pathname === '/admin' || location.pathname.endsWith('/admin') || location.hash === '#/admin';
+  return location.hash === '#/admin';
 }
 function getRouteManagedNodes() {
   if (routeManagedNodes) return routeManagedNodes;
@@ -1551,16 +1550,13 @@ function renderRoute() {
   }
 }
 function goAdmin() {
-  if (canUsePathRouting()) history.pushState({}, '', '/admin');
-  else location.hash = '/admin';
+  location.hash = '/admin';
   renderRoute();
 }
 function goHome() {
-  if (canUsePathRouting()) history.pushState({}, '', '/');
-  else location.hash = '';
+  if (location.hash) location.hash = '';
   renderRoute();
 }
-window.addEventListener('popstate', renderRoute);
 window.addEventListener('hashchange', renderRoute);
 function admLogin() {
   if (document.getElementById('adm-pass').value === (settings.pass || 'admin123')) {
