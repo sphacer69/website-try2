@@ -395,6 +395,16 @@ footer{padding:36px 48px;border-top:1px solid rgba(255,255,255,.07);display:flex
 .slot-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;transform:translateY(-1px);}
 .slot-btn.sel{border-color:var(--red);background:rgba(255,59,48,.1);color:#fff;}
 .form-box{background:var(--surf);border:1px solid var(--bdr);padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+/* ── Live price estimate (sp2: Your Information) ── */
+.your-info-estimate{background:#0A0A0C;border:1px solid var(--bdr);padding:18px 22px;margin-bottom:16px;}
+.your-info-estimate .est-head{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--mut);margin-bottom:12px;}
+.your-info-estimate .est-lines{display:flex;flex-direction:column;}
+.your-info-estimate .est-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:13px;color:#D4D4D8;gap:14px;}
+.your-info-estimate .est-row .est-lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.your-info-estimate .est-row .est-val{font-weight:600;white-space:nowrap;}
+.your-info-estimate .est-row.est-total{border-top:1px solid var(--bdr);margin-top:8px;padding-top:14px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.05em;color:var(--red);align-items:center;}
+.your-info-estimate .est-row.est-total span:first-child{color:#fff;font-weight:400;}
+.your-info-estimate .est-foot{margin-top:10px;font-size:10px;color:#52525B;letter-spacing:.04em;}
 .fg{display:flex;flex-direction:column;gap:5px;}
 .fg.full{grid-column:span 2;}
 /* Quote request section */
@@ -482,8 +492,24 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 .adm-close:hover{color:#fff;border-color:rgba(255,255,255,.2);}
 .adm-body{max-width:1200px;margin:0 auto;padding:36px 28px;}
 .adm-tabs{display:flex;gap:0;margin-bottom:30px;border-bottom:1px solid var(--bdr);overflow-x:auto;}
-.adm-tab{background:none;border:none;color:#52525B;padding:11px 18px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-family:'Manrope';white-space:nowrap;}
+.adm-tab{background:none;border:none;color:#52525B;padding:11px 18px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .18s ease,background .18s ease,border-color .18s ease;font-family:'Manrope';white-space:nowrap;}
 .adm-tab.active{color:var(--red);border-color:var(--red);}
+
+/* ── Grouped admin tab nav (Operations / Catalog / System) ── */
+.adm-tabnav{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 28px;border-bottom:1px solid var(--bdr);margin-bottom:28px;}
+.adm-tabnav-group{display:flex;flex-direction:column;gap:6px;min-width:0;position:relative;}
+.adm-tabnav-group + .adm-tabnav-group::before{content:'';position:absolute;left:-14px;bottom:0;width:1px;height:28px;background:var(--bdr);}
+.adm-tabnav-label{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#52525B;padding:0 4px;user-select:none;}
+.adm-tabnav-row{display:flex;gap:2px;flex-wrap:wrap;}
+.adm-tabnav .adm-tab{padding:10px 14px 12px;border-radius:2px 2px 0 0;}
+.adm-tabnav .adm-tab:hover:not(.active){color:#D4D4D8;background:rgba(255,255,255,.03);}
+.adm-tabnav .adm-tab.active{color:#fff;background:rgba(255,59,48,.06);border-bottom-color:var(--red);}
+.adm-tabnav .adm-tab:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:3px;}
+@media (max-width:720px){
+  .adm-tabnav{flex-direction:column;align-items:stretch;gap:12px 0;}
+  .adm-tabnav-group + .adm-tabnav-group::before{display:none;}
+  .adm-tabnav-row{gap:4px;}
+}
 .adm-tab:hover:not(.active){color:var(--mut);}
 .adm-panel{display:none;}
 .adm-panel.active{display:block;animation:fadeUp .3s ease both;}
@@ -502,6 +528,19 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 .adm-table td{padding:13px 14px;border-bottom:1px solid rgba(255,255,255,.03);color:#D4D4D8;vertical-align:middle;}
 .adm-table tr:last-child td{border-bottom:none;}
 .adm-table tr:hover td{background:rgba(255,255,255,.02);}
+/* ── Compact variant: fits all columns without horizontal scroll ── */
+.adm-table.compact{table-layout:auto;}
+.adm-table.compact th{padding:10px 10px;font-size:9px;letter-spacing:.16em;}
+.adm-table.compact td{padding:10px 10px;vertical-align:top;font-size:12px;word-break:break-word;}
+.adm-table.compact .cell-sub{color:var(--mut);font-size:11px;line-height:1.4;word-break:break-word;}
+.adm-table.compact .actions-cell{white-space:nowrap;text-align:right;}
+.adm-table.compact .actions-cell .adm-act{margin-left:4px;margin-right:0;margin-bottom:3px;}
+.row-status-sel{display:block;margin-top:5px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:3px 5px;font-size:10px;font-family:'Manrope',sans-serif;width:100%;max-width:115px;cursor:pointer;}
+.row-status-sel:focus{outline:none;border-color:var(--red);}
+/* Hide horizontal scrollbar when content fits; keep auto as safety on narrow viewports */
+@media (min-width:1100px){
+  .adm-panel#tab-bk .adm-table-wrap{overflow-x:visible;}
+}
 .sb{display:inline-block;padding:3px 9px;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;}
 .sb-pend{background:rgba(234,179,8,.1);color:#EAB308;border:1px solid rgba(234,179,8,.3);}
 .sb-conf{background:rgba(34,197,94,.1);color:#22C55E;border:1px solid rgba(34,197,94,.3);}
@@ -510,6 +549,78 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 .adm-act{background:none;border:1px solid var(--bdr);color:var(--mut);padding:3px 9px;font-size:10px;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:all .2s;margin-right:3px;font-family:'Manrope';}
 .adm-act:hover{border-color:var(--red);color:var(--red);}
 .adm-act.g:hover{border-color:#22C55E;color:#22C55E;}
+.adm-act.danger{border-color:rgba(239,68,68,.35);color:#EF4444;}
+.adm-act.danger:hover{background:rgba(239,68,68,.08);border-color:#EF4444;}
+.adm-act.primary{background:var(--red);border-color:var(--red);color:#fff;}
+.adm-act.primary:hover{background:var(--red2);border-color:var(--red2);color:#fff;}
+/* Extra stat-card accents for split revenue cards */
+.stat-card.amber .stat-val{color:#F59E0B;}
+.stat-card.amber{border-color:rgba(245,158,11,.25);}
+.stat-card.red{border-color:rgba(255,59,48,.25);}
+.stat-card.green{border-color:rgba(34,197,94,.25);}
+.stat-card.blue{border-color:rgba(122,160,212,.25);}
+/* Condition pill badges */
+.cond-pill{display:inline-block;padding:2px 8px;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border:1px solid;border-radius:0;}
+.cond-pill.light{background:rgba(34,197,94,.08);color:#22C55E;border-color:rgba(34,197,94,.3);}
+.cond-pill.moderate{background:rgba(245,158,11,.08);color:#F59E0B;border-color:rgba(245,158,11,.3);}
+.cond-pill.heavy{background:rgba(239,68,68,.08);color:#EF4444;border-color:rgba(239,68,68,.3);}
+/* Dialog / drawer for edit + detail */
+.dbd-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;}
+.dbd-ov.open{display:flex;animation:fadeIn .22s ease;}
+.dbd{background:var(--surf);border:1px solid var(--bdr);max-width:820px;width:100%;padding:28px 28px 22px;position:relative;margin:24px 0;}
+.dbd-close{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#fff;font-size:24px;cursor:pointer;line-height:1;padding:4px 8px;}
+.dbd-close:hover{color:var(--red);}
+.dbd h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;color:#fff;margin-bottom:6px;}
+.dbd-sub{font-size:11px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase;margin-bottom:18px;}
+.dbd-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;}
+.dbd-grid.full{grid-template-columns:1fr;}
+.dbd-row{display:flex;flex-direction:column;gap:5px;}
+.dbd-row.col2{grid-column:span 2;}
+.dbd-row label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);}
+.dbd-row input,.dbd-row select,.dbd-row textarea{background:#0A0A0C;border:1px solid var(--bdr);color:#fff;padding:9px 11px;font-family:'Manrope';font-size:13px;outline:none;width:100%;transition:border-color .25s;}
+.dbd-row input:focus,.dbd-row select:focus,.dbd-row textarea:focus{border-color:var(--red);}
+.dbd-row textarea{min-height:72px;resize:vertical;}
+.dbd-section-title{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin:18px 0 10px;padding-top:14px;border-top:1px solid var(--bdr);}
+.dbd-section-title:first-of-type{border-top:none;padding-top:0;margin-top:6px;}
+.dbd-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--bdr);}
+.dbd-actions .left{margin-right:auto;}
+.dbd-kv{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;font-size:13px;}
+.dbd-kv .k{color:var(--mut);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding-top:3px;}
+.dbd-kv .v{color:#fff;word-break:break-word;}
+/* Pricing breakdown box */
+.price-box{background:#0A0A0C;border:1px solid var(--bdr);padding:14px;margin-top:10px;}
+.price-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:#D4D4D8;}
+.price-row.total{border-top:1px solid var(--bdr);margin-top:6px;padding-top:10px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;color:var(--red);}
+.price-row .lbl{color:var(--mut);}
+.price-row.adj .amt{color:#F59E0B;}
+/* Photo gallery (before/after) */
+.pg-tabs{display:flex;gap:4px;margin-bottom:10px;}
+.pg-tab{background:#0A0A0C;border:1px solid var(--bdr);color:var(--mut);padding:8px 14px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;font-family:'Manrope';}
+.pg-tab.active{background:var(--surf);border-color:var(--red);color:var(--red);}
+.pg-drop{border:1px dashed var(--bdr);padding:16px;text-align:center;color:#52525B;font-size:12px;cursor:pointer;transition:border-color .2s,background .2s;}
+.pg-drop:hover,.pg-drop.drag{border-color:var(--red);color:var(--mut);background:rgba(255,59,48,.03);}
+.pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px;}
+.pg-thumb{position:relative;aspect-ratio:1/1;background:#050507;border:1px solid var(--bdr);overflow:hidden;}
+.pg-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.pg-thumb .rm{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.75);color:#fff;border:none;width:22px;height:22px;font-size:14px;cursor:pointer;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;}
+.pg-thumb .rm:hover{background:var(--red);}
+.pg-empty{font-size:11px;color:#52525B;padding:10px 2px;}
+/* Condition modifier config rows (settings) */
+.cond-cfg-row{display:grid;grid-template-columns:120px 1fr 120px 140px;gap:10px;align-items:end;margin-bottom:10px;}
+.cond-cfg-row label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);margin-bottom:4px;display:block;}
+.cond-cfg-row input,.cond-cfg-row select{background:#0A0A0C;border:1px solid var(--bdr);color:#fff;padding:8px 10px;font-family:'Manrope';font-size:12px;outline:none;width:100%;}
+.cond-cfg-row input:focus,.cond-cfg-row select:focus{border-color:var(--red);}
+.cond-cfg-row .cfg-lbl{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;color:#fff;padding-bottom:8px;}
+/* Soft-deleted row dimming */
+.row-deleted{opacity:.42;background:rgba(239,68,68,.04);}
+.row-deleted td:first-child::before{content:"🗑 ";}
+/* Responsive */
+@media(max-width:700px){
+  .dbd-grid{grid-template-columns:1fr;}
+  .dbd-row.col2{grid-column:auto;}
+  .dbd-kv{grid-template-columns:1fr;}
+  .cond-cfg-row{grid-template-columns:1fr;}
+}
 .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .s-card{background:var(--surf);border:1px solid var(--bdr);padding:26px;}
 .s-card h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#fff;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--bdr);}
@@ -667,23 +778,23 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 <!-- NAV -->
 <nav id="navbar" class="" style="display: none;">
   <div class="nav-inner">
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#" class="logo">DETAILED<em>BY</em>AUSTIN</a>
+    <a href="#" class="logo">DETAILED<em>BY</em>AUSTIN</a>
     <ul class="nav-links">
-      <li><a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#services-wrap">Services</a></li>
-      <li><a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#pricing-wrap">Pricing</a></li>
-      <li><a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#testi-wrap">Reviews</a></li>
-      <li><a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#quote-wrap">Quote</a></li>
-      <li><a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#contact-wrap">Contact</a></li>
+      <li><a href="#services-wrap">Services</a></li>
+      <li><a href="#pricing-wrap">Pricing</a></li>
+      <li><a href="#testi-wrap">Reviews</a></li>
+      <li><a href="#quote-wrap">Quote</a></li>
+      <li><a href="#contact-wrap">Contact</a></li>
       <li><button class="btn-r" onclick="openBooking()">Book Now</button></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
   </div>
   <div class="mob-menu" id="mob-menu">
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#services-wrap" onclick="closeMob()">Services</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#pricing-wrap" onclick="closeMob()">Pricing</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#testi-wrap" onclick="closeMob()">Reviews</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#quote-wrap" onclick="closeMob()">Quote</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#contact-wrap" onclick="closeMob()">Contact</a>
+    <a href="#services-wrap" onclick="closeMob()">Services</a>
+    <a href="#pricing-wrap" onclick="closeMob()">Pricing</a>
+    <a href="#testi-wrap" onclick="closeMob()">Reviews</a>
+    <a href="#quote-wrap" onclick="closeMob()">Quote</a>
+    <a href="#contact-wrap" onclick="closeMob()">Contact</a>
     <button class="btn-r" onclick="closeMob();openBooking()">Book Now</button>
   </div>
 </nav>
@@ -706,7 +817,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
     <p class="hero-sub">Professional car detailing that goes beyond clean. We deliver showroom-quality results, every time.</p>
     <div class="hero-btns">
       <button class="btn-r" style="padding:15px 32px;font-size:12px" onclick="openBooking()">Book Your Detail &nbsp;→</button>
-      <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#services-wrap" class="btn-outline">View Services</a>
+      <a href="#services-wrap" class="btn-outline">View Services</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -1066,10 +1177,10 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
   <div class="footer-logo">DETAILED<em>BY</em>AUSTIN</div>
   <div class="footer-soc" id="footer-soc">
     <a href="https://www.instagram.com/detailedbyaustin1/" id="soc-ig" aria-label="Instagram" style="display: flex;">IG</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#" id="soc-tk" aria-label="TikTok" style="display:none">TK</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#" id="soc-fb" aria-label="Facebook" style="display:none">FB</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#" id="soc-yt" aria-label="YouTube" style="display:none">YT</a>
-    <a href="https://coating-ui-refresh.preview.emergentagent.com/detailedbyaustin.html#" id="soc-tw" aria-label="Twitter/X" style="display:none">𝕏</a>
+    <a href="#" id="soc-tk" aria-label="TikTok" style="display:none">TK</a>
+    <a href="#" id="soc-fb" aria-label="Facebook" style="display:none">FB</a>
+    <a href="#" id="soc-yt" aria-label="YouTube" style="display:none">YT</a>
+    <a href="#" id="soc-tw" aria-label="Twitter/X" style="display:none">𝕏</a>
   </div>
   <p class="footer-copy">© 2025 DetailedByAustin. All rights reserved. &nbsp;|&nbsp; <button class="footer-admin-btn" onclick="goAdmin()">Admin</button></p>
 </footer>
@@ -1151,12 +1262,13 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       </div>
       <div class="step-panel" id="sp2">
         <h2 class="sp-h">Your Information</h2><p class="sp-sub">Tell us about yourself and your vehicle.</p>
+        <div id="your-info-estimate" class="your-info-estimate" aria-live="polite"></div>
         <div class="form-box">
           <div class="fsec">Personal Details</div>
           <div class="fg"><label for="fn">Full Name</label><input id="fn" type="text" placeholder="John Doe" oninput="chkNx()"></div>
           <div class="fg"><label for="fe">Email</label><input id="fe" type="email" placeholder="john@email.com" oninput="chkNx()"></div>
           <div class="fg full"><label for="fp">Phone</label><input id="fp" type="tel" placeholder="(555) 555-0100" oninput="chkNx()"></div>
-          <div class="fg full"><label for="fc">Promo Code (Optional)</label><input id="fc" type="text" placeholder="e.g. FIRST10" style="text-transform:uppercase"></div>
+          <div class="fg full"><label for="fc">Promo Code (Optional)</label><input id="fc" type="text" placeholder="e.g. FIRST10" style="text-transform:uppercase" oninput="updatePriceEstimate()"></div>
           <div class="fsec" style="margin-top:4px">Vehicle Details</div>
           <div class="fg"><label for="fm">Make</label><select id="fm" onchange="chkNx()"><option value="">Select Make</option><option>Toyota</option><option>Honda</option><option>Ford</option><option>Chevrolet</option><option>BMW</option><option>Mercedes</option><option>Audi</option><option>Tesla</option><option>Lexus</option><option>Porsche</option><option>Dodge</option><option>RAM</option><option>Hyundai</option><option>Kia</option><option>Subaru</option><option>Other</option></select></div>
           <div class="fg"><label for="fvs">Vehicle Size</label><select id="fvs" onchange="onVehicleSizeChange()"><option value="">Select Size</option><option value="coupe">Coupe</option><option value="sedan">Sedan</option><option value="hatchback">Hatchback</option><option value="wagon">Wagon</option><option value="convertible">Convertible</option><option value="sports">Sports Car</option><option value="crossover">Crossover</option><option value="suv">SUV</option><option value="minivan">Minivan</option><option value="van">Van / Cargo Van</option><option value="pickup">Pickup Truck</option><option value="other">Other</option></select></div>
@@ -1212,30 +1324,46 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       </div>
     </div>
     <div id="adm-dash" style="display: block;" data-live-bound="1">
-      <div style="display:flex;justify-content:flex-end;margin-bottom:10px">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:18px;margin-top:4px">
         <button id="admin-undo-btn" type="button" disabled onclick="performUndo()" title="Undo your most recent admin change" style="background:#1a1a1f;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 14px;font-family:Manrope;font-size:12px;letter-spacing:.05em;cursor:not-allowed;opacity:.4;transition:all .2s">↶ Undo</button>
       </div>
-      <div class="adm-tabs">
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-ov&#39;)">Overview</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-bk&#39;)">Bookings</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-leads&#39;)">Promo Leads</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-quotes&#39;);renderQuotes()">Quote Requests</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-api&#39;);renderApiPanel()">API Access</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-pkg&#39;)">Packages</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-ind&#39;)">Individual Services</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-addons&#39;);renderAddonsAdminUI()">Add-ons</button>
-        <button class="adm-tab active" onclick="admTab(this,&#39;tab-svcmgr&#39;);renderServicesAdminUI();renderNanoServiceAdminUI()">Our Services</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-pricing&#39;);renderVehicleSizesListRows();renderPricingMatrix()">Pricing</button>
-        <button class="adm-tab" onclick="admTab(this,&#39;tab-set&#39;)">Settings</button>
-      </div>
+      <nav class="adm-tabnav" aria-label="Admin sections">
+        <div class="adm-tabnav-group" role="group" aria-labelledby="nv-ops">
+          <span class="adm-tabnav-label" id="nv-ops">Operations</span>
+          <div class="adm-tabnav-row">
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-ov&#39;)">Overview</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-bk&#39;)">Bookings</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-quotes&#39;);renderQuotes()">Quote Requests</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-leads&#39;)">Promo Leads</button>
+          </div>
+        </div>
+        <div class="adm-tabnav-group" role="group" aria-labelledby="nv-cat">
+          <span class="adm-tabnav-label" id="nv-cat">Catalog</span>
+          <div class="adm-tabnav-row">
+            <button class="adm-tab active" onclick="admTab(this,&#39;tab-svcmgr&#39;);renderServicesAdminUI();renderNanoServiceAdminUI()">Our Services</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-pkg&#39;)">Packages</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-ind&#39;)">Individual Services</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-addons&#39;);renderAddonsAdminUI()">Add-ons</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-pricing&#39;);renderVehicleSizesListRows();renderPricingMatrix();renderConditionConfig()">Pricing</button>
+          </div>
+        </div>
+        <div class="adm-tabnav-group" role="group" aria-labelledby="nv-sys">
+          <span class="adm-tabnav-label" id="nv-sys">System</span>
+          <div class="adm-tabnav-row">
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-api&#39;);renderApiPanel()">API Access</button>
+            <button class="adm-tab" onclick="admTab(this,&#39;tab-set&#39;)">Settings</button>
+          </div>
+        </div>
+      </nav>
       <!-- Overview -->
       <div class="adm-panel" id="tab-ov">
-        <div class="stats-grid">
-          <div class="stat-card red"><div class="stat-label">Total Revenue</div><div class="stat-val" id="stat-rev">$0</div><div class="stat-sub">All time</div></div>
-          <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-val" id="stat-total">0</div><div class="stat-sub">All time</div></div>
-          <div class="stat-card blue"><div class="stat-label">Promo Leads</div><div class="stat-val" id="stat-leads">0</div><div class="stat-sub">Emails collected</div></div>
+        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+          <div class="stat-card red"><div class="stat-label">Actual Revenue</div><div class="stat-val" id="stat-rev">$0</div><div class="stat-sub" id="stat-rev-sub">Completed orders only</div></div>
+          <div class="stat-card amber"><div class="stat-label">Potential Revenue</div><div class="stat-val" id="stat-rev-pot">$0</div><div class="stat-sub" id="stat-rev-pot-sub">Confirmed, not yet completed</div></div>
+          <div class="stat-card"><div class="stat-label">Total Bookings</div><div class="stat-val" id="stat-total">0</div><div class="stat-sub" id="stat-total-sub">Active (non-deleted)</div></div>
           <div class="stat-card green"><div class="stat-label">Pending</div><div class="stat-val" id="stat-pend">0</div><div class="stat-sub">Awaiting confirmation</div></div>
           <div class="stat-card"><div class="stat-label">Quote Requests</div><div class="stat-val" id="stat-quotes">0</div><div class="stat-sub" id="stat-quotes-sub">0 new</div></div>
+          <div class="stat-card blue"><div class="stat-label">Promo Leads</div><div class="stat-val" id="stat-leads">0</div><div class="stat-sub">Emails collected</div></div>
         </div>
         <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff;margin-bottom:14px">Recent Bookings</h3>
         <div class="adm-table-wrap"><table class="adm-table"><thead><tr><th>#</th><th>Customer</th><th>Service</th><th>Date</th><th>Time</th><th>Price</th><th>Status</th><th>Action</th></tr></thead><tbody id="ov-tbody"><tr><td colspan="12" style="text-align:center;color:#52525B;padding:28px">No bookings yet.</td></tr></tbody></table></div>
@@ -1244,9 +1372,27 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-panel" id="tab-bk">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
           <h3 style="font-family:&#39;Bebas Neue&#39;;font-size:20px;letter-spacing:2px;color:#fff">All Bookings</h3>
-          <button class="btn-r" onclick="exportCSV()" style="padding:9px 18px;font-size:10px">Export CSV</button>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <select id="bk-filter-status" onchange="renderAdmin()" style="background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 10px;font-size:11px;font-family:Manrope">
+              <option value="">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="completed">Completed</option>
+              <option value="canceled">Canceled</option>
+            </select>
+            <select id="bk-filter-cond" onchange="renderAdmin()" style="background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 10px;font-size:11px;font-family:Manrope">
+              <option value="">All conditions</option>
+              <option value="light">Light</option>
+              <option value="moderate">Moderate</option>
+              <option value="heavy">Heavy</option>
+            </select>
+            <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;cursor:pointer">
+              <input type="checkbox" id="bk-show-deleted" onchange="renderAdmin()"> Show deleted
+            </label>
+            <button class="btn-r" onclick="exportCSV()" style="padding:9px 18px;font-size:10px">Export CSV</button>
+          </div>
         </div>
-        <div class="adm-table-wrap"><table class="adm-table"><thead><tr><th>#</th><th>Customer</th><th>Email</th><th>Phone</th><th>Vehicle</th><th>Service</th><th>Date</th><th>Time</th><th>Price</th><th>Promo</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bk-tbody"><tr><td colspan="12" style="text-align:center;color:#52525B;padding:28px">No bookings yet.</td></tr></tbody></table></div>
+        <div class="adm-table-wrap"><table class="adm-table compact"><thead><tr><th style="width:44px">#</th><th>Customer</th><th>Vehicle</th><th>Service</th><th>When</th><th>Price</th><th>Status</th><th style="width:1%">Actions</th></tr></thead><tbody id="bk-tbody"><tr><td colspan="8" style="text-align:center;color:#52525B;padding:28px">No bookings yet.</td></tr></tbody></table></div>
       </div>
       <!-- Quote Requests -->
       <div class="adm-panel" id="tab-quotes">
@@ -1272,6 +1418,9 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
               <option value="new">Newest first</option>
               <option value="old">Oldest first</option>
             </select>
+            <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;cursor:pointer">
+              <input type="checkbox" id="q-show-deleted" onchange="renderQuotes()"> Show deleted
+            </label>
             <button class="btn-r" onclick="exportQuotes()" style="padding:9px 18px;font-size:10px">Export CSV</button>
           </div>
         </div>
@@ -2358,6 +2507,12 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           <p style="font-size:12px;color:var(--mut);margin-bottom:14px;line-height:1.6">Set an extra charge applied at checkout for each package, individual service, or add-on based on the customer's vehicle size. For example, Polish for an SUV can be +$60 while Interior Clean for an SUV can be +$50. Blank or 0 = no extra charge.</p>
           <div id="pricing-matrix-host" style="overflow-x:auto"></div>
         </div>
+        <div class="s-card" style="max-width:1200px;margin-top:16px">
+          <h3>Vehicle Condition Pricing</h3>
+          <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add a pricing modifier based on how dirty or damaged the vehicle is. Applied on top of the base price and any size surcharge. Choose either a fixed dollar amount or a percentage for each tier. Conditions appear in the booking and quote edit forms.</p>
+          <div id="cond-cfg-host"></div>
+          <button class="s-save" onclick="saveConditionConfig()" style="margin-top:6px">Save Condition Pricing</button>
+        </div>
       </div>
       <!-- Settings -->
       <div class="adm-panel" id="tab-set">
@@ -2432,12 +2587,39 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           </div>
           <div class="s-card">
             <h3>Stripe Payment</h3>
-            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Redirect customers to your Stripe Payment Link after confirming a booking. Their email &amp; booking ID are auto-attached.</p>
-            <div class="s-row"><label>Stripe Checkout</label><select id="s-stripe-on"><option value="0">Disabled</option><option value="1">Enabled</option></select></div>
+            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Choose how customers pay after confirming a booking. <strong>Dynamic Checkout</strong> charges the exact total based on what they ordered (recommended). <strong>Static Payment Link</strong> always charges the same amount you set in Stripe.</p>
+
+            <div class="s-row"><label>Stripe Checkout</label><select id="s-stripe-on" onchange="renderStripeFields()"><option value="0">Disabled</option><option value="1">Enabled</option></select></div>
+            <div class="s-row"><label>Mode</label><select id="s-stripe-mode" onchange="renderStripeFields()"><option value="static">Static Payment Link (single price)</option><option value="dynamic">Dynamic Checkout (per-order total)</option></select></div>
             <div class="s-row"><label>Publishable Key (optional)</label><input type="text" id="s-stripe-pk" placeholder="pk_live_..."></div>
-            <div class="s-row"><label>Payment Link URL</label><input type="url" id="s-stripe-link" placeholder="https://buy.stripe.com/..."></div>
-            <p style="font-size:11px;color:#52525B;line-height:1.6;margin-top:2px">Create one in your <a href="https://dashboard.stripe.com/payment-links" target="_blank" style="color:var(--red);text-decoration:none">Stripe dashboard → Payment Links</a>. Enable <em>"Let customers adjust quantity"</em> or use a link matching your service price.</p>
-            <button class="s-save" onclick="saveSettings()">Save Stripe Settings</button>
+
+            <div id="s-stripe-static-fields">
+              <div class="s-row"><label>Payment Link URL</label><input type="url" id="s-stripe-link" placeholder="https://buy.stripe.com/..."></div>
+              <p style="font-size:11px;color:#52525B;line-height:1.6;margin-top:2px">Create one in your <a href="https://dashboard.stripe.com/payment-links" target="_blank" style="color:var(--red);text-decoration:none">Stripe dashboard → Payment Links</a>. The amount is whatever you set in Stripe.</p>
+            </div>
+
+            <div id="s-stripe-dynamic-fields" style="display:none">
+              <div class="s-row"><label>Checkout Endpoint URL</label><input type="url" id="s-stripe-endpoint" placeholder="https://your-worker.example.workers.dev/create-checkout"></div>
+              <div class="s-row"><label>Currency</label><select id="s-stripe-currency"><option value="usd">USD</option><option value="cad">CAD</option><option value="eur">EUR</option><option value="gbp">GBP</option><option value="aud">AUD</option></select></div>
+              <div class="s-row"><label>Success URL (optional)</label><input type="url" id="s-stripe-success" placeholder="Defaults to current page with ?paid=1"></div>
+              <div class="s-row"><label>Cancel URL (optional)</label><input type="url" id="s-stripe-cancel" placeholder="Defaults to current page with ?paid=0"></div>
+              <details style="margin-top:10px;font-size:11px;color:var(--mut);line-height:1.65">
+                <summary style="cursor:pointer;color:#D4D4D8;letter-spacing:.05em">▸ How to set up the Checkout Endpoint</summary>
+                <div style="padding:10px 0 4px">
+                Dynamic Checkout needs a <em>tiny serverless function</em> (≈50 lines) that holds your Stripe <strong>secret key</strong> and creates a Checkout Session per order. Your secret key NEVER goes in this admin panel — it lives on the server.<br><br>
+                Easiest path: <strong>Cloudflare Workers</strong> (free, no credit card).
+                <ol style="margin:8px 0 0 18px;padding:0">
+                  <li>Sign up at <a href="https://dash.cloudflare.com/sign-up/workers" target="_blank" style="color:var(--red);text-decoration:none">cloudflare.com/workers</a></li>
+                  <li>Create a Worker → paste the worker code (download from your project files: <code style="background:#0A0A0C;padding:1px 5px">stripe-worker.js</code>)</li>
+                  <li>Settings → Variables → add <code style="background:#0A0A0C;padding:1px 5px">STRIPE_SECRET_KEY</code> (your <code style="background:#0A0A0C;padding:1px 5px">sk_live_…</code> key) as an <em>encrypted</em> variable</li>
+                  <li>Variables → add <code style="background:#0A0A0C;padding:1px 5px">ALLOWED_ORIGIN</code> = your website URL (e.g. <code style="background:#0A0A0C;padding:1px 5px">https://yourdomain.com</code>)</li>
+                  <li>Deploy. Copy the Worker URL into <em>Checkout Endpoint URL</em> above.</li>
+                </ol>
+                </div>
+              </details>
+            </div>
+
+            <button class="s-save" onclick="saveSettings()" style="margin-top:12px">Save Stripe Settings</button>
           </div>
           <div class="s-card">
             <h3>Change Password</h3>
@@ -2994,6 +3176,7 @@ function updateSteps() {
   document.getElementById('bk-prev').style.visibility = bkStep > 0 ? 'visible' : 'hidden';
   const nx = document.getElementById('bk-next');
   nx.textContent = bkStep === 3 ? 'Confirm & Pay →' : 'Next →';
+  if (bkStep === 2) updatePriceEstimate();
   chkNx();
 }
 function chkNx() {
@@ -3028,6 +3211,7 @@ function computeSizeSurcharge() {
 function onVehicleSizeChange() {
   updateTotal();
   chkNx();
+  updatePriceEstimate();
   if (typeof bkStep !== 'undefined' && bkStep === 3 && typeof fillConfirm === 'function') fillConfirm();
 }
 function updateTotal() {
@@ -3038,6 +3222,48 @@ function updateTotal() {
   const n = bk.items.length + bk.addons.length;
   if (tc) tc.textContent = n === 0 ? 'No items selected' : `${bk.items.length} service${bk.items.length===1?'':'s'}${bk.addons.length?` • ${bk.addons.length} add-on${bk.addons.length===1?'':'s'}`:''}`;
 }
+// Live price estimate shown on the "Your Information" step (sp2).
+// Re-run any time bk.items/addons, vehicle size, or the promo code change.
+function updatePriceEstimate() {
+  const host = document.getElementById('your-info-estimate');
+  if (!host) return;
+  const baseSubtotal = computeSubtotal();
+  const sizeSurcharge = computeSizeSurcharge();
+  const sizeId = document.getElementById('fvs')?.value || '';
+  const sizeLabel = sizeId ? (getVehicleSizeLabel(sizeId) || '') : '';
+  const subtotal = baseSubtotal + sizeSurcharge;
+  const codeRaw = document.getElementById('fc')?.value || '';
+  const code = codeRaw.trim().toUpperCase();
+  const expectedCode = (settings.code || 'FIRST10').toUpperCase();
+  const codeMatches = code && code === expectedCode;
+  const discPct = codeMatches ? (Number(settings.disc) || 10) : 0;
+  const discAmount = codeMatches ? Math.round(subtotal * discPct / 100) : 0;
+  const total = Math.max(0, subtotal - discAmount);
+  const itemCount = bk.items.length + bk.addons.length;
+  const lines = [];
+  if (itemCount) {
+    lines.push(`<div class="est-row"><span class="est-lbl">Services &amp; add-ons (${itemCount})</span><span class="est-val">$${baseSubtotal.toLocaleString()}</span></div>`);
+  } else {
+    lines.push(`<div class="est-row"><span class="est-lbl" style="color:#52525B">No services selected</span><span class="est-val" style="color:#52525B">—</span></div>`);
+  }
+  if (sizeSurcharge > 0) {
+    lines.push(`<div class="est-row"><span class="est-lbl">Size surcharge${sizeLabel ? ` (${escHtml(sizeLabel)})` : ''}</span><span class="est-val">+$${sizeSurcharge.toLocaleString()}</span></div>`);
+  } else if (!sizeId) {
+    lines.push(`<div class="est-row"><span class="est-lbl" style="color:#52525B">Pick a vehicle size below to refine</span><span class="est-val" style="color:#52525B">—</span></div>`);
+  }
+  if (codeMatches) {
+    lines.push(`<div class="est-row"><span class="est-lbl" style="color:var(--red)">Promo (${escHtml(code)} −${discPct}%)</span><span class="est-val" style="color:var(--red)">−$${discAmount.toLocaleString()}</span></div>`);
+  } else if (code) {
+    lines.push(`<div class="est-row"><span class="est-lbl" style="color:#52525B">Promo code entered</span><span class="est-val" style="color:#52525B">Validated at confirm</span></div>`);
+  }
+  host.innerHTML = `
+    <div class="est-head">Estimated Total</div>
+    <div class="est-lines">${lines.join('')}</div>
+    <div class="est-row est-total"><span>Estimate</span><span>$${total.toLocaleString()}</span></div>
+    <div class="est-foot">Final price confirmed at checkout · taxes not included</div>
+  `;
+}
+window.updatePriceEstimate = updatePriceEstimate;
 function pickSvc(b) {
   const id = b.dataset.id;
   const i = bk.items.findIndex(x => x.id === id);
@@ -3118,7 +3344,11 @@ function fillConfirm() {
   if (promoOk) { pr.style.display = 'block'; document.getElementById('cf-promo-code').textContent = code; } else pr.style.display = 'none';
   const note = document.getElementById('cf-note');
   const stripe = settings.stripe || {};
-  if (stripe.enabled && stripe.paymentLink) {
+  const stripeReady = stripe.enabled && (
+    (stripe.mode === 'dynamic' && stripe.endpointUrl) ||
+    (stripe.mode !== 'dynamic' && stripe.paymentLink)
+  );
+  if (stripeReady) {
     note.innerHTML = `You'll be redirected to <strong style="color:#fff">Stripe</strong> to complete payment securely.`;
     document.getElementById('bk-next').textContent = 'Confirm & Pay with Stripe →';
   } else {
@@ -3127,7 +3357,7 @@ function fillConfirm() {
   }
   document.getElementById('bk-next').disabled = false;
 }
-function doSubmit() {
+async function doSubmit() {
   const code = document.getElementById('fc').value.trim().toUpperCase();
   const vc = (settings.code || 'FIRST10').toUpperCase();
   const lead = leads.find(l => l.code === code && !l.used);
@@ -3150,30 +3380,125 @@ function doSubmit() {
     addons: bk.addons.slice(),
     date: bk.dateStr,
     time: bk.time,
-    price: fp,
+    basePrice: subtotal,
+    conditionKey: '',
+    conditionAdjustment: 0,
+    finalPrice: fp,
+    price: fp, // kept for backward compatibility
     promo: code === vc ? code : '',
     status: 'pending',
-    created: new Date().toLocaleDateString()
+    photosBefore: [],
+    photosAfter: [],
+    created: new Date().toLocaleDateString(),
+    createdAt: new Date().toISOString()
   };
   bookings.push(booking);
   persist();
   // Stripe redirect if configured
   const stripe = settings.stripe || {};
-  if (stripe.enabled && stripe.paymentLink) {
-    try {
-      const u = new URL(stripe.paymentLink);
-      u.searchParams.set('prefilled_email', booking.email);
-      u.searchParams.set('client_reference_id', `BK${booking.id}`);
-      closeBooking();
-      resetBooking();
-      window.location.href = u.toString();
-      return;
-    } catch (e) { console.warn('Invalid Stripe payment link', e); }
+  if (stripe.enabled) {
+    const mode = stripe.mode === 'dynamic' ? 'dynamic' : 'static';
+    if (mode === 'dynamic' && stripe.endpointUrl) {
+      // Dynamic Checkout — POST cart to your serverless function and follow the returned URL.
+      try {
+        await redirectToDynamicCheckout(booking, fp, subtotal);
+        return; // function navigates the page on success
+      } catch (e) {
+        console.warn('Dynamic Stripe checkout failed', e);
+        alert('Payment setup failed: ' + (e?.message || 'Unknown error') + '\n\nYour booking is saved. We will contact you to arrange payment.');
+        // fall through to local success
+      }
+    } else if (mode === 'static' && stripe.paymentLink) {
+      try {
+        const u = new URL(stripe.paymentLink);
+        u.searchParams.set('prefilled_email', booking.email);
+        u.searchParams.set('client_reference_id', `BK${booking.id}`);
+        closeBooking();
+        resetBooking();
+        window.location.href = u.toString();
+        return;
+      } catch (e) { console.warn('Invalid Stripe payment link', e); }
+    }
   }
   closeBooking();
   document.getElementById('success-overlay').classList.add('open');
   resetBooking();
 }
+
+// Builds line items from the current booking and POSTs them to the configured
+// serverless endpoint. The endpoint creates a Stripe Checkout Session and returns
+// the URL to redirect to. Amounts are sent in the smallest currency unit (cents).
+async function redirectToDynamicCheckout(booking, finalPrice, subtotal) {
+  const stripe = settings.stripe || {};
+  if (!stripe.endpointUrl) throw new Error('No checkout endpoint configured');
+  // Build raw line items (face value, in dollars)
+  const raw = [];
+  (booking.items || []).forEach(it => raw.push({ name: it.name, dollars: it.price }));
+  (booking.addons || []).forEach(it => raw.push({ name: `Add-on: ${it.name}`, dollars: it.price }));
+  const sizeSurcharge = Number(subtotal) - (booking.items || []).reduce((s, x) => s + (x.price || 0), 0) - (booking.addons || []).reduce((s, x) => s + (x.price || 0), 0);
+  if (sizeSurcharge > 0) {
+    raw.push({ name: `${booking.vehicleSizeLabel || 'Vehicle'} surcharge`, dollars: sizeSurcharge });
+  }
+  if (!raw.length) throw new Error('No items to charge');
+  // Scale each line item proportionally so the sum equals finalPrice (handles promo discount)
+  const targetCents = Math.round(Number(finalPrice) * 100);
+  const subCents = raw.reduce((s, x) => s + Math.round(x.dollars * 100), 0);
+  const scale = subCents > 0 ? (targetCents / subCents) : 1;
+  const lineItems = raw.map(x => ({ name: x.name, amount: Math.max(50, Math.round(x.dollars * 100 * scale)) }));
+  // Fix any rounding drift on the last item so the total is exact
+  const sum = lineItems.reduce((s, x) => s + x.amount, 0);
+  if (lineItems.length && sum !== targetCents) {
+    lineItems[lineItems.length - 1].amount += (targetCents - sum);
+    // Don't let the correction take it below the Stripe minimum of $0.50
+    if (lineItems[lineItems.length - 1].amount < 50) lineItems[lineItems.length - 1].amount = 50;
+  }
+  // Default success/cancel URLs to the current page with a flag
+  const here = window.location.origin + window.location.pathname;
+  const success = stripe.successUrl || `${here}?paid=1&bk=${booking.id}`;
+  const cancel  = stripe.cancelUrl  || `${here}?paid=0&bk=${booking.id}`;
+  const payload = {
+    line_items: lineItems,
+    currency: (stripe.currency || 'usd').toLowerCase(),
+    customer_email: booking.email || undefined,
+    client_reference_id: `BK${booking.id}`,
+    success_url: success,
+    cancel_url: cancel,
+    metadata: {
+      booking_id: String(booking.id),
+      vehicle: [booking.year, booking.make, booking.vehicleSizeLabel].filter(Boolean).join(' '),
+      date: booking.date || '',
+      time: booking.time || '',
+      promo: booking.promo || ''
+    }
+  };
+  const res = await fetch(stripe.endpointUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    let msg = `Checkout endpoint returned ${res.status}`;
+    try { const errBody = await res.text(); msg += ' — ' + errBody.slice(0, 200); } catch(_) {}
+    throw new Error(msg);
+  }
+  const data = await res.json();
+  if (!data || !data.url) throw new Error('Endpoint did not return a checkout URL');
+  closeBooking();
+  resetBooking();
+  window.location.href = data.url;
+}
+window.redirectToDynamicCheckout = redirectToDynamicCheckout;
+
+// Toggle which Stripe config fields are visible based on the current mode + enabled state.
+function renderStripeFields() {
+  const enabled = document.getElementById('s-stripe-on')?.value === '1';
+  const mode = document.getElementById('s-stripe-mode')?.value || 'static';
+  const stat = document.getElementById('s-stripe-static-fields');
+  const dyn  = document.getElementById('s-stripe-dynamic-fields');
+  if (stat) stat.style.display = (enabled && mode === 'static') ? 'block' : 'none';
+  if (dyn)  dyn.style.display  = (enabled && mode === 'dynamic') ? 'block' : 'none';
+}
+window.renderStripeFields = renderStripeFields;
 function resetBooking() {
   bkStep = 0; bk = { items: [], addons: [], date: null, dateStr: '', time: null }; calY = undefined; calMo = undefined;
   ['fn','fe','fp','fc','fno'].forEach(id => document.getElementById(id).value = '');
@@ -3224,30 +3549,113 @@ function admLogin() {
 }
 function admTab(btn, id) { document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(id).classList.add('active'); }
 function renderAdmin() {
-  const rev = bookings.reduce((a, b) => a + (b.price || 0), 0);
-  const pend = bookings.filter(b => b.status === 'pending').length;
-  document.getElementById('stat-rev').textContent = `$${rev.toLocaleString()}`;
-  document.getElementById('stat-total').textContent = bookings.length;
+  // Active (non-deleted) records only count toward stats
+  const activeBk = bookings.filter(b => !b.deletedAt);
+  const activeQuotes = quotes.filter(q => !q.deletedAt);
+  // Revenue logic — strict rules
+  //   Actual Revenue: sum of final_price on bookings with status === 'completed'
+  //   Potential Revenue: sum of final_price on bookings with status === 'confirmed'
+  //   Canceled bookings never count
+  const priceOf = b => (typeof b.finalPrice === 'number' ? b.finalPrice : (b.price || 0));
+  const actualRev = activeBk.filter(b => b.status === 'completed').reduce((a, b) => a + priceOf(b), 0);
+  const potentialRev = activeBk.filter(b => b.status === 'confirmed').reduce((a, b) => a + priceOf(b), 0);
+  const completedCount = activeBk.filter(b => b.status === 'completed').length;
+  const confirmedCount = activeBk.filter(b => b.status === 'confirmed').length;
+  const pend = activeBk.filter(b => b.status === 'pending').length;
+  document.getElementById('stat-rev').textContent = `$${actualRev.toLocaleString()}`;
+  const revSub = document.getElementById('stat-rev-sub');
+  if (revSub) revSub.textContent = `${completedCount} completed order${completedCount === 1 ? '' : 's'}`;
+  const revPot = document.getElementById('stat-rev-pot');
+  if (revPot) revPot.textContent = `$${potentialRev.toLocaleString()}`;
+  const revPotSub = document.getElementById('stat-rev-pot-sub');
+  if (revPotSub) revPotSub.textContent = `${confirmedCount} confirmed, not yet completed`;
+  document.getElementById('stat-total').textContent = activeBk.length;
+  const totalSub = document.getElementById('stat-total-sub');
+  if (totalSub) {
+    const deletedCount = bookings.length - activeBk.length;
+    totalSub.textContent = deletedCount ? `Active (${deletedCount} deleted)` : 'Active (non-deleted)';
+  }
   document.getElementById('stat-leads').textContent = leads.length;
   document.getElementById('stat-pend').textContent = pend;
   const sq = document.getElementById('stat-quotes');
-  if (sq) sq.textContent = quotes.length;
+  if (sq) sq.textContent = activeQuotes.length;
   const sqs = document.getElementById('stat-quotes-sub');
-  if (sqs) sqs.textContent = `${quotes.filter(q => (q.status || 'new') === 'new').length} new`;
-  renderBkTable('ov-tbody', [...bookings].reverse().slice(0, 6), false);
-  renderBkTable('bk-tbody', [...bookings].reverse(), true);
+  if (sqs) sqs.textContent = `${activeQuotes.filter(q => (q.status || 'new') === 'new').length} new`;
+  // Build filtered list for the full Bookings table
+  const showDel = document.getElementById('bk-show-deleted')?.checked;
+  const fStatus = document.getElementById('bk-filter-status')?.value || '';
+  const fCond = document.getElementById('bk-filter-cond')?.value || '';
+  let list = bookings.slice();
+  if (!showDel) list = list.filter(b => !b.deletedAt);
+  if (fStatus) list = list.filter(b => normalizeStatus(b.status) === fStatus);
+  if (fCond) list = list.filter(b => (b.conditionKey || '') === fCond);
+  renderBkTable('ov-tbody', activeBk.slice().reverse().slice(0, 6), false);
+  renderBkTable('bk-tbody', list.reverse(), true);
   renderLeads();
   renderQuotes();
 }
-function sbBadge(s) { const m = { pending: 'sb-pend', confirmed: 'sb-conf', completed: 'sb-comp', cancelled: 'sb-canc' }; return `<span class="sb ${m[s] || 'sb-pend'}">${s}</span>`; }
+function sbBadge(s) {
+  const norm = normalizeStatus(s);
+  const m = { pending: 'sb-pend', confirmed: 'sb-conf', completed: 'sb-comp', canceled: 'sb-canc' };
+  return `<span class="sb ${m[norm] || 'sb-pend'}">${norm}</span>`;
+}
+function condPill(key) {
+  if (!key) return '<span style="color:#52525B;font-size:11px">—</span>';
+  const label = (key || '').charAt(0).toUpperCase() + (key || '').slice(1);
+  return `<span class="cond-pill ${key}">${label}</span>`;
+}
 function renderBkTable(id, data, full) {
-  const tb = document.getElementById(id); tb.innerHTML = '';
-  if (!data.length) { tb.innerHTML = `<tr><td colspan="12" style="text-align:center;color:#52525B;padding:28px">No bookings yet.</td></tr>`; return; }
+  const tb = document.getElementById(id); if (!tb) return; tb.innerHTML = '';
+  if (!data.length) { tb.innerHTML = `<tr><td colspan="${full ? 8 : 8}" style="text-align:center;color:#52525B;padding:28px">No bookings match.</td></tr>`; return; }
   data.forEach(b => {
     const tr = document.createElement('tr');
-    tr.innerHTML = full
-      ? `<td>#${b.id}</td><td><strong>${b.name}</strong></td><td style="color:var(--mut)">${b.email}</td><td style="color:var(--mut)">${b.phone}</td><td style="color:var(--mut)">${b.year} ${b.make} • ${b.vehicleSizeLabel || getVehicleSizeLabel(b.vehicleSize) || (b.seats ? `${b.seats} seats` : '—')}</td><td>${b.svc}</td><td>${b.date}</td><td>${b.time}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${b.price}</td><td>${b.promo ? `<span style="color:var(--red);font-weight:700">${b.promo}</span>` : '—'}</td><td>${sbBadge(b.status)}</td><td><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button><button class="adm-act g" onclick="setSt(${b.id},'completed')">Done</button><button class="adm-act" onclick="setSt(${b.id},'cancelled')">Cancel</button></td>`
-      : `<td>#${b.id}</td><td><strong>${b.name}</strong></td><td>${b.svc}</td><td>${b.date}</td><td>${b.time}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${b.price}</td><td>${sbBadge(b.status)}</td><td><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button></td>`;
+    if (b.deletedAt) tr.className = 'row-deleted';
+    const photoCount = ((b.photosBefore || []).length + (b.photosAfter || []).length);
+    const displayPrice = typeof b.finalPrice === 'number' ? b.finalPrice : (b.price || 0);
+    const vehYM = [b.year, b.make].filter(Boolean).join(' ');
+    const sizeLbl = b.vehicleSizeLabel || (b.vehicleSize ? (getVehicleSizeLabel(b.vehicleSize) || b.vehicleSize) : '');
+    const normSt = normalizeStatus(b.status);
+    const statusOpts = ['pending','confirmed','completed','canceled']
+      .map(s => `<option value="${s}"${s === normSt ? ' selected' : ''}>${s.charAt(0).toUpperCase() + s.slice(1)}</option>`).join('');
+    const actions = b.deletedAt
+      ? `<button class="adm-act g" onclick="restoreBooking(${b.id})">Restore</button>`
+      : `<button class="adm-act" onclick="openBookingDetail(${b.id})">View</button><button class="adm-act" onclick="openBookingEdit(${b.id})">Edit</button><button class="adm-act danger" onclick="deleteBooking(${b.id})">Delete</button>`;
+    if (full) {
+      tr.innerHTML = `
+        <td style="color:var(--mut)">#${b.id}</td>
+        <td>
+          <div style="font-weight:700;color:#fff">${escHtml(b.name || '')}</div>
+          ${b.email ? `<div class="cell-sub">${escHtml(b.email)}</div>` : ''}
+          ${b.phone ? `<div class="cell-sub">${escHtml(b.phone)}</div>` : ''}
+        </td>
+        <td>
+          ${vehYM ? `<div style="color:#D4D4D8">${escHtml(vehYM)}</div>` : ''}
+          <div class="cell-sub" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px">
+            ${sizeLbl ? `<span>${escHtml(sizeLbl)}</span>` : ''}
+            ${b.conditionKey ? condPill(b.conditionKey) : ''}
+          </div>
+        </td>
+        <td style="color:#D4D4D8">${escHtml(b.svc || '')}</td>
+        <td>
+          <div style="color:#D4D4D8">${escHtml(b.date || '')}</div>
+          ${b.time ? `<div class="cell-sub">${escHtml(b.time)}</div>` : ''}
+        </td>
+        <td>
+          <div style="color:var(--red);font-family:'Bebas Neue';font-size:18px;line-height:1">$${displayPrice}</div>
+          ${b.promo ? `<div style="color:var(--red);font-size:10px;font-weight:700;letter-spacing:.1em;margin-top:3px">${escHtml(b.promo)}</div>` : ''}
+          ${photoCount ? `<div style="color:#52525B;font-size:10px;margin-top:3px">📷 ${photoCount}</div>` : ''}
+        </td>
+        <td>
+          ${sbBadge(b.status)}
+          <select class="row-status-sel" aria-label="Change status" onchange="setSt(${b.id},this.value)"${b.deletedAt ? ' disabled' : ''}>${statusOpts}</select>
+        </td>
+        <td class="actions-cell">${actions}</td>`;
+    } else {
+      const quickActions = b.deletedAt
+        ? `<button class="adm-act g" onclick="restoreBooking(${b.id})">Restore</button>`
+        : `<button class="adm-act" onclick="openBookingEdit(${b.id})">Edit</button><button class="adm-act g" onclick="setSt(${b.id},'confirmed')">Confirm</button>`;
+      tr.innerHTML = `<td>#${b.id}</td><td><strong>${escHtml(b.name || '')}</strong></td><td>${escHtml(b.svc || '')}</td><td>${escHtml(b.date || '')}</td><td>${escHtml(b.time || '')}</td><td style="color:var(--red);font-family:'Bebas Neue';font-size:17px">$${displayPrice}</td><td>${sbBadge(b.status)}</td><td style="white-space:nowrap">${quickActions}</td>`;
+    }
     tb.appendChild(tr);
   });
 }
@@ -3259,7 +3667,18 @@ function renderLeads() {
     tb.appendChild(tr);
   });
 }
-function setSt(id, s) { const b = bookings.find(b => b.id === id); if (b) { b.status = s; persist(); renderAdmin(); } }
+function setSt(id, s) {
+  const b = bookings.find(b => b.id === id);
+  if (!b) return;
+  const prev = b.status;
+  const next = normalizeStatus(s);
+  b.status = next;
+  b.updatedAt = new Date().toISOString();
+  if (!b.statusHistory) b.statusHistory = [];
+  b.statusHistory.push({ from: prev, to: next, at: b.updatedAt });
+  persist();
+  renderAdmin();
+}
 
 // ── Quote Requests: front-end form + admin viewer ──────────────────────────
 const QUOTE_MAX_PHOTOS = 5;
@@ -3386,6 +3805,8 @@ async function submitQuote(ev) {
     service: val('q-service'),
     description: val('q-desc'),
     photos: quotePhotos.slice(),
+    photosBefore: [],
+    photosAfter: [],
     status: 'new',
     createdAt: new Date().toISOString(),
   };
@@ -3435,7 +3856,9 @@ function renderQuotes() {
   const fStatus = document.getElementById('q-filter-status')?.value || '';
   const fSvc = document.getElementById('q-filter-svc')?.value || '';
   const sort = document.getElementById('q-sort')?.value || 'new';
+  const showDel = document.getElementById('q-show-deleted')?.checked;
   let list = quotes.slice();
+  if (!showDel) list = list.filter(q => !q.deletedAt);
   if (fStatus) list = list.filter(q => (q.status || 'new') === fStatus);
   if (fSvc) list = list.filter(q => q.service === fSvc);
   list.sort((a, b) => sort === 'old'
@@ -3454,7 +3877,13 @@ function renderQuotes() {
     const dt = q.createdAt ? new Date(q.createdAt).toLocaleDateString() : '—';
     const status = q.status || 'new';
     const stOpts = QUOTE_STATUSES.map(s => `<option value="${s}"${s===status?' selected':''}>${s}</option>`).join('');
-    return `<tr>
+    // Photos: customer submitted + admin before + admin after
+    const totalPhotos = (q.photos || []).length + (q.photosBefore || []).length + (q.photosAfter || []).length;
+    const rowCls = q.deletedAt ? ' class="row-deleted"' : '';
+    const actions = q.deletedAt
+      ? `<button class="adm-act g" onclick="restoreQuote(${q.id})">Restore</button>`
+      : `<button class="adm-act" onclick="openQuoteDetail(${q.id})">View</button><button class="adm-act" onclick="openQuoteEdit(${q.id})">Edit</button><button class="adm-act danger" onclick="deleteQuote(${q.id})">Delete</button>`;
+    return `<tr${rowCls}>
       <td>#${q.id}</td>
       <td style="color:var(--mut);white-space:nowrap">${dt}</td>
       <td><strong>${escHtml(q.name)}</strong></td>
@@ -3462,9 +3891,9 @@ function renderQuotes() {
       <td style="color:var(--mut)">${escHtml(q.phone)}</td>
       <td style="color:var(--mut)">${escHtml(veh)}</td>
       <td>${escHtml(QUOTE_SVC_LABELS[q.service] || q.service || '—')}</td>
-      <td style="color:var(--mut)">${(q.photos||[]).length}</td>
-      <td>${stBadge(status)}<select onchange="setQuoteStatus(${q.id},this.value)" style="margin-left:6px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:4px 6px;font-size:10px;font-family:Manrope">${stOpts}</select></td>
-      <td><button class="adm-act" onclick="openQuoteDetail(${q.id})">View</button><button class="adm-act" onclick="deleteQuote(${q.id})">Delete</button></td>
+      <td style="color:var(--mut)">${totalPhotos}</td>
+      <td>${stBadge(status)}<select onchange="setQuoteStatus(${q.id},this.value)" style="margin-left:6px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:4px 6px;font-size:10px;font-family:Manrope"${q.deletedAt ? ' disabled' : ''}>${stOpts}</select></td>
+      <td style="white-space:nowrap">${actions}</td>
     </tr>`;
   }).join('');
 }
@@ -3478,10 +3907,17 @@ function setQuoteStatus(id, s) {
   if (sqs) sqs.textContent = `${quotes.filter(q => (q.status || 'new') === 'new').length} new`;
 }
 function deleteQuote(id) {
-  if (!confirm('Delete this quote request? This cannot be undone.')) return;
-  const i = quotes.findIndex(q => q.id === id);
-  if (i < 0) return;
-  quotes.splice(i, 1);
+  if (!confirm('Delete this quote request?\n\nThe entry will be marked deleted but kept in storage (you can restore it from "Show deleted").')) return;
+  const q = quotes.find(q => q.id === id);
+  if (!q) return;
+  q.deletedAt = new Date().toISOString();
+  persist();
+  renderAdmin();
+}
+function restoreQuote(id) {
+  const q = quotes.find(q => q.id === id);
+  if (!q) return;
+  delete q.deletedAt;
   persist();
   renderAdmin();
 }
@@ -3555,8 +3991,14 @@ function loadSettingsUI() {
   ['ig','tk','fb','yt','tw'].forEach(k => { const el = document.getElementById(`soc-${k}-url`); if (el) el.value = soc[k] || ''; });
   const st = settings.stripe || {};
   const onEl = document.getElementById('s-stripe-on'); if (onEl) onEl.value = st.enabled ? '1' : '0';
+  const modeEl = document.getElementById('s-stripe-mode'); if (modeEl) modeEl.value = st.mode === 'dynamic' ? 'dynamic' : 'static';
   const pkEl = document.getElementById('s-stripe-pk'); if (pkEl) pkEl.value = st.publishableKey || '';
   const lnEl = document.getElementById('s-stripe-link'); if (lnEl) lnEl.value = st.paymentLink || '';
+  const epEl = document.getElementById('s-stripe-endpoint'); if (epEl) epEl.value = st.endpointUrl || '';
+  const ccEl = document.getElementById('s-stripe-currency'); if (ccEl) ccEl.value = st.currency || 'usd';
+  const sucEl = document.getElementById('s-stripe-success'); if (sucEl) sucEl.value = st.successUrl || '';
+  const canEl = document.getElementById('s-stripe-cancel'); if (canEl) canEl.value = st.cancelUrl || '';
+  if (typeof renderStripeFields === 'function') renderStripeFields();
   const gh = settings.github || {};
   const ghOwner = document.getElementById('gh-owner'); if (ghOwner) ghOwner.value = gh.owner || 'sphacer69';
   const ghRepo = document.getElementById('gh-repo'); if (ghRepo) ghRepo.value = gh.repo || 'website-try2';
@@ -4446,10 +4888,16 @@ function syncSettingsFromUI() {
   settings.social = { ig: document.getElementById('soc-ig-url').value.trim(), tk: document.getElementById('soc-tk-url').value.trim(), fb: document.getElementById('soc-fb-url').value.trim(), yt: document.getElementById('soc-yt-url').value.trim(), tw: document.getElementById('soc-tw-url').value.trim() };
   const onEl = document.getElementById('s-stripe-on');
   if (onEl) {
+    const modeVal = (document.getElementById('s-stripe-mode')?.value || 'static');
     settings.stripe = {
       enabled: onEl.value === '1',
+      mode: modeVal === 'dynamic' ? 'dynamic' : 'static',
       publishableKey: (document.getElementById('s-stripe-pk')?.value || '').trim(),
-      paymentLink: (document.getElementById('s-stripe-link')?.value || '').trim()
+      paymentLink: (document.getElementById('s-stripe-link')?.value || '').trim(),
+      endpointUrl: (document.getElementById('s-stripe-endpoint')?.value || '').trim(),
+      currency: (document.getElementById('s-stripe-currency')?.value || 'usd').toLowerCase(),
+      successUrl: (document.getElementById('s-stripe-success')?.value || '').trim(),
+      cancelUrl: (document.getElementById('s-stripe-cancel')?.value || '').trim()
     };
   }
   settings.github = settings.github || {};
@@ -4853,6 +5301,530 @@ window.addEventListener('storage', (e) => {
     if (admIn && isAdminRoute()) renderAdmin();
   } catch (_) {}
 });
+// ============================================================================
+// ADMIN ENHANCEMENTS
+// Edit/delete for bookings & quotes, before/after photo system (IndexedDB),
+// vehicle condition pricing, strict revenue logic, soft-delete with restore.
+// ============================================================================
+
+// --- Status normalization (accept both "cancelled" and "canceled") ---
+function normalizeStatus(s) {
+  if (!s) return 'pending';
+  const v = String(s).toLowerCase().trim();
+  if (v === 'cancelled') return 'canceled';
+  if (['pending','confirmed','completed','canceled'].includes(v)) return v;
+  return 'pending';
+}
+
+// --- IndexedDB photo store ---
+// For a true cloud backend, replace the body of save/load/delete with calls
+// to your storage service (S3/Cloudinary/etc). Records here reference photo
+// IDs, so the rest of the app is backend-agnostic.
+const PhotoStore = {
+  _dbPromise: null,
+  _urlCache: new Map(), // id -> object URL (for lifetime of this page)
+  _open() {
+    if (this._dbPromise) return this._dbPromise;
+    this._dbPromise = new Promise((resolve, reject) => {
+      const req = indexedDB.open('dba_photos', 1);
+      req.onupgradeneeded = () => {
+        const db = req.result;
+        if (!db.objectStoreNames.contains('photos')) {
+          const st = db.createObjectStore('photos', { keyPath: 'id' });
+          st.createIndex('by_parent', ['parentType', 'parentId', 'kind'], { unique: false });
+        }
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return this._dbPromise;
+  },
+  async save(blob, meta) {
+    const db = await this._open();
+    const id = 'p_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    const record = { id, blob, parentType: meta.parentType, parentId: meta.parentId, kind: meta.kind, filename: meta.filename || '', uploadedAt: new Date().toISOString() };
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readwrite');
+      tx.objectStore('photos').put(record);
+      tx.oncomplete = () => resolve(id);
+      tx.onerror = () => reject(tx.error);
+    });
+  },
+  async load(id) {
+    const db = await this._open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readonly');
+      const req = tx.objectStore('photos').get(id);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+  },
+  async getUrl(id) {
+    if (this._urlCache.has(id)) return this._urlCache.get(id);
+    const rec = await this.load(id);
+    if (!rec) return null;
+    const url = URL.createObjectURL(rec.blob);
+    this._urlCache.set(id, url);
+    return url;
+  },
+  async delete(id) {
+    const db = await this._open();
+    if (this._urlCache.has(id)) {
+      try { URL.revokeObjectURL(this._urlCache.get(id)); } catch(_){}
+      this._urlCache.delete(id);
+    }
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readwrite');
+      tx.objectStore('photos').delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+};
+window.PhotoStore = PhotoStore;
+
+// --- Condition pricing ---
+const DEFAULT_CONDITIONS = {
+  light:    { label: 'Light',    type: 'fixed',   value: 0  },
+  moderate: { label: 'Moderate', type: 'fixed',   value: 50 },
+  heavy:    { label: 'Heavy',    type: 'percent', value: 20 }
+};
+function ensureConditionsSettings() {
+  if (!settings.conditions || typeof settings.conditions !== 'object') {
+    settings.conditions = JSON.parse(JSON.stringify(DEFAULT_CONDITIONS));
+  }
+  for (const k of ['light','moderate','heavy']) {
+    if (!settings.conditions[k]) settings.conditions[k] = { ...DEFAULT_CONDITIONS[k] };
+  }
+}
+function computeConditionAdjustment(basePrice, conditionKey) {
+  if (!conditionKey) return 0;
+  ensureConditionsSettings();
+  const c = settings.conditions[conditionKey];
+  if (!c) return 0;
+  const v = Number(c.value) || 0;
+  if (c.type === 'percent') return Math.round((Number(basePrice) || 0) * v / 100);
+  return v; // fixed dollars
+}
+function conditionAdjustmentLabel(conditionKey) {
+  if (!conditionKey) return '';
+  ensureConditionsSettings();
+  const c = settings.conditions[conditionKey];
+  if (!c) return '';
+  return c.type === 'percent' ? `+${c.value}%` : `+$${c.value}`;
+}
+
+// --- Migration: backfill new fields on existing records ---
+function migrateData() {
+  let dirty = false;
+  ensureConditionsSettings();
+  bookings.forEach(b => {
+    // Normalize old British spelling so filters/badges line up
+    if (b.status === 'cancelled') { b.status = 'canceled'; dirty = true; }
+    if (!Array.isArray(b.photosBefore)) { b.photosBefore = []; dirty = true; }
+    if (!Array.isArray(b.photosAfter))  { b.photosAfter  = []; dirty = true; }
+    if (typeof b.basePrice !== 'number') {
+      // Old records stored only `price`. Treat it as base + final until an admin edits.
+      b.basePrice = Number(b.price) || 0; dirty = true;
+    }
+    if (typeof b.finalPrice !== 'number') {
+      b.finalPrice = Number(b.price) || b.basePrice || 0; dirty = true;
+    }
+    if (typeof b.conditionAdjustment !== 'number') { b.conditionAdjustment = 0; dirty = true; }
+    if (typeof b.conditionKey !== 'string') { b.conditionKey = ''; dirty = true; }
+    if (!b.createdAt && b.created) { b.createdAt = new Date(b.created).toISOString(); dirty = true; }
+  });
+  quotes.forEach(q => {
+    if (!Array.isArray(q.photos))       { q.photos = []; dirty = true; }
+    if (!Array.isArray(q.photosBefore)) { q.photosBefore = []; dirty = true; }
+    if (!Array.isArray(q.photosAfter))  { q.photosAfter  = []; dirty = true; }
+  });
+  if (dirty) persist();
+}
+
+// --- Shared helpers ---
+function findBooking(id) { return bookings.find(b => b.id === Number(id)); }
+function findQuote(id) { return quotes.find(q => q.id === Number(id)); }
+function setVal(id, v) { const el = document.getElementById(id); if (el) el.value = v == null ? '' : v; }
+function getVal(id) { return (document.getElementById(id)?.value ?? '').trim(); }
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  // Revoke any object URLs attached to images in this modal to avoid leaks
+  document.querySelectorAll(`#${id} img[data-revokable="1"]`).forEach(img => {
+    try { URL.revokeObjectURL(img.src); } catch(_) {}
+  });
+}
+
+// --- Photo gallery (shared between bookings & quotes) ---
+// parentType: 'booking' | 'quote'
+// kind: 'before' | 'after'  (for admin-managed photos)
+async function renderPhotoGallery(parentType, parentId, kind, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const record = parentType === 'booking' ? findBooking(parentId) : findQuote(parentId);
+  if (!record) { container.innerHTML = ''; return; }
+  const field = kind === 'before' ? 'photosBefore' : 'photosAfter';
+  const ids = record[field] || [];
+  if (!ids.length) {
+    container.innerHTML = `<div class="pg-empty">No ${kind} photos yet. Drop images above or click to browse.</div>`;
+    return;
+  }
+  // Build thumbs from IndexedDB (async)
+  const parts = await Promise.all(ids.map(async pid => {
+    const url = await PhotoStore.getUrl(pid);
+    if (!url) return ''; // orphaned reference — silently skip
+    return `<div class="pg-thumb"><a href="${url}" target="_blank" rel="noopener"><img src="${url}" alt="${kind} photo" data-revokable="0"></a><button class="rm" title="Delete photo" onclick="removePhoto('${parentType}',${parentId},'${kind}','${pid}')">×</button></div>`;
+  }));
+  container.innerHTML = parts.filter(Boolean).join('') || `<div class="pg-empty">No ${kind} photos yet.</div>`;
+}
+async function handlePhotoUpload(parentType, parentId, kind, files) {
+  const record = parentType === 'booking' ? findBooking(parentId) : findQuote(parentId);
+  if (!record) return;
+  const field = kind === 'before' ? 'photosBefore' : 'photosAfter';
+  if (!Array.isArray(record[field])) record[field] = [];
+  const imgFiles = Array.from(files || []).filter(f => f.type.startsWith('image/'));
+  for (const file of imgFiles) {
+    try {
+      // Reuse existing compressor — returns a dataURL. Convert to Blob for IndexedDB.
+      const dataUrl = await compressImage(file);
+      const blob = await (await fetch(dataUrl)).blob();
+      const id = await PhotoStore.save(blob, { parentType, parentId, kind, filename: file.name });
+      record[field].push(id);
+    } catch (err) {
+      console.warn('Photo upload failed', err);
+    }
+  }
+  persist();
+  renderPhotoGallery(parentType, parentId, kind, `pg-${parentType}-${kind}-grid`);
+  renderAdmin(); // update photo counts in tables
+}
+async function removePhoto(parentType, parentId, kind, photoId) {
+  if (!confirm('Delete this photo? This cannot be undone.')) return;
+  const record = parentType === 'booking' ? findBooking(parentId) : findQuote(parentId);
+  if (!record) return;
+  const field = kind === 'before' ? 'photosBefore' : 'photosAfter';
+  record[field] = (record[field] || []).filter(id => id !== photoId);
+  try { await PhotoStore.delete(photoId); } catch (err) { console.warn('Photo DB delete failed', err); }
+  persist();
+  renderPhotoGallery(parentType, parentId, kind, `pg-${parentType}-${kind}-grid`);
+  renderAdmin();
+}
+window.removePhoto = removePhoto;
+
+// Wire a drop-zone element to upload handler
+function wirePhotoDrop(dropId, inputId, parentType, parentId, kind) {
+  const drop = document.getElementById(dropId);
+  const input = document.getElementById(inputId);
+  if (!drop || !input) return;
+  const onFiles = (files) => handlePhotoUpload(parentType, parentId, kind, files);
+  drop.onclick = () => input.click();
+  input.onchange = e => { onFiles(e.target.files); e.target.value = ''; };
+  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('drag'); }));
+  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('drag'); }));
+  drop.addEventListener('drop', e => { onFiles(e.dataTransfer?.files); });
+}
+
+// ---- Booking: Detail view ----
+async function openBookingDetail(id) {
+  const b = findBooking(id);
+  if (!b) return;
+  openModal('bk-detail-modal');
+  const veh = [b.year, b.make].filter(Boolean).join(' ') + (b.vehicleSizeLabel ? ' • ' + b.vehicleSizeLabel : '');
+  const base = Number(b.basePrice) || 0;
+  const adj = Number(b.conditionAdjustment) || 0;
+  const final = typeof b.finalPrice === 'number' ? b.finalPrice : (b.price || 0);
+  const condLabel = b.conditionKey ? `${(b.conditionKey.charAt(0).toUpperCase() + b.conditionKey.slice(1))} (${conditionAdjustmentLabel(b.conditionKey)})` : 'None';
+  const body = document.getElementById('bk-detail-body');
+  body.innerHTML = `
+    <div class="dbd-kv">
+      <div class="k">Status</div><div class="v">${sbBadge(b.status)}${b.deletedAt ? ' <span style="color:#EF4444;font-size:11px;margin-left:8px">DELETED</span>' : ''}</div>
+      <div class="k">Customer</div><div class="v">${escHtml(b.name || '')}</div>
+      <div class="k">Email</div><div class="v">${escHtml(b.email || '')}</div>
+      <div class="k">Phone</div><div class="v">${escHtml(b.phone || '')}</div>
+      <div class="k">Vehicle</div><div class="v">${escHtml(veh)}</div>
+      <div class="k">Condition</div><div class="v">${condPill(b.conditionKey)} <span style="color:var(--mut);font-size:11px;margin-left:6px">${escHtml(condLabel)}</span></div>
+      <div class="k">Service</div><div class="v">${escHtml(b.svc || '')}</div>
+      <div class="k">Date / Time</div><div class="v">${escHtml(b.date || '')} — ${escHtml(b.time || '')}</div>
+      <div class="k">Promo</div><div class="v">${b.promo ? `<span style="color:var(--red);font-weight:700">${escHtml(b.promo)}</span>` : '—'}</div>
+      <div class="k">Notes</div><div class="v" style="white-space:pre-wrap">${escHtml(b.notes || '—')}</div>
+    </div>
+    <div class="price-box">
+      <div class="price-row"><span class="lbl">Base price</span><span class="amt">$${base.toLocaleString()}</span></div>
+      ${adj ? `<div class="price-row adj"><span class="lbl">Condition adjustment (${escHtml(b.conditionKey || '')})</span><span class="amt">${adj >= 0 ? '+' : ''}$${adj.toLocaleString()}</span></div>` : ''}
+      <div class="price-row total"><span class="lbl" style="color:#fff">Final total</span><span class="amt">$${final.toLocaleString()}</span></div>
+    </div>
+    <div class="dbd-section-title">Before photos</div>
+    <div id="pg-booking-before-grid" class="pg-grid"></div>
+    <div class="dbd-section-title">After photos</div>
+    <div id="pg-booking-after-grid" class="pg-grid"></div>
+  `;
+  // Photo galleries (read-only view — full upload/delete is in the edit modal)
+  document.getElementById('bk-detail-id').textContent = `#${b.id}`;
+  await renderPhotoGallery('booking', b.id, 'before', 'pg-booking-before-grid');
+  await renderPhotoGallery('booking', b.id, 'after',  'pg-booking-after-grid');
+  // Remove the "rm" buttons in view mode (gallery adds them by default)
+  document.querySelectorAll('#bk-detail-modal .pg-thumb .rm').forEach(btn => btn.remove());
+}
+function closeBookingDetail() { closeModal('bk-detail-modal'); }
+
+// ---- Booking: Edit ----
+function openBookingEdit(id) {
+  const b = findBooking(id);
+  if (!b) return;
+  ensureConditionsSettings();
+  openModal('bk-edit-modal');
+  document.getElementById('bk-edit-id').textContent = `#${b.id}`;
+  document.getElementById('bk-edit-form').dataset.id = String(b.id);
+  setVal('be-name', b.name);
+  setVal('be-email', b.email);
+  setVal('be-phone', b.phone);
+  setVal('be-year', b.year);
+  setVal('be-make', b.make);
+  setVal('be-size', b.vehicleSize || '');
+  setVal('be-svc', b.svc);
+  setVal('be-date', b.date);
+  setVal('be-time', b.time);
+  setVal('be-base', Number(b.basePrice) || 0);
+  setVal('be-cond', b.conditionKey || '');
+  setVal('be-promo', b.promo || '');
+  setVal('be-status', normalizeStatus(b.status));
+  setVal('be-notes', b.notes || '');
+  // Rebuild vehicle-size options from current settings
+  const sizeSel = document.getElementById('be-size');
+  const sizes = (settings && Array.isArray(settings.vehicleSizes)) ? settings.vehicleSizes : [];
+  if (sizeSel) {
+    const opts = [`<option value="">—</option>`].concat(
+      sizes.map(s => `<option value="${s.id}"${s.id === b.vehicleSize ? ' selected' : ''}>${escHtml(s.label)}</option>`)
+    );
+    sizeSel.innerHTML = opts.join('');
+  }
+  recomputeBookingEditTotal();
+  // Wire photo drop zones
+  wirePhotoDrop('pg-booking-before-drop', 'pg-booking-before-input', 'booking', b.id, 'before');
+  wirePhotoDrop('pg-booking-after-drop',  'pg-booking-after-input',  'booking', b.id, 'after');
+  renderPhotoGallery('booking', b.id, 'before', 'pg-booking-before-grid-edit');
+  renderPhotoGallery('booking', b.id, 'after',  'pg-booking-after-grid-edit');
+  // Live recompute on base / condition change
+  ['be-base','be-cond'].forEach(fid => {
+    const el = document.getElementById(fid);
+    if (el) el.oninput = el.onchange = recomputeBookingEditTotal;
+  });
+}
+function recomputeBookingEditTotal() {
+  const base = Number(getVal('be-base')) || 0;
+  const cond = getVal('be-cond');
+  const adj = computeConditionAdjustment(base, cond);
+  const final = base + adj;
+  const el = document.getElementById('be-breakdown');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="price-row"><span class="lbl">Base price</span><span class="amt">$${base.toLocaleString()}</span></div>
+    ${adj ? `<div class="price-row adj"><span class="lbl">Condition (${escHtml(cond)}) ${escHtml(conditionAdjustmentLabel(cond))}</span><span class="amt">${adj >= 0 ? '+' : ''}$${adj.toLocaleString()}</span></div>` : '<div class="price-row adj" style="color:#52525B"><span class="lbl">No condition adjustment</span><span class="amt">$0</span></div>'}
+    <div class="price-row total"><span class="lbl" style="color:#fff">Final total</span><span class="amt">$${final.toLocaleString()}</span></div>
+  `;
+}
+function saveBookingEdit(ev) {
+  if (ev) ev.preventDefault();
+  const id = Number(document.getElementById('bk-edit-form').dataset.id);
+  const b = findBooking(id);
+  if (!b) return;
+  const base = Number(getVal('be-base')) || 0;
+  const cond = getVal('be-cond');
+  const adj = computeConditionAdjustment(base, cond);
+  const final = base + adj;
+  const prevStatus = b.status;
+  b.name  = getVal('be-name');
+  b.email = getVal('be-email');
+  b.phone = getVal('be-phone');
+  b.year  = getVal('be-year');
+  b.make  = getVal('be-make');
+  b.vehicleSize = getVal('be-size');
+  b.vehicleSizeLabel = getVehicleSizeLabel(b.vehicleSize) || '';
+  b.svc   = getVal('be-svc');
+  b.date  = getVal('be-date');
+  b.time  = getVal('be-time');
+  b.basePrice = base;
+  b.conditionKey = cond;
+  b.conditionAdjustment = adj;
+  b.finalPrice = final;
+  b.price = final; // keep legacy field in sync
+  b.promo = getVal('be-promo');
+  b.status = normalizeStatus(getVal('be-status'));
+  b.notes = getVal('be-notes');
+  b.updatedAt = new Date().toISOString();
+  if (prevStatus !== b.status) {
+    if (!b.statusHistory) b.statusHistory = [];
+    b.statusHistory.push({ from: prevStatus, to: b.status, at: b.updatedAt });
+  }
+  persist();
+  closeModal('bk-edit-modal');
+  renderAdmin();
+}
+function deleteBooking(id) {
+  const b = findBooking(id);
+  if (!b) return;
+  if (!confirm(`Delete booking #${b.id} for ${b.name}?\n\nThe booking will be marked deleted but kept in storage (toggle "Show deleted" to restore).`)) return;
+  b.deletedAt = new Date().toISOString();
+  persist();
+  renderAdmin();
+}
+function restoreBooking(id) {
+  const b = findBooking(id);
+  if (!b) return;
+  delete b.deletedAt;
+  persist();
+  renderAdmin();
+}
+
+// ---- Quote: Edit ----
+function openQuoteEdit(id) {
+  const q = findQuote(id);
+  if (!q) return;
+  openModal('q-edit-modal');
+  document.getElementById('q-edit-id').textContent = `#${q.id}`;
+  document.getElementById('q-edit-form').dataset.id = String(q.id);
+  setVal('qe-name', q.name);
+  setVal('qe-email', q.email);
+  setVal('qe-phone', q.phone);
+  setVal('qe-year', q.vehicleYear);
+  setVal('qe-make', q.vehicleMake);
+  setVal('qe-model', q.vehicleModel);
+  setVal('qe-service', q.service || '');
+  setVal('qe-status', q.status || 'new');
+  setVal('qe-quoted', typeof q.quotedPrice === 'number' ? q.quotedPrice : '');
+  setVal('qe-desc', q.description || '');
+  // Customer-submitted photos (read-only inside edit, delete allowed)
+  const cust = document.getElementById('qe-customer-photos');
+  if (cust) {
+    cust.innerHTML = (q.photos || []).length
+      ? (q.photos || []).map((p, i) => `<div class="pg-thumb"><a href="${p}" target="_blank" rel="noopener"><img src="${p}" alt="Customer photo ${i+1}"></a><button class="rm" title="Delete customer photo" onclick="removeCustomerQuotePhoto(${q.id},${i})">×</button></div>`).join('')
+      : '<div class="pg-empty">Customer did not attach any photos.</div>';
+  }
+  // Before/after (admin-uploaded)
+  wirePhotoDrop('pg-quote-before-drop', 'pg-quote-before-input', 'quote', q.id, 'before');
+  wirePhotoDrop('pg-quote-after-drop',  'pg-quote-after-input',  'quote', q.id, 'after');
+  renderPhotoGallery('quote', q.id, 'before', 'pg-quote-before-grid-edit');
+  renderPhotoGallery('quote', q.id, 'after',  'pg-quote-after-grid-edit');
+}
+function removeCustomerQuotePhoto(qid, idx) {
+  if (!confirm('Delete this customer-submitted photo?')) return;
+  const q = findQuote(qid);
+  if (!q || !Array.isArray(q.photos)) return;
+  q.photos.splice(idx, 1);
+  persist();
+  // Refresh the list
+  openQuoteEdit(qid);
+  renderAdmin();
+}
+window.removeCustomerQuotePhoto = removeCustomerQuotePhoto;
+function saveQuoteEdit(ev) {
+  if (ev) ev.preventDefault();
+  const id = Number(document.getElementById('q-edit-form').dataset.id);
+  const q = findQuote(id);
+  if (!q) return;
+  q.name = getVal('qe-name');
+  q.email = getVal('qe-email');
+  q.phone = getVal('qe-phone');
+  q.vehicleYear = getVal('qe-year');
+  q.vehicleMake = getVal('qe-make');
+  q.vehicleModel = getVal('qe-model');
+  q.service = getVal('qe-service');
+  q.status = getVal('qe-status') || 'new';
+  const quoted = getVal('qe-quoted');
+  if (quoted !== '') q.quotedPrice = Number(quoted) || 0; else delete q.quotedPrice;
+  q.description = getVal('qe-desc');
+  q.updatedAt = new Date().toISOString();
+  persist();
+  closeModal('q-edit-modal');
+  renderAdmin();
+}
+
+// ---- Condition config UI (in Pricing tab) ----
+function renderConditionConfig() {
+  ensureConditionsSettings();
+  const host = document.getElementById('cond-cfg-host');
+  if (!host) return;
+  const rows = ['light','moderate','heavy'].map(key => {
+    const c = settings.conditions[key];
+    return `
+      <div class="cond-cfg-row" data-key="${key}">
+        <div class="cfg-lbl">${c.label || key}</div>
+        <div>
+          <label>Display label</label>
+          <input type="text" data-f="label" value="${escHtml(c.label || '')}">
+        </div>
+        <div>
+          <label>Modifier type</label>
+          <select data-f="type">
+            <option value="fixed"${c.type === 'fixed' ? ' selected' : ''}>Fixed $</option>
+            <option value="percent"${c.type === 'percent' ? ' selected' : ''}>Percent %</option>
+          </select>
+        </div>
+        <div>
+          <label>Value</label>
+          <input type="number" data-f="value" min="0" step="1" value="${Number(c.value) || 0}">
+        </div>
+      </div>`;
+  }).join('');
+  host.innerHTML = rows + `<p style="font-size:11px;color:#52525B;margin-top:6px;line-height:1.6">Preview: on a $200 base price, Moderate adds ${conditionAdjustmentLabel('moderate')} = $${computeConditionAdjustment(200,'moderate')}. Heavy adds ${conditionAdjustmentLabel('heavy')} = $${computeConditionAdjustment(200,'heavy')}.</p>`;
+}
+function saveConditionConfig() {
+  ensureConditionsSettings();
+  const host = document.getElementById('cond-cfg-host');
+  if (!host) return;
+  host.querySelectorAll('.cond-cfg-row').forEach(row => {
+    const key = row.dataset.key;
+    const label = row.querySelector('[data-f="label"]').value.trim() || (key.charAt(0).toUpperCase() + key.slice(1));
+    const type = row.querySelector('[data-f="type"]').value === 'percent' ? 'percent' : 'fixed';
+    const value = Math.max(0, Number(row.querySelector('[data-f="value"]').value) || 0);
+    settings.conditions[key] = { label, type, value };
+  });
+  persist();
+  renderConditionConfig();
+  // Briefly flash feedback
+  const btn = document.querySelector('#tab-pricing button[onclick="saveConditionConfig()"]');
+  if (btn) {
+    const prev = btn.textContent;
+    btn.textContent = 'Saved ✓';
+    setTimeout(() => { btn.textContent = prev; }, 1500);
+  }
+}
+
+// Hook condition config into the Pricing tab when it opens
+(function hookPricingTab(){
+  const origTabBtn = document.querySelector('button[onclick*="tab-pricing"]');
+  if (origTabBtn) {
+    const prevHandler = origTabBtn.getAttribute('onclick') || '';
+    if (!prevHandler.includes('renderConditionConfig')) {
+      origTabBtn.setAttribute('onclick', prevHandler + ';renderConditionConfig()');
+    }
+  }
+})();
+
+// ---- Expose handlers used by inline onclick= ----
+Object.assign(window, {
+  openBookingDetail, closeBookingDetail,
+  openBookingEdit, saveBookingEdit,
+  deleteBooking, restoreBooking,
+  openQuoteEdit, saveQuoteEdit,
+  restoreQuote,
+  renderConditionConfig, saveConditionConfig,
+  closeModal
+});
+
+// Alt+1..9 jumps to the Nth admin tab for keyboard power users
+document.addEventListener('keydown', e => {
+  if (!e.altKey || e.metaKey || e.ctrlKey) return;
+  if (e.key < '1' || e.key > '9') return;
+  const tabs = document.querySelectorAll('.adm-tabnav .adm-tab');
+  const btn = tabs[Number(e.key) - 1];
+  if (btn) { e.preventDefault(); btn.click(); }
+});
+
+// Run migration BEFORE initial render
+migrateData();
+
 updateSteps();
 renderRoute();
 </script>
@@ -4863,6 +5835,158 @@ renderRoute();
     <button type="button" onclick="closeQuoteDetail()" style="position:absolute;top:12px;right:12px;background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1">×</button>
     <h3 style="font-family:'Bebas Neue';font-size:24px;letter-spacing:.08em;color:#fff;margin-bottom:14px">Quote Request</h3>
     <div id="quote-detail-body"></div>
+  </div>
+</div>
+
+<!-- Booking detail modal -->
+<div id="bk-detail-modal" class="dbd-ov" onclick="if(event.target===this)closeBookingDetail()">
+  <div class="dbd">
+    <button type="button" class="dbd-close" onclick="closeBookingDetail()">×</button>
+    <h3>Booking Detail</h3>
+    <div class="dbd-sub">Order <span id="bk-detail-id">—</span></div>
+    <div id="bk-detail-body"></div>
+    <div class="dbd-actions">
+      <button type="button" class="adm-act" onclick="closeBookingDetail()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Booking edit modal -->
+<div id="bk-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal('bk-edit-modal')">
+  <div class="dbd" style="max-width:880px">
+    <button type="button" class="dbd-close" onclick="closeModal('bk-edit-modal')">×</button>
+    <h3>Edit Booking</h3>
+    <div class="dbd-sub">Order <span id="bk-edit-id">—</span></div>
+    <form id="bk-edit-form" onsubmit="saveBookingEdit(event)">
+      <div class="dbd-section-title">Customer</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Full name</label><input type="text" id="be-name" required></div>
+        <div class="dbd-row"><label>Email</label><input type="email" id="be-email"></div>
+        <div class="dbd-row"><label>Phone</label><input type="tel" id="be-phone"></div>
+        <div class="dbd-row"><label>Status</label>
+          <select id="be-status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="canceled">Canceled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dbd-section-title">Vehicle</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Year</label><input type="text" id="be-year"></div>
+        <div class="dbd-row"><label>Make / Model</label><input type="text" id="be-make"></div>
+        <div class="dbd-row"><label>Vehicle size</label><select id="be-size"></select></div>
+        <div class="dbd-row"><label>Condition</label>
+          <select id="be-cond">
+            <option value="">— None —</option>
+            <option value="light">Light</option>
+            <option value="moderate">Moderate</option>
+            <option value="heavy">Heavy</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dbd-section-title">Service & Schedule</div>
+      <div class="dbd-grid">
+        <div class="dbd-row col2"><label>Service description</label><input type="text" id="be-svc"></div>
+        <div class="dbd-row"><label>Date</label><input type="text" id="be-date" placeholder="e.g., Apr 28, 2026"></div>
+        <div class="dbd-row"><label>Time</label><input type="text" id="be-time" placeholder="e.g., 10:00 AM"></div>
+        <div class="dbd-row col2"><label>Notes</label><textarea id="be-notes"></textarea></div>
+      </div>
+
+      <div class="dbd-section-title">Pricing</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Base price ($)</label><input type="number" id="be-base" min="0" step="1"></div>
+        <div class="dbd-row"><label>Promo code</label><input type="text" id="be-promo"></div>
+      </div>
+      <div class="price-box" id="be-breakdown" style="margin-top:14px"></div>
+
+      <div class="dbd-section-title">Before photos</div>
+      <div class="pg-drop" id="pg-booking-before-drop">Click or drop images here to add <strong>before</strong> photos</div>
+      <input type="file" id="pg-booking-before-input" accept="image/*" multiple style="display:none">
+      <div id="pg-booking-before-grid-edit" class="pg-grid"></div>
+
+      <div class="dbd-section-title">After photos</div>
+      <div class="pg-drop" id="pg-booking-after-drop">Click or drop images here to add <strong>after</strong> photos</div>
+      <input type="file" id="pg-booking-after-input" accept="image/*" multiple style="display:none">
+      <div id="pg-booking-after-grid-edit" class="pg-grid"></div>
+
+      <div class="dbd-actions">
+        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById('bk-edit-form').dataset.id);closeModal('bk-edit-modal');deleteBooking(id);">Delete booking</button>
+        <button type="button" class="adm-act" onclick="closeModal('bk-edit-modal')">Cancel</button>
+        <button type="submit" class="adm-act primary">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Quote edit modal -->
+<div id="q-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal('q-edit-modal')">
+  <div class="dbd" style="max-width:880px">
+    <button type="button" class="dbd-close" onclick="closeModal('q-edit-modal')">×</button>
+    <h3>Edit Quote Request</h3>
+    <div class="dbd-sub">Quote <span id="q-edit-id">—</span></div>
+    <form id="q-edit-form" onsubmit="saveQuoteEdit(event)">
+      <div class="dbd-section-title">Customer</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Full name</label><input type="text" id="qe-name" required></div>
+        <div class="dbd-row"><label>Email</label><input type="email" id="qe-email"></div>
+        <div class="dbd-row"><label>Phone</label><input type="tel" id="qe-phone"></div>
+        <div class="dbd-row"><label>Status</label>
+          <select id="qe-status">
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="quoted">Quoted</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dbd-section-title">Vehicle</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Year</label><input type="text" id="qe-year"></div>
+        <div class="dbd-row"><label>Make</label><input type="text" id="qe-make"></div>
+        <div class="dbd-row"><label>Model</label><input type="text" id="qe-model"></div>
+        <div class="dbd-row"><label>Service requested</label>
+          <select id="qe-service">
+            <option value="">—</option>
+            <option value="interior">Interior</option>
+            <option value="exterior">Exterior</option>
+            <option value="full">Full Detail</option>
+            <option value="ceramic">Ceramic Coating</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dbd-section-title">Pricing & Description</div>
+      <div class="dbd-grid">
+        <div class="dbd-row"><label>Quoted price ($) — optional</label><input type="number" id="qe-quoted" min="0" step="1" placeholder="Leave blank if not quoted"></div>
+        <div class="dbd-row"></div>
+        <div class="dbd-row col2"><label>Description / request</label><textarea id="qe-desc"></textarea></div>
+      </div>
+
+      <div class="dbd-section-title">Customer-submitted photos</div>
+      <div id="qe-customer-photos" class="pg-grid"></div>
+
+      <div class="dbd-section-title">Before photos (admin)</div>
+      <div class="pg-drop" id="pg-quote-before-drop">Click or drop images here to add <strong>before</strong> photos</div>
+      <input type="file" id="pg-quote-before-input" accept="image/*" multiple style="display:none">
+      <div id="pg-quote-before-grid-edit" class="pg-grid"></div>
+
+      <div class="dbd-section-title">After photos (admin)</div>
+      <div class="pg-drop" id="pg-quote-after-drop">Click or drop images here to add <strong>after</strong> photos</div>
+      <input type="file" id="pg-quote-after-input" accept="image/*" multiple style="display:none">
+      <div id="pg-quote-after-grid-edit" class="pg-grid"></div>
+
+      <div class="dbd-actions">
+        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById('q-edit-form').dataset.id);closeModal('q-edit-modal');deleteQuote(id);">Delete quote</button>
+        <button type="button" class="adm-act" onclick="closeModal('q-edit-modal')">Cancel</button>
+        <button type="submit" class="adm-act primary">Save changes</button>
+      </div>
+    </form>
   </div>
 </div>
 
