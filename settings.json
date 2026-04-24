@@ -25,11 +25,11 @@
     "yt": "",
     "tw": ""
   },
+  "apiKey": "dba_b6734e8e770df1b1863579cb75357d54ff5f96e329aa90b0",
   "name": "DetailedByAustin",
   "stripe": {
     "enabled": true,
     "publishableKey": "",
     "paymentLink": "https://buy.stripe.com/test_8x228keYV8qj41U9aZ2VG00"
-  },
-  "apiKey": "dba_b6734e8e770df1b1863579cb75357d54ff5f96e329aa90b0"
+  }
 }
