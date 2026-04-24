@@ -1,0 +1,35 @@
+{
+  "code": "FIRST10",
+  "disc": 10,
+  "delay": 4,
+  "popup": false,
+  "pass": "admin123",
+  "phone": "(780) 257-2310",
+  "email": "detailedbyaustin@gmail.com",
+  "loc": "Spruce Grove,AB",
+  "openTime": "8:00 AM",
+  "closeTime": "6:00 PM",
+  "days": {
+    "mon": false,
+    "tue": false,
+    "wed": false,
+    "thu": false,
+    "fri": false,
+    "sat": true,
+    "sun": true
+  },
+  "social": {
+    "ig": "https://www.instagram.com/calbincool/",
+    "tk": "",
+    "fb": "",
+    "yt": "",
+    "tw": ""
+  },
+  "name": "DetailedByAustin",
+  "stripe": {
+    "enabled": true,
+    "publishableKey": "",
+    "paymentLink": "https://buy.stripe.com/test_8x228keYV8qj41U9aZ2VG00"
+  },
+  "apiKey": "dba_b6734e8e770df1b1863579cb75357d54ff5f96e329aa90b0"
+}
