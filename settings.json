@@ -31,7 +31,7 @@
     "mode": "dynamic",
     "publishableKey": "",
     "paymentLink": "https://buy.stripe.com/test_8x228keYV8qj41U9aZ2VG00",
-    "endpointUrl": "https://withered-butterfly-1a82.austjmf.workers.dev",
+    "endpointUrl": "https://stripepayment.austjmf.workers.dev/",
     "currency": "cad",
     "successUrl": "",
     "cancelUrl": ""
