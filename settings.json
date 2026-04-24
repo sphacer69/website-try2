@@ -82,6 +82,9 @@
         "outline": "",
         "accent": "",
         "glowColor": ""
+      },
+      "sizeSurcharges": {
+        "suv": 80
       }
     },
     {
