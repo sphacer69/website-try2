@@ -1251,7 +1251,16 @@ let bookings = JSON.parse(localStorage.getItem('dba_bookings') || '[]');
 let leads = JSON.parse(localStorage.getItem('dba_leads') || '[]');
 let settings = JSON.parse(localStorage.getItem('dba_settings') || '{"code":"FIRST10","disc":10,"delay":4,"popup":true,"pass":"admin123","phone":"(XXX) XXX-XXXX","email":"hello@detailedbyaustin.com","loc":"Your City, Province/State","openTime":"8:00 AM","closeTime":"6:00 PM","days":{"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true,"sun":false},"social":{"ig":"","tk":"","fb":"","yt":"","tw":""}}');
 settings.github = settings.github || { owner: 'sphacer69', repo: 'website-try2', branch: 'main', path: 'settings.json', autoSync: false };
-let githubToken = localStorage.getItem('dba_github_token') || '';
+function getSavedGithubToken() {
+  try { return localStorage.getItem('dba_github_token') || ''; } catch (_) { return ''; }
+}
+function saveGithubToken(token) {
+  try { localStorage.setItem('dba_github_token', token || ''); } catch (_) {}
+  settings.github = settings.github || {};
+  settings.github.token = token || '';
+  persist();
+}
+let githubToken = getSavedGithubToken() || (settings.github?.token || '');
 let githubSyncTimer = null;
 function persist() { localStorage.setItem('dba_bookings', JSON.stringify(bookings)); localStorage.setItem('dba_leads', JSON.stringify(leads)); localStorage.setItem('dba_settings', JSON.stringify(settings)); }
 
@@ -1617,6 +1626,14 @@ function loadSettingsUI() {
   const ghPath = document.getElementById('gh-path'); if (ghPath) ghPath.value = gh.path || 'settings.json';
   const ghAuto = document.getElementById('gh-auto'); if (ghAuto) ghAuto.checked = gh.autoSync === true;
   const ghToken = document.getElementById('gh-token'); if (ghToken) ghToken.value = githubToken || '';
+  if (ghToken && ghToken.dataset.persistBound !== '1') {
+    ghToken.dataset.persistBound = '1';
+    ghToken.addEventListener('input', () => {
+      githubToken = ghToken.value.trim();
+      saveGithubToken(githubToken);
+      updateGithubStatus(githubToken ? 'Token auto-saved on this browser/device.' : 'Token cleared.');
+    });
+  }
   updateGithubStatus(githubToken ? 'Token saved on this device and ready to sync.' : 'Token not connected.');
 }
 function syncSettingsFromUI() {
@@ -1763,7 +1780,7 @@ function connectGithubToken() {
     return;
   }
   githubToken = token;
-  localStorage.setItem('dba_github_token', githubToken);
+  saveGithubToken(githubToken);
   updateGithubStatus('GitHub token saved on this browser. Ready to sync.');
 }
 function scheduleGithubSync() {
