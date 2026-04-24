@@ -1098,6 +1098,22 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           <strong style="display:block;margin-bottom:4px;font-size:13px">Integration Note</strong>
           The JSON previews above reflect your live local data and can be used directly in integrations. Download the data anytime using the Export CSV buttons on the Bookings and Promo Leads tabs, or copy the JSON above to pipe into any webhook, Zapier, or Make.com workflow.
         </div>
+        <div style="background:var(--surf);border:1px solid var(--bdr);padding:22px;margin-top:20px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin-bottom:14px">GitHub Branch Sync</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="s-row"><label>Owner</label><input type="text" id="gh-owner" placeholder="sphacer69"></div>
+            <div class="s-row"><label>Repo</label><input type="text" id="gh-repo" placeholder="website-try2"></div>
+            <div class="s-row"><label>Branch</label><input type="text" id="gh-branch" placeholder="main"></div>
+            <div class="s-row"><label>Settings File Path</label><input type="text" id="gh-path" placeholder="settings.json"></div>
+            <div class="s-row" style="grid-column:span 2"><label>Fine-grained PAT (contents:write)</label><input type="password" id="gh-token" placeholder="GitHub token (stored in this browser session only)"></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px;">
+            <button class="btn-r" onclick="connectGithubToken()" style="padding:9px 18px;font-size:10px">Connect Token</button>
+            <button class="adm-act" onclick="syncSettingsToGithubNow()" style="padding:9px 14px;font-size:10px">Sync Now</button>
+            <label class="day-check" style="margin-left:2px;"><input type="checkbox" id="gh-auto"><span>Auto-sync on setting changes</span></label>
+          </div>
+          <p id="gh-status" style="font-size:11px;color:#52525B;margin-top:10px;line-height:1.6">Not connected.</p>
+        </div>
       </div>
       <!-- Settings -->
       <div class="adm-panel" id="tab-set">
@@ -1234,6 +1250,9 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => ro
 let bookings = JSON.parse(localStorage.getItem('dba_bookings') || '[]');
 let leads = JSON.parse(localStorage.getItem('dba_leads') || '[]');
 let settings = JSON.parse(localStorage.getItem('dba_settings') || '{"code":"FIRST10","disc":10,"delay":4,"popup":true,"pass":"admin123","phone":"(XXX) XXX-XXXX","email":"hello@detailedbyaustin.com","loc":"Your City, Province/State","openTime":"8:00 AM","closeTime":"6:00 PM","days":{"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true,"sun":false},"social":{"ig":"","tk":"","fb":"","yt":"","tw":""}}');
+settings.github = settings.github || { owner: 'sphacer69', repo: 'website-try2', branch: 'main', path: 'settings.json', autoSync: false };
+let githubToken = sessionStorage.getItem('dba_github_token') || '';
+let githubSyncTimer = null;
 function persist() { localStorage.setItem('dba_bookings', JSON.stringify(bookings)); localStorage.setItem('dba_leads', JSON.stringify(leads)); localStorage.setItem('dba_settings', JSON.stringify(settings)); }
 
 // ── APPLY SETTINGS TO SITE ──
@@ -1263,6 +1282,7 @@ function applySettings() {
   pf.style.display = settings.popup !== false ? 'block' : 'none';
 }
 applySettings();
+hydrateSettingsFromGithub();
 
 // ── PROMO POPUP ──
 if (!sessionStorage.getItem('promo_closed') && settings.popup !== false) {
@@ -1590,6 +1610,14 @@ function loadSettingsUI() {
   const onEl = document.getElementById('s-stripe-on'); if (onEl) onEl.value = st.enabled ? '1' : '0';
   const pkEl = document.getElementById('s-stripe-pk'); if (pkEl) pkEl.value = st.publishableKey || '';
   const lnEl = document.getElementById('s-stripe-link'); if (lnEl) lnEl.value = st.paymentLink || '';
+  const gh = settings.github || {};
+  const ghOwner = document.getElementById('gh-owner'); if (ghOwner) ghOwner.value = gh.owner || 'sphacer69';
+  const ghRepo = document.getElementById('gh-repo'); if (ghRepo) ghRepo.value = gh.repo || 'website-try2';
+  const ghBranch = document.getElementById('gh-branch'); if (ghBranch) ghBranch.value = gh.branch || 'main';
+  const ghPath = document.getElementById('gh-path'); if (ghPath) ghPath.value = gh.path || 'settings.json';
+  const ghAuto = document.getElementById('gh-auto'); if (ghAuto) ghAuto.checked = gh.autoSync === true;
+  const ghToken = document.getElementById('gh-token'); if (ghToken) ghToken.value = githubToken ? '********' : '';
+  updateGithubStatus(githubToken ? 'Token connected in this browser session.' : 'Token not connected.');
 }
 function syncSettingsFromUI() {
   if (!document.getElementById('s-name')) return;
@@ -1614,9 +1642,16 @@ function syncSettingsFromUI() {
       paymentLink: (document.getElementById('s-stripe-link')?.value || '').trim()
     };
   }
+  settings.github = settings.github || {};
+  settings.github.owner = (document.getElementById('gh-owner')?.value || 'sphacer69').trim() || 'sphacer69';
+  settings.github.repo = (document.getElementById('gh-repo')?.value || 'website-try2').trim() || 'website-try2';
+  settings.github.branch = (document.getElementById('gh-branch')?.value || 'main').trim() || 'main';
+  settings.github.path = (document.getElementById('gh-path')?.value || 'settings.json').trim() || 'settings.json';
+  settings.github.autoSync = document.getElementById('gh-auto')?.checked === true;
   persist();
   applySettings();
   if (document.getElementById('cal-grid') && document.getElementById('booking-overlay').classList.contains('open')) renderCal();
+  if (settings.github.autoSync) scheduleGithubSync();
 }
 function bindLiveSettings() {
   const root = document.getElementById('adm-dash');
@@ -1691,6 +1726,94 @@ function renderApiPanel() {
   document.getElementById('api-bookings-preview').textContent = JSON.stringify(bkResp, null, 2);
   const ldResp = { success: true, count: leads.length, data: leads };
   document.getElementById('api-leads-preview').textContent = JSON.stringify(ldResp, null, 2);
+  loadSettingsUI();
+}
+function githubRawSettingsUrl() {
+  const gh = settings.github || {};
+  const owner = encodeURIComponent(gh.owner || 'sphacer69');
+  const repo = encodeURIComponent(gh.repo || 'website-try2');
+  const branch = encodeURIComponent(gh.branch || 'main');
+  const path = (gh.path || 'settings.json').split('/').map(encodeURIComponent).join('/');
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+}
+function updateGithubStatus(msg, isErr) {
+  const el = document.getElementById('gh-status');
+  if (!el) return;
+  el.style.color = isErr ? 'var(--red)' : '#22C55E';
+  el.textContent = msg;
+}
+async function hydrateSettingsFromGithub() {
+  try {
+    const res = await fetch(`${githubRawSettingsUrl()}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const remote = await res.json();
+    if (!remote || typeof remote !== 'object') return;
+    settings = { ...settings, ...remote, github: settings.github || remote.github || settings.github };
+    persist();
+    applySettings();
+    if (admIn && isAdminRoute()) loadSettingsUI();
+  } catch (_) {}
+}
+function connectGithubToken() {
+  const inp = document.getElementById('gh-token');
+  if (!inp) return;
+  const token = inp.value.trim();
+  if (!token || token === '********') {
+    updateGithubStatus('Enter a valid token to connect.', true);
+    return;
+  }
+  githubToken = token;
+  sessionStorage.setItem('dba_github_token', githubToken);
+  inp.value = '********';
+  updateGithubStatus('GitHub token connected. Ready to sync.');
+}
+function scheduleGithubSync() {
+  clearTimeout(githubSyncTimer);
+  githubSyncTimer = setTimeout(() => { syncSettingsToGithubNow(); }, 1400);
+}
+function toB64Utf8(text) {
+  return btoa(unescape(encodeURIComponent(text)));
+}
+async function syncSettingsToGithubNow() {
+  try {
+    if (!githubToken) { updateGithubStatus('Connect token first (GitHub PAT required).', true); return; }
+    const gh = settings.github || {};
+    const owner = gh.owner || 'sphacer69';
+    const repo = gh.repo || 'website-try2';
+    const branch = gh.branch || 'main';
+    const path = gh.path || 'settings.json';
+    const apiPath = path.split('/').map(encodeURIComponent).join('/');
+    const contentUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`;
+    let sha = undefined;
+    const existing = await fetch(contentUrl, { headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json' } });
+    if (existing.ok) {
+      const payload = await existing.json();
+      sha = payload.sha;
+    } else if (existing.status !== 404) {
+      const msg = await existing.text();
+      throw new Error(`GitHub read failed (${existing.status}): ${msg.slice(0, 160)}`);
+    }
+    const syncPayload = JSON.parse(JSON.stringify(settings));
+    delete syncPayload.github;
+    const body = {
+      message: `chore: sync admin settings ${new Date().toISOString()}`,
+      content: toB64Utf8(JSON.stringify(syncPayload, null, 2)),
+      branch
+    };
+    if (sha) body.sha = sha;
+    const putRes = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${apiPath}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!putRes.ok) {
+      const msg = await putRes.text();
+      throw new Error(`GitHub write failed (${putRes.status}): ${msg.slice(0, 200)}`);
+    }
+    updateGithubStatus(`Synced to ${owner}/${repo}@${branch}:${path} at ${new Date().toLocaleTimeString()}`);
+  } catch (err) {
+    updateGithubStatus(err.message || 'GitHub sync failed.', true);
+  }
 }
 window.addEventListener('storage', (e) => {
   if (!['dba_settings','dba_bookings','dba_leads'].includes(e.key)) return;
