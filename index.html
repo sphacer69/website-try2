@@ -1262,6 +1262,8 @@ function saveGithubToken(token) {
 }
 let githubToken = getSavedGithubToken() || (settings.github?.token || '');
 let githubSyncTimer = null;
+let githubSyncInFlight = false;
+let githubSyncQueued = false;
 function persist() { localStorage.setItem('dba_bookings', JSON.stringify(bookings)); localStorage.setItem('dba_leads', JSON.stringify(leads)); localStorage.setItem('dba_settings', JSON.stringify(settings)); }
 
 // ── APPLY SETTINGS TO SITE ──
@@ -1787,6 +1789,11 @@ function toB64Utf8(text) {
   return btoa(unescape(encodeURIComponent(text)));
 }
 async function syncSettingsToGithubNow() {
+  if (githubSyncInFlight) {
+    githubSyncQueued = true;
+    return;
+  }
+  githubSyncInFlight = true;
   try {
     if (!githubToken) { updateGithubStatus('Connect token first (GitHub PAT required).', true); return; }
     const gh = settings.github || {};
@@ -1801,7 +1808,7 @@ async function syncSettingsToGithubNow() {
     delete syncPayload.github;
     const payloadContent = toB64Utf8(JSON.stringify(syncPayload, null, 2));
     let lastErr = null;
-    for (let attempt = 1; attempt <= 3; attempt++) {
+    for (let attempt = 1; attempt <= 5; attempt++) {
       let sha = undefined;
       const existing = await fetch(contentUrl, { headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json' } });
       if (existing.ok) {
@@ -1824,9 +1831,11 @@ async function syncSettingsToGithubNow() {
       });
       if (putRes.ok) { lastErr = null; break; }
       const msg = await putRes.text();
-      if (putRes.status === 409 && attempt < 3) {
-        lastErr = `GitHub write conflict, retrying (${attempt}/3)...`;
+      if (putRes.status === 409 && attempt < 5) {
+        const delay = 250 * attempt;
+        lastErr = `GitHub write conflict, retrying (${attempt}/5)...`;
         updateGithubStatus(lastErr, false);
+        await new Promise(resolve => setTimeout(resolve, delay));
         continue;
       }
       throw new Error(`GitHub write failed (${putRes.status}): ${msg.slice(0, 200)}`);
@@ -1835,6 +1844,12 @@ async function syncSettingsToGithubNow() {
     updateGithubStatus(`Synced to ${owner}/${repo}@${branch}:${path} at ${new Date().toLocaleTimeString()}`);
   } catch (err) {
     updateGithubStatus(err.message || 'GitHub sync failed.', true);
+  } finally {
+    githubSyncInFlight = false;
+    if (githubSyncQueued) {
+      githubSyncQueued = false;
+      setTimeout(() => { syncSettingsToGithubNow(); }, 150);
+    }
   }
 }
 window.addEventListener('storage', (e) => {
