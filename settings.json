@@ -230,6 +230,14 @@
         "outline": "",
         "accent": "",
         "glowColor": ""
+      },
+      "banner": {
+        "title": "asdfsdfsdf",
+        "desc": "",
+        "icon": "",
+        "bg": "",
+        "border": "",
+        "color": ""
       }
     },
     {
@@ -381,5 +389,99 @@
     ],
     "cta": "Book Now",
     "ctaLong": "Book Nano Armor →"
-  }
+  },
+  "addons": [
+    {
+      "id": "engine",
+      "name": "Engine Bay Cleaning",
+      "price": 25,
+      "desc": "A thorough degreasing and rinse of the entire engine bay. Removes built-up grease, dirt, and grime — leaving your engine looking clean and making future leak detection easier.",
+      "sizeSurcharges": {}
+    },
+    {
+      "id": "pet",
+      "name": "Pet Hair Removal",
+      "price": 20,
+      "desc": "Specialized tools and techniques to lift stubborn pet hair embedded deep in carpet fibres and fabric seats — the kind a regular vacuum simply can't reach.",
+      "sizeSurcharges": {}
+    },
+    {
+      "id": "salt",
+      "name": "Heavy Salt Stain Removal",
+      "price": 25,
+      "desc": "Targeted treatment for white salt deposits left by winter roads and footwear. We break down the mineral buildup and restore your carpets and mats to a clean, even finish.",
+      "sizeSurcharges": {}
+    },
+    {
+      "id": "clay",
+      "name": "Exterior Clay Bar",
+      "price": 50,
+      "desc": "A professional clay bar treatment that removes bonded surface contaminants — rail dust, tree sap, overspray, and industrial fallout — leaving your paint silky smooth and ready for polish or protection.",
+      "sizeSurcharges": {}
+    },
+    {
+      "id": "steam",
+      "name": "Steam Clean",
+      "price": 50,
+      "desc": "High-temperature steam sanitization for interior surfaces including vents, seams, cup holders, and upholstery. Kills bacteria and odours without harsh chemicals — perfect for allergy sufferers or heavy use vehicles.",
+      "sizeSurcharges": {}
+    },
+    {
+      "id": "trim",
+      "name": "Plastic & Trim Dressings",
+      "price": 15,
+      "desc": "A UV-protective dressing applied to all exterior and interior plastic and rubber trim panels. Restores rich, dark colour to faded plastics and helps prevent future cracking and discolouration.",
+      "sizeSurcharges": {}
+    }
+  ],
+  "vehicleSizes": [
+    {
+      "id": "coupe",
+      "label": "Coupe"
+    },
+    {
+      "id": "sedan",
+      "label": "Sedan"
+    },
+    {
+      "id": "hatchback",
+      "label": "Hatchback"
+    },
+    {
+      "id": "wagon",
+      "label": "Wagon"
+    },
+    {
+      "id": "convertible",
+      "label": "Convertible"
+    },
+    {
+      "id": "sports",
+      "label": "Sports Car"
+    },
+    {
+      "id": "crossover",
+      "label": "Crossover"
+    },
+    {
+      "id": "suv",
+      "label": "SUV"
+    },
+    {
+      "id": "minivan",
+      "label": "Minivan"
+    },
+    {
+      "id": "van",
+      "label": "Van / Cargo Van"
+    },
+    {
+      "id": "pickup",
+      "label": "Pickup Truck"
+    },
+    {
+      "id": "other",
+      "label": "Other"
+    }
+  ]
 }
