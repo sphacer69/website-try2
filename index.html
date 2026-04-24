@@ -6,7 +6,7 @@
 <title>DetailedByAustin — Premium Auto Detailing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./DetailedByAustin — Premium Auto Detailing_files/css2" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -94,12 +94,16 @@ body{background:#0A0A0C;color:#fff;font-family:'Manrope',sans-serif;overflow-x:h
 
 /* ── PROMO FLOAT BUTTON ── */
 #promo-float{position:fixed;bottom:28px;left:28px;z-index:150;display:none;animation:float 3s ease-in-out infinite;}
+#promo-float[hidden]{display:none!important;}
 #promo-float button{background:var(--red);color:#fff;border:none;padding:12px 20px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;animation:pulse 2.5s infinite;display:flex;align-items:center;gap:8px;transition:background .2s,transform .15s;}
 #promo-float button:hover{background:var(--red2);transform:scale(1.05);}
 #promo-float button span{font-family:'Manrope';font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;opacity:.85;}
 
 /* ── SERVICES ── */
 #services-wrap{background:var(--bg);}
+.svc-dyn{display:contents;}
+/* Keep Nano host wrappers from affecting grid spacing */
+#nano-svc-host,#nano-pkg-host{display:contents;}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .svc{border:1px solid var(--bdr);background:var(--surf);overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s,transform .35s,box-shadow .35s;position:relative;}
 .svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);z-index:2;}
@@ -149,6 +153,16 @@ body{background:#0A0A0C;color:#fff;font-family:'Manrope',sans-serif;overflow-x:h
 .pkg-pop{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:8px;animation:glow 3s infinite;}
 .pkg-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;margin-bottom:4px;}
 .pkg-blurb{font-size:12.5px;color:var(--mut);margin-bottom:14px;line-height:1.5;}
+.pkg-banner{
+  padding:10px 12px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-left:3px solid var(--ui-pkg-accent,var(--red));
+  color:#D4D4D8;
+  font-size:11.5px;
+  line-height:1.55;
+  margin:2px 0 14px;
+}
 .pkg-price{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#fff;line-height:1;margin-bottom:18px;transition:color .25s;}
 .pkg:hover .pkg-price{color:var(--red)}
 .pkg-price sup{font-family:'Manrope';font-size:18px;font-weight:300;vertical-align:super;}
@@ -158,7 +172,55 @@ body{background:#0A0A0C;color:#fff;font-family:'Manrope',sans-serif;overflow-x:h
 .pkg-btn{width:100%;padding:13px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .25s;border:none;font-family:'Manrope';}
 .pkg-btn.p{background:var(--red);color:#fff;}.pkg-btn.p:hover{background:var(--red2);transform:translateY(-1px);}
 .pkg-btn.g{background:none;border:1px solid rgba(255,255,255,.18);color:#fff;}.pkg-btn.g:hover{border-color:var(--red);color:var(--red);transform:translateY(-1px);}
+.pkg.use-ui{background:var(--ui-pkg-bg,var(--surf));border-color:var(--ui-pkg-outline,var(--bdr));}
+.pkg.use-ui:hover{border-color:var(--ui-pkg-outline-hov,rgba(255,59,48,.35));}
+.pkg.use-ui .pkg-pop{color:var(--ui-pkg-accent,var(--red));}
+.pkg.use-ui .pkg-list li::before{color:var(--ui-pkg-accent,var(--red));}
+.pkg.use-ui:hover .pkg-price{color:var(--ui-pkg-accent,var(--red))}
+.pkg.emph{
+  grid-column:1/-1;
+  padding:36px 40px;
+  border-width:2px;
+  transform:translateY(-1px);
+}
+.pkg.emph:hover{transform:translateY(-6px);}
+.pkg.emph .pkg-name{font-size:30px;letter-spacing:3px;}
+.pkg.emph .pkg-price{font-size:56px;}
+.pkg.emph .pkg-blurb{max-width:880px;}
+.pkg.glow{box-shadow:0 0 0 1px rgba(255,59,48,.08),0 0 70px var(--ui-pkg-glow,rgba(255,59,48,.18));border-color:var(--ui-pkg-outline,rgba(255,59,48,.35));}
+.pkg.glow:hover{box-shadow:0 0 0 1px rgba(255,59,48,.12),0 0 95px var(--ui-pkg-glow,rgba(255,59,48,.28));}
+
+.svc.use-ui{background:var(--ui-svc-bg,var(--surf));border-color:var(--ui-svc-outline,var(--bdr));}
+.svc.use-ui:hover{border-color:var(--ui-svc-outline-hov,rgba(255,59,48,.4));}
+.svc.use-ui::before{background:var(--ui-svc-accent,var(--red));}
+.svc.use-ui .svc-tag{color:var(--ui-svc-accent,var(--red));}
+.svc.use-ui:hover .svc-price{color:var(--ui-svc-accent,var(--red));}
+.svc.emph{
+  grid-column:1/-1;
+  flex-direction:row;
+  transform:translateY(-2px);
+}
+.svc.emph .svc-img-wrap{width:380px;height:auto;flex-shrink:0;}
+.svc.emph .svc-img{height:100%;}
+.svc.emph .svc-body{padding:26px 32px;}
+.svc.emph .svc-name{font-size:26px;letter-spacing:3px;}
+.svc.emph:hover{transform:translateY(-6px);}
+.svc.glow{box-shadow:0 0 0 1px rgba(255,59,48,.08),0 0 70px var(--ui-svc-glow,rgba(255,59,48,.16));border-color:var(--ui-svc-outline,rgba(255,59,48,.28));}
+.svc.glow:hover{box-shadow:0 0 0 1px rgba(255,59,48,.12),0 0 95px var(--ui-svc-glow,rgba(255,59,48,.24));}
+
+/* ── ADMIN CARD PREVIEW ── */
+.adm-prev-wrap{grid-column:1/-1;margin-top:6px;padding-top:10px;border-top:1px solid var(--bdr);}
+.adm-prev-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin-bottom:8px;}
+.adm-prev-card{max-width:520px;transform:scale(.92);transform-origin:top left;pointer-events:none;}
+.adm-prev-card .pkg{cursor:default;}
 .nano-pkg{background:linear-gradient(120deg,#0a0c1a,var(--surf));border:2px solid rgba(74,111,200,.45);padding:36px 40px;margin-top:16px;display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center;transition:box-shadow .35s,border-color .35s;position:relative;overflow:hidden;box-shadow:0 0 40px rgba(74,111,200,.12);grid-column:1/-1;}
+.nano-pkg.use-ui{background:var(--ui-pkg-bg,linear-gradient(120deg,#0a0c1a,var(--surf)));border-color:var(--ui-pkg-outline,rgba(74,111,200,.45));}
+.nano-pkg.use-ui:hover{border-color:var(--ui-pkg-outline-hov,rgba(74,111,200,.7));}
+.nano-pkg.use-ui .nano-pkg-flag{background:linear-gradient(90deg,var(--ui-pkg-accent,#4a6fc8),color-mix(in srgb,var(--ui-pkg-accent,#4a6fc8) 60%, #ffffff 40%));}
+.nano-pkg.emph{transform:translateY(-1px);}
+.nano-pkg.emph:hover{transform:translateY(-4px);}
+.nano-pkg.glow{box-shadow:0 0 0 1px rgba(255,255,255,.06),0 0 95px var(--ui-pkg-glow,rgba(74,111,200,.22));}
+.nano-pkg.glow:hover{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 120px var(--ui-pkg-glow,rgba(74,111,200,.3));}
 .nano-pkg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(74,111,200,.15),transparent 60%);pointer-events:none;}
 .nano-pkg:hover{box-shadow:0 0 80px rgba(74,111,200,.3);border-color:rgba(74,111,200,.7);}
 .nano-pkg-flag{position:absolute;top:0;right:0;background:linear-gradient(90deg,#4a6fc8,#7aa0d4);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;padding:6px 18px;z-index:2;}
@@ -225,6 +287,26 @@ footer{padding:36px 48px;border-top:1px solid rgba(255,255,255,.07);display:flex
 /* ── PROMO POPUP ── */
 #promo-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .45s;pointer-events:none;}
 #promo-overlay.show{opacity:1;pointer-events:all;}
+.color-swatch{
+  width:22px;
+  height:22px;
+  border-radius:6px;
+  border:1px solid var(--bdr);
+  background:
+    linear-gradient(45deg, rgba(255,255,255,.06) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.06) 75%, rgba(255,255,255,.06)),
+    linear-gradient(45deg, rgba(255,255,255,.06) 25%, transparent 25%, transparent 75%, rgba(255,255,255,.06) 75%, rgba(255,255,255,.06));
+  background-size:10px 10px;
+  background-position:0 0, 5px 5px;
+  position:relative;
+  flex-shrink:0;
+}
+.color-swatch::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:6px;
+  background:var(--swatch,#0000);
+}
 .promo-box{background:var(--bg);border:1px solid var(--bdr);width:100%;max-width:480px;overflow:hidden;}
 .promo-box.animate{animation:popIn .5s cubic-bezier(.16,1,.3,1) both;}
 .promo-img-wrap{position:relative;height:160px;overflow:hidden;}
@@ -413,6 +495,8 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
   .svc-grid{grid-template-columns:1fr 1fr;}
   .svc.nano-svc{flex-direction:column;}
   .svc.nano-svc .svc-img-wrap{width:100%;height:240px;}
+  .svc.emph{flex-direction:column;}
+  .svc.emph .svc-img-wrap{width:100%;height:240px;}
   .pkg-grid{grid-template-columns:1fr 1fr;}
   .nano-pkg{grid-template-columns:1fr;gap:24px;}
   .nano-benefits{grid-template-columns:repeat(3,1fr);}
@@ -446,8 +530,15 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
   .svc.nano-svc .svc-body{padding:22px 20px;}
   .svc.nano-svc .nano-feat-list{grid-template-columns:1fr;gap:6px;}
   .svc.nano-svc .svc-name{font-size:22px!important;letter-spacing:2px!important;}
+  .svc.emph{flex-direction:column;}
+  .svc.emph .svc-img-wrap{width:100%;height:200px;}
+  .svc.emph .svc-body{padding:22px 20px;}
+  .svc.emph .svc-name{font-size:22px;letter-spacing:2px;}
   .pkg-grid,.pkg-grid.two{grid-template-columns:1fr!important;gap:12px;}
   .pkg{padding:22px 20px;}
+  .pkg.emph{padding:24px 20px;}
+  .pkg.emph .pkg-name{font-size:24px;letter-spacing:2px;}
+  .pkg.emph .pkg-price{font-size:46px;}
   .pkg-name{font-size:24px;}
   .pkg-price{font-size:42px;margin-bottom:14px;}
   .pkg-list{gap:7px;margin-bottom:16px;}
@@ -552,7 +643,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </nav>
 
 <!-- PROMO FLOAT BUTTON -->
-<div id="promo-float" style="display: block;">
+<div id="promo-float" hidden>
   <button onclick="reopenPromo()">
     <span style="font-size:18px">🏷️</span>
     10% OFF <span>First Visit</span>
@@ -588,84 +679,8 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <h2 class="sec-h">Our <span class="acc">Services</span></h2>
     </div>
     <div class="svc-grid">
-
-      <div class="svc reveal" style="transition-delay:.05s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-164634.jpeg" alt="Exterior wash"></div>
-        <div class="svc-body">
-          <div class="svc-tag">Exterior</div>
-          <div class="svc-name">Exterior Wash</div>
-          <div class="svc-desc">Thorough hand wash and dry, wheel &amp; tire cleaning, and tire shine. Your car looking sharp — fast.</div>
-          <div class="svc-footer"><span class="svc-price">$80</span><span class="svc-dur">1–2 hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc reveal" style="transition-delay:.1s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-1035108.jpeg" alt="Interior clean"></div>
-        <div class="svc-body">
-          <div class="svc-tag">Interior</div>
-          <div class="svc-name">Interior Clean</div>
-          <div class="svc-desc">Full vacuum, plastics &amp; leathers wiped, windows cleaned inside, and floor mats thoroughly cleaned.</div>
-          <div class="svc-footer"><span class="svc-price">$200</span><span class="svc-dur">2–3 hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc reveal" style="transition-delay:.15s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-120049.jpeg" alt="Combo detail"></div>
-        <div class="svc-body">
-          <div class="svc-tag" style="color:#EAB308">★ Best Value</div>
-          <div class="svc-name">Combo Detail</div>
-          <div class="svc-desc">Deeper full interior plus complete exterior detail — the best value package for regular maintenance.</div>
-          <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">4–5 hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc reveal" style="transition-delay:.2s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-1592384.jpeg" alt="Full detail"></div>
-        <div class="svc-body">
-          <div class="svc-tag">Full Detail</div>
-          <div class="svc-name">Full Detail</div>
-          <div class="svc-desc">Intense interior &amp; exterior clean, paint decontamination, polish, and any additional services required.</div>
-          <div class="svc-footer"><span class="svc-price">$600</span><span class="svc-dur">6+ hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc reveal" style="transition-delay:.25s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-4489737.jpeg" alt="Paint polish"></div>
-        <div class="svc-body">
-          <div class="svc-tag">Paint Correction</div>
-          <div class="svc-name">Polish</div>
-          <div class="svc-desc">Machine polish to remove light scratches, swirl marks, and oxidation — restoring a deep, mirror-like gloss to your paint before any coating or protection is applied.</div>
-          <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">2–4 hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc reveal" style="transition-delay:.3s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-3802510.jpeg" alt="Diamond fusion"></div>
-        <div class="svc-body">
-          <div class="svc-tag">♦ Premium Protection</div>
-          <div class="svc-name">Diamond Fusion</div>
-          <div class="svc-desc">A professional-grade glass and paint sealant that chemically bonds to your vehicle's surfaces, creating an ultra-slick hydrophobic barrier. Repels water, road grime, and UV damage — keeping your car cleaner longer between washes.</div>
-          <div class="svc-footer"><span class="svc-price">$150</span><span class="svc-dur">2–3 hrs</span></div>
-        </div>
-      </div>
-
-      <div class="svc nano-svc reveal" style="transition-delay:.35s">
-        <div class="svc-img-wrap"><img class="svc-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-35149468.jpeg" alt="Nano ceramic coating"></div>
-        <div class="svc-body">
-          <div class="nano-badge2">🛡 Nano Ceramic</div>
-          <div class="svc-name" style="font-size:26px;letter-spacing:3px">Nano Armor Protection Package</div>
-          <div class="svc-desc" style="max-width:520px">Full exterior wash, paint decontamination, full polish, then a professional dual-coat nano ceramic coating applied for lasting gloss and defense against the elements.</div>
-          <ul class="nano-feat-list">
-            <li>Full exterior wash</li><li>Paint decontamination</li>
-            <li>Full polish</li><li>Professional dual coat nano ceramic</li>
-          </ul>
-          <div class="nano-shield"><span style="font-size:20px;flex-shrink:0">🛡</span><div><strong>Protection lasts 4–6 years</strong>Bonds to your paint for lasting gloss and all-season protection.</div></div>
-          <div class="svc-footer" style="margin-top:18px">
-            <span class="svc-price" style="color:#7aa0d4;font-size:40px">$1,250</span>
-            <button class="btn-r" onclick="openBooking('nano')" style="padding:11px 22px">Book Now</button>
-          </div>
-        </div>
-      </div>
+      <div id="services-dyn" class="svc-dyn"></div>
+      <div id="nano-svc-host"></div>
 
     </div>
   </div>
@@ -696,6 +711,10 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="btn-r pkg-cta">Book This Package</div>
       </div>
     </div>
+    <div class="reveal" style="margin-top:22px">
+      <p class="eyebrow">Services</p>
+      <h2 class="sec-h">Choose Your <span class="acc">Service</span></h2>
+    </div>
     <div class="pkg-grid two reveal" style="margin-top:16px" id="pricing-ind-grid">
       <div class="pkg" onclick="openBooking('polish')" role="button" tabindex="0">
         <div class="pkg-name">Polish</div><div class="pkg-blurb">Restore your paint's true depth and shine.</div>
@@ -716,26 +735,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <ul class="pkg-list"><li>Intense interior clean</li><li>Intense exterior clean</li><li>Paint decontamination</li><li>Polish included</li><li>Any extra service required</li><li>6+ hours</li></ul>
         <div class="btn-r pkg-cta">Book This Package</div>
       </div>
-      <div class="nano-pkg reveal" onclick="openBooking('nano')" role="button" tabindex="0" style="cursor:pointer">
-        <div class="nano-pkg-flag">🛡 Top Pick — Long-Term Protection</div>
-        <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
-          <div class="nano-badge2">Nano Ceramic</div>
-          <div class="nano-pkg-price"><sup>$</sup>1,250</div>
-          <div class="pkg-name" style="font-size:24px;letter-spacing:3px;margin-bottom:4px">Nano Armor Protection</div>
-          <div class="pkg-blurb">The smartest long-term investment for your paint. One application, years of showroom shine.</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;">
-          <ul class="nano-feat-list"><li>Full exterior wash</li><li>Paint decontamination</li><li>Full polish</li><li>Professional dual coat nano ceramic</li></ul>
-          <div class="nano-benefits">
-            <div class="nano-benefit"><span class="nano-benefit-icon">🛡</span><div class="nano-benefit-title">4–6 Year Shield</div><div class="nano-benefit-desc">Bonds to paint for lasting defense.</div></div>
-            <div class="nano-benefit"><span class="nano-benefit-icon">💧</span><div class="nano-benefit-title">Hydrophobic</div><div class="nano-benefit-desc">Water &amp; dirt slide right off.</div></div>
-            <div class="nano-benefit"><span class="nano-benefit-icon">☀️</span><div class="nano-benefit-title">UV Block</div><div class="nano-benefit-desc">Prevents fade &amp; oxidation.</div></div>
-            <div class="nano-benefit"><span class="nano-benefit-icon">✨</span><div class="nano-benefit-title">Deeper Gloss</div><div class="nano-benefit-desc">Richer colour, mirror finish.</div></div>
-            <div class="nano-benefit"><span class="nano-benefit-icon">🚗</span><div class="nano-benefit-title">Easy Wash</div><div class="nano-benefit-desc">Less scrubbing, faster cleans.</div></div>
-          </div>
-          <button class="btn-r" onclick="event.stopPropagation();openBooking('nano')" style="padding:13px 32px;align-self:flex-start;margin-top:4px">Book Nano Armor &nbsp;→</button>
-        </div>
-      </div>
+      <div id="nano-pkg-host"></div>
     </div>
   </div>
 </section>
@@ -846,10 +846,10 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </footer>
 
 <!-- PROMO POPUP -->
-<div id="promo-overlay" class="show">
-  <div class="promo-box animate">
+<div id="promo-overlay">
+  <div class="promo-box">
     <div class="promo-img-wrap">
-      <img class="promo-img" src="./DetailedByAustin — Premium Auto Detailing_files/pexels-photo-120049.jpeg" alt="Car detail">
+      <img class="promo-img" src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Car detail">
       <div class="promo-badge">10%<small>OFF</small></div>
     </div>
     <div class="promo-body">
@@ -1004,6 +1004,9 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <button class="adm-tab" onclick="admTab(this,'tab-bk')">Bookings</button>
         <button class="adm-tab" onclick="admTab(this,'tab-leads')">Promo Leads</button>
         <button class="adm-tab" onclick="admTab(this,'tab-api');renderApiPanel()">API Access</button>
+        <button class="adm-tab" onclick="admTab(this,'tab-pkg')">Packages</button>
+        <button class="adm-tab" onclick="admTab(this,'tab-ind')">Individual Services</button>
+        <button class="adm-tab" onclick="admTab(this,'tab-svcmgr')">Our Services</button>
         <button class="adm-tab" onclick="admTab(this,'tab-set')">Settings</button>
       </div>
       <!-- Overview -->
@@ -1115,6 +1118,122 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           <p id="gh-status" style="font-size:11px;color:#52525B;margin-top:10px;line-height:1.6">Not connected.</p>
         </div>
       </div>
+      <!-- Packages Manager -->
+      <div class="adm-panel" id="tab-pkg">
+        <div class="s-card" style="max-width:980px">
+          <h3>Package Manager</h3>
+          <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add, remove, and style booking packages. Changes update the booking options and the pricing cards.</p>
+          <div id="pkg-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
+            <input type="text" id="pkg-new-name" placeholder="Package name">
+            <input type="number" id="pkg-new-price" min="1" step="1" placeholder="Price">
+            <input type="text" id="pkg-new-dur" placeholder="Duration (e.g. 2-3 hrs)">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px">
+            <textarea id="pkg-new-desc" placeholder="Short description" style="min-height:80px;resize:vertical"></textarea>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <input type="text" id="pkg-new-feat" placeholder="Features (comma separated)">
+            <input type="text" id="pkg-new-badge" placeholder="Badge (optional, e.g. ★ Most Popular)">
+          </div>
+          <label class="day-check" style="margin-top:10px;max-width:220px"><input type="checkbox" id="pkg-new-pop"><span>Highlight as featured</span></label>
+          <button class="s-save" onclick="addPackageAdmin()">Add Package</button>
+        </div>
+      </div>
+      <!-- Individual Services Manager -->
+      <div class="adm-panel" id="tab-ind">
+        <div class="s-card" style="max-width:980px">
+          <h3>Individual Services Manager</h3>
+          <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add, remove, and style individual services. Changes update booking options and the pricing cards.</p>
+          <div id="ind-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
+            <input type="text" id="ind-new-name" placeholder="Service name">
+            <input type="number" id="ind-new-price" min="1" step="1" placeholder="Price">
+            <input type="text" id="ind-new-dur" placeholder="Duration (e.g. 2-3 hrs)">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px">
+            <textarea id="ind-new-desc" placeholder="Short description" style="min-height:80px;resize:vertical"></textarea>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+            <input type="text" id="ind-new-feat" placeholder="Features (comma separated)">
+            <input type="text" id="ind-new-badge" placeholder="Badge (optional)">
+          </div>
+          <label class="day-check" style="margin-top:10px;max-width:220px"><input type="checkbox" id="ind-new-pop"><span>Highlight as featured</span></label>
+          <button class="s-save" onclick="addIndividualServiceAdmin()">Add Service</button>
+        </div>
+        <div class="s-card" style="max-width:980px;margin-top:14px">
+          <h3>Nano Armor (Pricing Card)</h3>
+          <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Controls the wide Nano Armor card shown under the Individual Services pricing section. It always renders as the widest/emphasized card.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <label class="day-check" style="grid-column:1/span 1"><input type="checkbox" id="nano-pui-glow" onchange="settings.nano.pkgUi.glow=this.checked;persist();applySettings();renderNanoAdminUI()"><span>Glow</span></label>
+            <label class="day-check" style="grid-column:2/span 1"><input type="checkbox" id="nano-pui-emph" checked disabled><span>Emphasize (always on)</span></label>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="color-swatch" id="nano-pui-bg-sw" style="--swatch:transparent"></span>
+              <input type="color" id="nano-pui-bg" value="#000000" oninput="document.getElementById('nano-pui-bg-sw').style.setProperty('--swatch', this.value); document.getElementById('nano-pui-bg-hex').value=this.value; settings.nano.pkgUi.bg=this.value; persist(); applySettings(); renderNanoAdminUI()">
+              <input type="text" id="nano-pui-bg-hex" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){settings.nano.pkgUi.bg=''; document.getElementById('nano-pui-bg-sw').style.setProperty('--swatch','transparent'); persist(); applySettings(); renderNanoAdminUI();} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){document.getElementById('nano-pui-bg').value=this.value; document.getElementById('nano-pui-bg-sw').style.setProperty('--swatch', this.value); settings.nano.pkgUi.bg=this.value; persist(); applySettings(); renderNanoAdminUI();}">
+              <span style="font-size:10px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase">BG</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="color-swatch" id="nano-pui-ol-sw" style="--swatch:transparent"></span>
+              <input type="color" id="nano-pui-ol" value="#000000" oninput="document.getElementById('nano-pui-ol-sw').style.setProperty('--swatch', this.value); document.getElementById('nano-pui-ol-hex').value=this.value; settings.nano.pkgUi.outline=this.value; persist(); applySettings(); renderNanoAdminUI()">
+              <input type="text" id="nano-pui-ol-hex" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){settings.nano.pkgUi.outline=''; document.getElementById('nano-pui-ol-sw').style.setProperty('--swatch','transparent'); persist(); applySettings(); renderNanoAdminUI();} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){document.getElementById('nano-pui-ol').value=this.value; document.getElementById('nano-pui-ol-sw').style.setProperty('--swatch', this.value); settings.nano.pkgUi.outline=this.value; persist(); applySettings(); renderNanoAdminUI();}">
+              <span style="font-size:10px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase">Outline</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="color-swatch" id="nano-pui-ac-sw" style="--swatch:transparent"></span>
+              <input type="color" id="nano-pui-ac" value="#000000" oninput="document.getElementById('nano-pui-ac-sw').style.setProperty('--swatch', this.value); document.getElementById('nano-pui-ac-hex').value=this.value; settings.nano.pkgUi.accent=this.value; persist(); applySettings(); renderNanoAdminUI()">
+              <input type="text" id="nano-pui-ac-hex" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){settings.nano.pkgUi.accent=''; document.getElementById('nano-pui-ac-sw').style.setProperty('--swatch','transparent'); persist(); applySettings(); renderNanoAdminUI();} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){document.getElementById('nano-pui-ac').value=this.value; document.getElementById('nano-pui-ac-sw').style.setProperty('--swatch', this.value); settings.nano.pkgUi.accent=this.value; persist(); applySettings(); renderNanoAdminUI();}">
+              <span style="font-size:10px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase">Accent</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="color-swatch" id="nano-pui-gl-sw" style="--swatch:transparent"></span>
+              <input type="color" id="nano-pui-gl" value="#000000" oninput="document.getElementById('nano-pui-gl-sw').style.setProperty('--swatch', this.value); document.getElementById('nano-pui-gl-hex').value=this.value; settings.nano.pkgUi.glowColor=this.value; persist(); applySettings(); renderNanoAdminUI()">
+              <input type="text" id="nano-pui-gl-hex" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){settings.nano.pkgUi.glowColor=''; document.getElementById('nano-pui-gl-sw').style.setProperty('--swatch','transparent'); persist(); applySettings(); renderNanoAdminUI();} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){document.getElementById('nano-pui-gl').value=this.value; document.getElementById('nano-pui-gl-sw').style.setProperty('--swatch', this.value); settings.nano.pkgUi.glowColor=this.value; persist(); applySettings(); renderNanoAdminUI();}">
+              <span style="font-size:10px;color:var(--mut);letter-spacing:.15em;text-transform:uppercase">Glow</span>
+            </div>
+            <input style="grid-column:1/-1" type="text" id="nano-flag" placeholder="Top right flag text">
+            <input type="text" id="nano-pkg-badge" placeholder="Top badge (left)">
+            <input type="text" id="nano-pkg-name" placeholder="Name">
+            <textarea style="grid-column:1/-1;min-height:70px;resize:vertical" id="nano-pkg-blurb" placeholder="Blurb"></textarea>
+            <textarea style="grid-column:1/-1;min-height:70px;resize:vertical" id="nano-pkg-feats" placeholder="Features (comma separated)"></textarea>
+            <input type="number" id="nano-price" min="0" step="1" placeholder="Price">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="color-swatch" id="nano-price-swatch" style="--swatch:#7aa0d4"></span>
+              <input type="color" id="nano-price-color" value="#7aa0d4" oninput="document.getElementById('nano-price-swatch').style.setProperty('--swatch', this.value); document.getElementById('nano-price-hex').value=this.value">
+              <input type="text" id="nano-price-hex" value="#7aa0d4" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){document.getElementById('nano-price-color').value=this.value; document.getElementById('nano-price-swatch').style.setProperty('--swatch', this.value);}">
+            </div>
+            <input type="text" id="nano-cta2" placeholder="Button text">
+          </div>
+          <div class="adm-prev-wrap">
+            <div class="adm-prev-label">Preview</div>
+            <div class="adm-prev-card" id="nano-admin-preview" style="max-width:880px"></div>
+          </div>
+          <button class="s-save" onclick="saveNano()">Save Nano</button>
+        </div>
+      </div>
+      <!-- Our Services Manager -->
+      <div class="adm-panel" id="tab-svcmgr">
+        <div class="s-card" style="max-width:980px">
+          <h3>Our Services Manager</h3>
+          <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Customize the service cards in the “Our Services” section.</p>
+          <div id="svc-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+            <input type="text" id="svc-new-tag" placeholder="Tag (e.g. Exterior)">
+            <div style="display:flex;align-items:center;gap:8px">
+              <input type="color" id="svc-new-tagc" value="#ff3b30" title="Tag colour (optional)" oninput="this.nextElementSibling.value=this.value">
+              <input type="text" value="#ff3b30" placeholder="#ff3b30" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; document.getElementById('svc-new-tagc').value=this.value;}">
+            </div>
+            <input type="text" id="svc-new-name" placeholder="Service name">
+            <input type="number" id="svc-new-price" min="0" step="1" placeholder="Price">
+            <input type="text" id="svc-new-dur" placeholder="Duration (e.g. 2–3 hrs)">
+            <input type="url" id="svc-new-img" placeholder="Image URL (or relative path)">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px">
+            <textarea id="svc-new-desc" placeholder="Description" style="min-height:80px;resize:vertical"></textarea>
+          </div>
+          <button class="s-save" onclick="addServiceAdmin()">Add Service Card</button>
+        </div>
+      </div>
       <!-- Settings -->
       <div class="adm-panel" id="tab-set">
         <div class="settings-grid">
@@ -1154,46 +1273,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             <div class="s-row"><label>Extra Price Per Seat (Above Included)</label><input type="number" id="s-seat-inc" value="0" min="0" step="1"></div>
             <button class="s-save" onclick="saveSettings()">Save Changes</button>
           </div>
-          <div class="s-card">
-            <h3>Package Manager</h3>
-            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add, remove, and reprice booking packages. This updates the booking package options without changing page layout.</p>
-            <div id="pkg-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
-              <input type="text" id="pkg-new-name" placeholder="Package name">
-              <input type="number" id="pkg-new-price" min="1" step="1" placeholder="Price">
-              <input type="text" id="pkg-new-dur" placeholder="Duration (e.g. 2-3 hrs)">
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-              <input type="text" id="pkg-new-desc" placeholder="Short description">
-              <input type="text" id="pkg-new-img" placeholder="Photo URL (optional)">
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-              <input type="text" id="pkg-new-feat" placeholder="Features (comma separated)">
-              <input type="text" id="pkg-new-badge" placeholder="Badge (optional, e.g. ★ Most Popular)">
-            </div>
-            <label class="day-check" style="margin-top:10px;max-width:220px"><input type="checkbox" id="pkg-new-pop"><span>Highlight as featured</span></label>
-            <button class="s-save" onclick="addPackageAdmin()">Add Package</button>
-          </div>
-          <div class="s-card">
-            <h3>Individual Services Manager</h3>
-            <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Add, remove, and reprice individual services in booking.</p>
-            <div id="ind-admin-list" style="display:flex;flex-direction:column;gap:10px"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
-              <input type="text" id="ind-new-name" placeholder="Service name">
-              <input type="number" id="ind-new-price" min="1" step="1" placeholder="Price">
-              <input type="text" id="ind-new-dur" placeholder="Duration (e.g. 2-3 hrs)">
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-              <input type="text" id="ind-new-desc" placeholder="Short description">
-              <input type="text" id="ind-new-img" placeholder="Photo URL (optional)">
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-              <input type="text" id="ind-new-feat" placeholder="Features (comma separated)">
-              <input type="text" id="ind-new-badge" placeholder="Badge (optional)">
-            </div>
-            <label class="day-check" style="margin-top:10px;max-width:220px"><input type="checkbox" id="ind-new-pop"><span>Highlight as featured</span></label>
-            <button class="s-save" onclick="addIndividualServiceAdmin()">Add Service</button>
-          </div>
+          <!-- Managers moved to their own tabs -->
           <div class="s-card">
             <h3>Social Media Links</h3>
             <p style="font-size:12px;color:var(--mut);margin-bottom:16px;line-height:1.6">Leave blank to hide that platform. Changes apply to the footer links.</p>
@@ -1243,6 +1323,18 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </div>
 
 <script>
+// ── BROKEN IMAGE FALLBACK ──
+// If any <img> fails to load (e.g. a stale admin-entered URL), swap in a neutral
+// placeholder so cards don't render with a broken-image icon. Uses capture phase
+// because the `error` event does not bubble.
+document.addEventListener('error', (e) => {
+  const t = e.target;
+  if (!(t instanceof HTMLImageElement)) return;
+  if (t.dataset.fallbackApplied === '1') return;
+  t.dataset.fallbackApplied = '1';
+  t.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'><rect width='400' height='260' fill='%230a0c1a'/><rect x='1' y='1' width='398' height='258' fill='none' stroke='%231e2540' stroke-width='1'/><g fill='%232a3555'><rect x='150' y='95' width='100' height='70' rx='4'/><circle cx='175' cy='120' r='8'/><polygon points='160,160 190,135 220,160 240,145 240,160'/></g><text x='200' y='200' font-family='system-ui,sans-serif' font-size='12' fill='%237aa0d4' text-anchor='middle' letter-spacing='2'>IMAGE UNAVAILABLE</text></svg>";
+}, true);
+
 // ── ADDON TOGGLE ──
 function toggleAddon(el) {
   const wasOpen = el.classList.contains('open');
@@ -1293,21 +1385,103 @@ let bookings = JSON.parse(localStorage.getItem('dba_bookings') || '[]');
 let leads = JSON.parse(localStorage.getItem('dba_leads') || '[]');
 let settings = JSON.parse(localStorage.getItem('dba_settings') || '{"code":"FIRST10","disc":10,"delay":4,"popup":true,"pass":"admin123","phone":"(XXX) XXX-XXXX","email":"hello@detailedbyaustin.com","loc":"Your City, Province/State","openTime":"8:00 AM","closeTime":"6:00 PM","days":{"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true,"sun":false},"social":{"ig":"","tk":"","fb":"","yt":"","tw":""}}');
 const DEFAULT_PACKAGES = [
-  { id: 'exterior', name: 'Exterior', price: 80, dur: '1–2 hours', desc: "Quick refresh for your car's exterior.", features: ['Exterior wash & dry','Wheels & tires cleaned','Tire shine applied','1–2 hours'], badge: '', featured: false, img: '' },
-  { id: 'interior', name: 'Interior', price: 200, dur: '2–3 hours', desc: 'Deep clean inside your vehicle.', features: ['Full vacuum','Plastics & leathers wiped','Windows cleaned','Floor mats cleaned','2–3 hours'], badge: '', featured: false, img: '' },
-  { id: 'combo', name: 'Combo', price: 300, dur: '4–5 hours', desc: 'Best value for regular maintenance.', features: ['Deeper full interior detail','Full exterior detail','Best value package','4–5 hours'], badge: '★ Most Popular', featured: true, img: '' },
-  { id: 'detail', name: 'Full Detail', price: 600, dur: '6+ hours', desc: 'Complete treatment, serious results.', features: ['Intense interior clean','Intense exterior clean','Paint decontamination','Polish included','Any extra service required','6+ hours'], badge: '', featured: false, img: '' }
+  { id: 'exterior', name: 'Exterior', price: 80, dur: '1–2 hours', desc: "Quick refresh for your car's exterior.", features: ['Exterior wash & dry','Wheels & tires cleaned','Tire shine applied','1–2 hours'], badge: '', banner: '', featured: false },
+  { id: 'interior', name: 'Interior', price: 200, dur: '2–3 hours', desc: 'Deep clean inside your vehicle.', features: ['Full vacuum','Plastics & leathers wiped','Windows cleaned','Floor mats cleaned','2–3 hours'], badge: '', banner: '', featured: false },
+  { id: 'combo', name: 'Combo', price: 300, dur: '4–5 hours', desc: 'Best value for regular maintenance.', features: ['Deeper full interior detail','Full exterior detail','Best value package','4–5 hours'], badge: '★ Most Popular', banner: '', featured: true },
+  { id: 'detail', name: 'Full Detail', price: 600, dur: '6+ hours', desc: 'Complete treatment, serious results.', features: ['Intense interior clean','Intense exterior clean','Paint decontamination','Polish included','Any extra service required','6+ hours'], badge: '', banner: '', featured: false }
 ];
 const DEFAULT_INDIVIDUAL_SERVICES = [
-  { id: 'polish', name: 'Polish', price: 300, dur: '2–4 hours', desc: "Restore your paint's true depth and shine.", features: ['Machine polish application','Removes light swirls & scratches','Eliminates oxidation','Deep mirror gloss finish','2–4 hours'], badge: '', featured: false, img: '' },
-  { id: 'diamond', name: 'Diamond Fusion', price: 150, dur: '2–3 hours', desc: 'Next-level hydrophobic paint & glass sealant.', features: ['Ultra-slick hydrophobic barrier','Repels water, grime & UV','2–3 hours'], badge: '♦ Premium Sealant', featured: false, img: '' },
-  { id: 'nano', name: 'Nano Armor Ceramic', price: 1250, dur: '4–6 yr protection', desc: 'Long-term ceramic protection package.', features: ['Full exterior wash','Paint decontamination','Full polish','Professional dual coat nano ceramic','4–6 yr protection'], badge: '🛡 Top Pick', featured: false, img: '' }
+  { id: 'polish', name: 'Polish', price: 300, dur: '2–4 hours', desc: "Restore your paint's true depth and shine.", features: ['Machine polish application','Removes light swirls & scratches','Eliminates oxidation','Deep mirror gloss finish','2–4 hours'], badge: '', banner: '', featured: false },
+  { id: 'diamond', name: 'Diamond Fusion', price: 150, dur: '2–3 hours', desc: 'Next-level hydrophobic paint & glass sealant.', features: ['Ultra-slick hydrophobic barrier','Repels water, grime & UV','2–3 hours'], badge: '♦ Premium Sealant', banner: '', featured: false }
+];
+const DEFAULT_NANO = {
+  id: 'nano',
+  title: 'Nano Armor Protection Package',
+  badge: '🛡 Nano Ceramic',
+  svcImg: 'https://images.pexels.com/photos/35149468/pexels-photo-35149468.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  svcAlt: 'Nano ceramic coating',
+  svcDesc: 'Full exterior wash, paint decontamination, full polish, then a professional dual-coat nano ceramic coating applied for lasting gloss and defense against the elements.',
+  svcFeatures: ['Full exterior wash','Paint decontamination','Full polish','Professional dual coat nano ceramic'],
+  shieldTitle: 'Protection lasts 4–6 years',
+  shieldDesc: 'Bonds to your paint for lasting gloss and all-season protection.',
+  price: 1250,
+  priceColor: '#7aa0d4',
+  ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' },
+  pkgFlag: '🛡 Top Pick — Long-Term Protection',
+  pkgBadge: 'Nano Ceramic',
+  pkgName: 'Nano Armor Protection',
+  pkgBlurb: 'The smartest long-term investment for your paint. One application, years of showroom shine.',
+  pkgFeatures: ['Full exterior wash','Paint decontamination','Full polish','Professional dual coat nano ceramic'],
+  pkgUi: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' },
+  benefits: [
+    { icon: '🛡', title: '4–6 Year Shield', desc: 'Bonds to paint for lasting defense.' },
+    { icon: '💧', title: 'Hydrophobic', desc: 'Water & dirt slide right off.' },
+    { icon: '☀️', title: 'UV Block', desc: 'Prevents fade & oxidation.' },
+    { icon: '✨', title: 'Deeper Gloss', desc: 'Richer colour, mirror finish.' },
+    { icon: '🚗', title: 'Easy Wash', desc: 'Less scrubbing, faster cleans.' }
+  ],
+  cta: 'Book Now',
+  ctaLong: 'Book Nano Armor →'
+};
+const DEFAULT_SERVICES = [
+  { id: 'svc_exterior', tag: 'Exterior', tagColor: '', name: 'Exterior Wash', desc: 'Thorough hand wash and dry, wheel & tire cleaning, and tire shine. Your car looking sharp — fast.', price: 80, dur: '1–2 hrs', img: 'https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } },
+  { id: 'svc_interior', tag: 'Interior', tagColor: '', name: 'Interior Clean', desc: 'Full vacuum, plastics & leathers wiped, windows cleaned inside, and floor mats thoroughly cleaned.', price: 200, dur: '2–3 hrs', img: 'https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } },
+  { id: 'svc_combo', tag: '★ Best Value', tagColor: '#EAB308', name: 'Combo Detail', desc: 'Deeper full interior plus complete exterior detail — the best value package for regular maintenance.', price: 300, dur: '4–5 hrs', img: 'https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } },
+  { id: 'svc_full', tag: 'Full Detail', tagColor: '', name: 'Full Detail', desc: 'Intense interior & exterior clean, paint decontamination, polish, and any additional services required.', price: 600, dur: '6+ hrs', img: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } },
+  { id: 'svc_polish', tag: 'Paint Correction', tagColor: '', name: 'Polish', desc: 'Machine polish to remove light scratches, swirl marks, and oxidation — restoring a deep, mirror-like gloss to your paint before any coating or protection is applied.', price: 300, dur: '2–4 hrs', img: 'https://images.pexels.com/photos/4489737/pexels-photo-4489737.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } },
+  { id: 'svc_diamond', tag: '♦ Premium Protection', tagColor: '', name: 'Diamond Fusion', desc: "A professional-grade glass and paint sealant that chemically bonds to your vehicle's surfaces, creating an ultra-slick hydrophobic barrier. Repels water, road grime, and UV damage — keeping your car cleaner longer between washes.", price: 150, dur: '2–3 hrs', img: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1600', featured: false, ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' } }
 ];
 settings.packages = Array.isArray(settings.packages) && settings.packages.length ? settings.packages : DEFAULT_PACKAGES.slice();
 settings.individualServices = Array.isArray(settings.individualServices) && settings.individualServices.length ? settings.individualServices : DEFAULT_INDIVIDUAL_SERVICES.slice();
+settings.services = Array.isArray(settings.services) && settings.services.length ? settings.services : DEFAULT_SERVICES.slice();
 settings.packages = settings.packages.map((p, i) => ({ ...DEFAULT_PACKAGES[Math.min(i, DEFAULT_PACKAGES.length - 1)], ...p }));
 settings.individualServices = settings.individualServices.map((s, i) => ({ ...DEFAULT_INDIVIDUAL_SERVICES[Math.min(i, DEFAULT_INDIVIDUAL_SERVICES.length - 1)], ...s }));
+settings.services = settings.services.map((s, i) => ({ ...DEFAULT_SERVICES[Math.min(i, DEFAULT_SERVICES.length - 1)], ...s }));
+// Nano is managed separately (keeps its special layout)
+settings.nano = { ...DEFAULT_NANO, ...(settings.nano || {}) };
+settings.nano.ui = { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '', ...(settings.nano.ui || {}) };
+settings.nano.pkgUi = { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '', ...(settings.nano.pkgUi || {}) };
+settings.individualServices = settings.individualServices.filter(s => String(s?.id || '') !== 'nano');
+settings.packages = settings.packages.map(p => ({
+  ...p,
+  ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '', ...(p.ui || {}) }
+}));
+settings.individualServices = settings.individualServices.map(s => ({
+  ...s,
+  ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '', ...(s.ui || {}) }
+}));
+settings.services = settings.services.map(s => ({
+  ...s,
+  ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '', ...(s.ui || {}) }
+}));
 settings.seatPricing = settings.seatPricing || { baseSeats: 5, perSeat: 0 };
+
+// Migration: rewrite legacy local "DetailedByAustin — Premium Auto Detailing_files" image
+// paths (from a saved-page version) to the hosted Pexels CDN URLs. Runs every load so any
+// stale values in localStorage (or synced from GitHub) are auto-repaired without user action.
+(function migrateImagePaths() {
+  const LEGACY = /^\.\/DetailedByAustin — Premium Auto Detailing_files\/pexels-photo-(\d+)\.jpe?g$/;
+  const fix = (val) => {
+    if (typeof val !== 'string') return val;
+    const m = val.match(LEGACY);
+    return m ? `https://images.pexels.com/photos/${m[1]}/pexels-photo-${m[1]}.jpeg?auto=compress&cs=tinysrgb&w=1600` : val;
+  };
+  let changed = false;
+  const walk = (obj) => {
+    if (!obj || typeof obj !== 'object') return;
+    for (const k of Object.keys(obj)) {
+      const v = obj[k];
+      if (typeof v === 'string') {
+        const nv = fix(v);
+        if (nv !== v) { obj[k] = nv; changed = true; }
+      } else if (v && typeof v === 'object') {
+        walk(v);
+      }
+    }
+  };
+  walk(settings);
+  if (changed) { try { localStorage.setItem('dba_settings', JSON.stringify(settings)); } catch (_) {} }
+})();
 settings.github = settings.github || { owner: 'sphacer69', repo: 'website-try2', branch: 'main', path: 'settings.json', autoSync: false };
 function getSavedGithubToken() {
   try { return localStorage.getItem('dba_github_token') || ''; } catch (_) { return ''; }
@@ -1346,20 +1520,49 @@ function applySettings() {
     const inp = document.getElementById(inputId);
     if (inp) inp.value = url;
   });
-  // promo float
-  const pf = document.getElementById('promo-float');
-  pf.style.display = settings.popup !== false ? 'block' : 'none';
+  // promo float (handled by schedulePromo)
+  renderServicesSection();
+  renderNanoCards();
   renderPackageOptions();
   renderIndividualServiceOptions();
   renderPricingCards();
+  renderNanoCards();
 }
 applySettings();
 hydrateSettingsFromGithub();
 
-// ── PROMO POPUP ──
-if (!sessionStorage.getItem('promo_closed') && settings.popup !== false) {
-  setTimeout(() => document.getElementById('promo-overlay').classList.add('show'), (settings.delay || 4) * 1000);
+function hexToRgba(hex, alpha) {
+  const h = String(hex || '').trim();
+  if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(h)) return '';
+  const full = h.length === 4 ? `#${h[1]}${h[1]}${h[2]}${h[2]}${h[3]}${h[3]}` : h;
+  const r = parseInt(full.slice(1, 3), 16);
+  const g = parseInt(full.slice(3, 5), 16);
+  const b = parseInt(full.slice(5, 7), 16);
+  const a = typeof alpha === 'number' ? alpha : 1;
+  return `rgba(${r},${g},${b},${a})`;
 }
+
+
+// ── PROMO POPUP ──
+function schedulePromo() {
+  const pf = document.getElementById('promo-float');
+  const po = document.getElementById('promo-overlay');
+  if (pf) pf.toggleAttribute('hidden', settings.popup === false);
+  if (!po) return;
+  po.classList.remove('show');
+  const shouldShow = !sessionStorage.getItem('promo_closed') && settings.popup !== false;
+  if (!shouldShow) return;
+  const delaySec = Math.max(0, Number(settings.delay) || 4);
+  setTimeout(() => {
+    // settings could have changed while waiting
+    if (sessionStorage.getItem('promo_closed')) return;
+    if (settings.popup === false) return;
+    po.classList.add('show');
+    const box = po.querySelector('.promo-box');
+    if (box) box.classList.add('animate');
+  }, delaySec * 1000);
+}
+schedulePromo();
 function reopenPromo() {
   document.getElementById('promo-form-wrap').style.display = 'block';
   document.getElementById('promo-success-wrap').style.display = 'none';
@@ -1708,9 +1911,218 @@ function loadSettingsUI() {
   updateGithubStatus(githubToken ? 'Token saved on this device and ready to sync.' : 'Token not connected.');
   renderPackageAdminUI();
   renderIndividualServiceAdminUI();
+  renderServicesAdminUI();
+  renderNanoAdminUI();
+}
+
+function renderNanoAdminUI() {
+  const nano = settings.nano || DEFAULT_NANO;
+  const map = [
+    ['nano-title', nano.title],
+    ['nano-badge', nano.badge],
+    ['nano-img', nano.svcImg],
+    ['nano-alt', nano.svcAlt],
+    ['nano-desc', nano.svcDesc],
+    ['nano-feats', Array.isArray(nano.svcFeatures) ? nano.svcFeatures.join(', ') : ''],
+    ['nano-shield-title', nano.shieldTitle],
+    ['nano-shield-desc', nano.shieldDesc],
+    ['nano-flag', nano.pkgFlag],
+    ['nano-pkg-badge', nano.pkgBadge],
+    ['nano-pkg-name', nano.pkgName],
+    ['nano-pkg-blurb', nano.pkgBlurb],
+    ['nano-pkg-feats', Array.isArray(nano.pkgFeatures) ? nano.pkgFeatures.join(', ') : ''],
+    ['nano-cta', nano.cta],
+    ['nano-cta2', nano.ctaLong]
+  ];
+  map.forEach(([id, val]) => { const el = document.getElementById(id); if (el) el.value = String(val ?? ''); });
+  const priceEl = document.getElementById('nano-price');
+  if (priceEl) priceEl.value = String(Number(nano.price) || 0);
+  const c = String(nano.priceColor || '#7aa0d4');
+  const cEl = document.getElementById('nano-price-color');
+  const hexEl = document.getElementById('nano-price-hex');
+  const sw = document.getElementById('nano-price-swatch');
+  if (cEl) cEl.value = c;
+  if (hexEl) hexEl.value = c;
+  if (sw) sw.style.setProperty('--swatch', c);
+
+  // Nano UI controls (pricing)
+  const pui = nano.pkgUi || {};
+  const setChk = (id, v) => { const el = document.getElementById(id); if (el) el.checked = !!v; };
+  setChk('nano-pui-emph', pui.emphasize);
+  setChk('nano-pui-glow', pui.glow);
+  const setColorRow = (prefix, val) => {
+    const col = document.getElementById(prefix);
+    const hex = document.getElementById(prefix + '-hex');
+    const sw2 = document.getElementById(prefix + '-sw');
+    if (col) col.value = String(val || '#000000') || '#000000';
+    if (hex) hex.value = String(val || '');
+    if (sw2) sw2.style.setProperty('--swatch', val ? String(val) : 'transparent');
+  };
+  setColorRow('nano-pui-bg', pui.bg);
+  setColorRow('nano-pui-ol', pui.outline);
+  setColorRow('nano-pui-ac', pui.accent);
+  setColorRow('nano-pui-gl', pui.glowColor);
+
+  const prev = document.getElementById('nano-admin-preview');
+  if (prev) {
+    const pui = nano.pkgUi || {};
+    const price = Number(nano.price) || 0;
+    prev.innerHTML = `
+      <div class="nano-pkg emph${pui.glow ? ' glow' : ''}${(pui.bg || pui.outline || pui.accent || pui.glowColor) ? ' use-ui' : ''}" style="cursor:default;${[
+        pui.bg ? `--ui-pkg-bg:${escHtml(pui.bg)}` : '',
+        pui.outline ? `--ui-pkg-outline:${escHtml(pui.outline)}` : '',
+        pui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(pui.outline, 0.55))}` : '',
+        pui.accent ? `--ui-pkg-accent:${escHtml(pui.accent)}` : '',
+        pui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(pui.glowColor, 0.22))}` : ''
+      ].filter(Boolean).join(';')}">
+        ${(nano.pkgFlag || '') ? `<div class="nano-pkg-flag">${escHtml(nano.pkgFlag || '')}</div>` : ''}
+        <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+          ${(nano.pkgBadge || '') ? `<div class="nano-badge2">${escHtml(nano.pkgBadge || '')}</div>` : ''}
+          <div class="nano-pkg-price"><sup>$</sup>${price.toLocaleString()}</div>
+          <div class="pkg-name" style="font-size:24px;letter-spacing:3px;margin-bottom:4px">${escHtml(nano.pkgName || '')}</div>
+          <div class="pkg-blurb">${escHtml(nano.pkgBlurb || '')}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;">
+          ${(nano.pkgFeatures||[]).length ? `<ul class="nano-feat-list">${(nano.pkgFeatures||[]).map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>` : ''}
+          <button class="btn-r" style="padding:13px 32px;align-self:flex-start;margin-top:4px">${escHtml(nano.ctaLong || 'Book Nano Armor →')}</button>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function saveNano() {
+  const n = settings.nano || { ...DEFAULT_NANO };
+  n.title = (document.getElementById('nano-title')?.value || '').trim();
+  n.badge = (document.getElementById('nano-badge')?.value || '').trim();
+  n.svcImg = (document.getElementById('nano-img')?.value || '').trim();
+  n.svcAlt = (document.getElementById('nano-alt')?.value || '').trim();
+  n.svcDesc = (document.getElementById('nano-desc')?.value || '').trim();
+  n.svcFeatures = String(document.getElementById('nano-feats')?.value || '').split(',').map(x => x.trim()).filter(Boolean);
+  n.shieldTitle = (document.getElementById('nano-shield-title')?.value || '').trim();
+  n.shieldDesc = (document.getElementById('nano-shield-desc')?.value || '').trim();
+  n.pkgFlag = (document.getElementById('nano-flag')?.value || '').trim();
+  n.pkgBadge = (document.getElementById('nano-pkg-badge')?.value || '').trim();
+  n.pkgName = (document.getElementById('nano-pkg-name')?.value || '').trim();
+  n.pkgBlurb = (document.getElementById('nano-pkg-blurb')?.value || '').trim();
+  n.pkgFeatures = String(document.getElementById('nano-pkg-feats')?.value || '').split(',').map(x => x.trim()).filter(Boolean);
+  n.cta = (document.getElementById('nano-cta')?.value || '').trim() || 'Book Now';
+  n.ctaLong = (document.getElementById('nano-cta2')?.value || '').trim() || 'Book Nano Armor →';
+  n.price = Math.max(0, parseInt(document.getElementById('nano-price')?.value || '0', 10) || 0);
+  const pc = (document.getElementById('nano-price-hex')?.value || document.getElementById('nano-price-color')?.value || '').trim();
+  n.priceColor = /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(pc) ? pc : '#7aa0d4';
+  settings.nano = { ...DEFAULT_NANO, ...n };
+  persist();
+  applySettings();
+  renderNanoAdminUI();
+  if (settings.github?.autoSync) scheduleGithubSync();
+  const btn = event.target; if (btn) { btn.textContent = '✓ Saved!'; btn.style.background = '#22C55E'; setTimeout(() => { btn.textContent = 'Save Nano'; btn.style.background = ''; }, 2000); }
 }
 function escHtml(v) {
   return String(v || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+function renderServicesSection() {
+  const host = document.getElementById('services-dyn');
+  if (!host) return;
+  const svcs = Array.isArray(settings.services) && settings.services.length ? settings.services : DEFAULT_SERVICES;
+  host.innerHTML = svcs.map((s, idx) => {
+    const ui = s.ui || {};
+    const style = [
+      ui.bg ? `--ui-svc-bg:${escHtml(ui.bg)}` : '',
+      ui.outline ? `--ui-svc-outline:${escHtml(ui.outline)}` : '',
+      ui.outline ? `--ui-svc-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+      ui.accent ? `--ui-svc-accent:${escHtml(ui.accent)}` : '',
+      ui.glowColor ? `--ui-svc-glow:${escHtml(hexToRgba(ui.glowColor, 0.2))}` : ''
+    ].filter(Boolean).join(';');
+    const delay = typeof s.delay === 'string' ? s.delay : `${0.05 + (idx * 0.05)}s`;
+    const tagStyle = s.tagColor ? `style="color:${escHtml(s.tagColor)}"` : '';
+    const price = Number(s.price) || 0;
+    return `<div class="svc reveal${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" style="transition-delay:${escHtml(delay)};${style}">
+      <div class="svc-img-wrap"><img class="svc-img" src="${escHtml(s.img || '')}" alt="${escHtml(s.name || 'Service')}"></div>
+      <div class="svc-body">
+        <div class="svc-tag" ${tagStyle}>${escHtml(s.tag || '')}</div>
+        <div class="svc-name">${escHtml(s.name || '')}</div>
+        <div class="svc-desc">${escHtml(s.desc || '')}</div>
+        <div class="svc-footer"><span class="svc-price">$${price.toLocaleString()}</span><span class="svc-dur">${escHtml(s.dur || '')}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+  host.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}
+
+function renderNanoCards() {
+  const nano = settings.nano || DEFAULT_NANO;
+  const svcHost = document.getElementById('nano-svc-host');
+  if (svcHost) {
+    const delay = '.35s';
+    const price = Number(nano.price) || 0;
+    const priceStyle = nano.priceColor ? `style="color:${escHtml(nano.priceColor)};font-size:40px"` : 'style="font-size:40px"';
+    const title = nano.title || 'Nano Armor Protection Package';
+    const badge = nano.badge || '🛡 Nano Ceramic';
+    const desc = nano.svcDesc || '';
+    const alt = nano.svcAlt || 'Nano ceramic coating';
+    const img = nano.svcImg || '';
+    const feats = Array.isArray(nano.svcFeatures) ? nano.svcFeatures : [];
+    const shieldTitle = nano.shieldTitle || '';
+    const shieldDesc = nano.shieldDesc || '';
+    const ui = nano.ui || {};
+    const svcStyle = [
+      ui.bg ? `--ui-svc-bg:${escHtml(ui.bg)}` : '',
+      ui.outline ? `--ui-svc-outline:${escHtml(ui.outline)}` : '',
+      ui.outline ? `--ui-svc-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+      ui.accent ? `--ui-svc-accent:${escHtml(ui.accent)}` : '',
+      ui.glowColor ? `--ui-svc-glow:${escHtml(hexToRgba(ui.glowColor, 0.2))}` : ''
+    ].filter(Boolean).join(';');
+    svcHost.innerHTML = `<div class="svc nano-svc reveal${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" style="transition-delay:${escHtml(delay)};${svcStyle}">
+      <div class="svc-img-wrap"><img class="svc-img" src="${escHtml(img)}" alt="${escHtml(alt)}"></div>
+      <div class="svc-body">
+        <div class="nano-badge2">${escHtml(badge)}</div>
+        <div class="svc-name" style="font-size:26px;letter-spacing:3px">${escHtml(title)}</div>
+        <div class="svc-desc" style="max-width:520px">${escHtml(desc)}</div>
+        ${feats.length ? `<ul class="nano-feat-list">${feats.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>` : ''}
+        <div class="nano-shield"><span style="font-size:20px;flex-shrink:0">🛡</span><div><strong>${escHtml(shieldTitle)}</strong>${escHtml(shieldDesc)}</div></div>
+        <div class="svc-footer" style="margin-top:18px">
+          <span class="svc-price" ${priceStyle}>$${price.toLocaleString()}</span>
+          <button class="btn-r" onclick="openBooking('nano')" style="padding:11px 22px">${escHtml(nano.cta || 'Book Now')}</button>
+        </div>
+      </div>
+    </div>`;
+    svcHost.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  }
+
+  const pkgHost = document.getElementById('nano-pkg-host');
+  if (pkgHost) {
+    const price = Number(nano.price) || 0;
+    const flag = nano.pkgFlag || '';
+    const badge = nano.pkgBadge || '';
+    const name = nano.pkgName || 'Nano Armor Protection';
+    const blurb = nano.pkgBlurb || '';
+    const feats = Array.isArray(nano.pkgFeatures) ? nano.pkgFeatures : [];
+    const benefits = Array.isArray(nano.benefits) ? nano.benefits : [];
+    const pui = nano.pkgUi || {};
+    const pkgStyle = [
+      pui.bg ? `--ui-pkg-bg:${escHtml(pui.bg)}` : '',
+      pui.outline ? `--ui-pkg-outline:${escHtml(pui.outline)}` : '',
+      pui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(pui.outline, 0.55))}` : '',
+      pui.accent ? `--ui-pkg-accent:${escHtml(pui.accent)}` : '',
+      pui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(pui.glowColor, 0.22))}` : ''
+    ].filter(Boolean).join(';');
+    pkgHost.innerHTML = `<div class="nano-pkg reveal emph${pui.glow ? ' glow' : ''}${(pui.bg || pui.outline || pui.accent || pui.glowColor) ? ' use-ui' : ''}" onclick="openBooking('nano')" role="button" tabindex="0" style="cursor:pointer;${pkgStyle}">
+      ${flag ? `<div class="nano-pkg-flag">${escHtml(flag)}</div>` : ''}
+      <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+        ${badge ? `<div class="nano-badge2">${escHtml(badge)}</div>` : ''}
+        <div class="nano-pkg-price"><sup>$</sup>${price.toLocaleString()}</div>
+        <div class="pkg-name" style="font-size:24px;letter-spacing:3px;margin-bottom:4px">${escHtml(name)}</div>
+        <div class="pkg-blurb">${escHtml(blurb)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;">
+        ${feats.length ? `<ul class="nano-feat-list">${feats.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>` : ''}
+        ${benefits.length ? `<div class="nano-benefits">${benefits.slice(0,5).map(b => `<div class="nano-benefit"><span class="nano-benefit-icon">${escHtml(b.icon || '')}</span><div class="nano-benefit-title">${escHtml(b.title || '')}</div><div class="nano-benefit-desc">${escHtml(b.desc || '')}</div></div>`).join('')}</div>` : ''}
+        <button class="btn-r" onclick="event.stopPropagation();openBooking('nano')" style="padding:13px 32px;align-self:flex-start;margin-top:4px">${escHtml(nano.ctaLong || 'Book Nano Armor →')}</button>
+      </div>
+    </div>`;
+    pkgHost.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  }
 }
 function renderPackageOptions() {
   const grid = document.getElementById('package-opts-grid');
@@ -1722,7 +2134,10 @@ function renderIndividualServiceOptions() {
   const grid = document.getElementById('individual-opts-grid');
   if (!grid) return;
   const services = Array.isArray(settings.individualServices) && settings.individualServices.length ? settings.individualServices : DEFAULT_INDIVIDUAL_SERVICES;
-  grid.innerHTML = services.map(s => `<button class="svc-opt" data-id="${escHtml(s.id)}" data-price="${Number(s.price)||0}" data-name="${escHtml(s.name)}" onclick="pickSvc(this)"><div class="svc-opt-name">${escHtml(s.name)}</div><div class="svc-opt-row"><span class="svc-opt-dur">${escHtml(s.dur || '')}</span><span class="svc-opt-price">$${Number(s.price)||0}</span></div></button>`).join('');
+  const nano = settings.nano || DEFAULT_NANO;
+  const base = services.map(s => `<button class="svc-opt" data-id="${escHtml(s.id)}" data-price="${Number(s.price)||0}" data-name="${escHtml(s.name)}" onclick="pickSvc(this)"><div class="svc-opt-name">${escHtml(s.name)}</div><div class="svc-opt-row"><span class="svc-opt-dur">${escHtml(s.dur || '')}</span><span class="svc-opt-price">$${Number(s.price)||0}</span></div></button>`).join('');
+  const nanoBtn = `<button class="svc-opt" data-id="nano" data-price="${Number(nano.price)||0}" data-name="${escHtml(nano.pkgName || nano.title || 'Nano Armor')}" onclick="pickSvc(this)"><div class="svc-opt-name">${escHtml(nano.pkgName || nano.title || 'Nano Armor')}</div><div class="svc-opt-row"><span class="svc-opt-dur">${escHtml('4–6 yr protection')}</span><span class="svc-opt-price">$${Number(nano.price)||0}</span></div></button>`;
+  grid.innerHTML = base + nanoBtn;
 }
 function renderPricingCards() {
   const pkgGrid = document.getElementById('pricing-pkg-grid');
@@ -1731,9 +2146,19 @@ function renderPricingCards() {
     const pkgs = Array.isArray(settings.packages) && settings.packages.length ? settings.packages : DEFAULT_PACKAGES;
     pkgGrid.innerHTML = pkgs.map(p => {
       const list = Array.isArray(p.features) ? p.features : String(p.features || '').split(',').map(x => x.trim()).filter(Boolean);
-      return `<div class="pkg${p.featured ? ' feat' : ''}" onclick="openBooking('${escHtml(p.id)}')" role="button" tabindex="0">
+      const ui = p.ui || {};
+      const hasItemUi = !!(ui.emphasize || ui.glow || ui.bg || ui.outline || ui.accent || ui.glowColor);
+      const style = [
+        ui.bg ? `--ui-pkg-bg:${escHtml(ui.bg)}` : '',
+        ui.outline ? `--ui-pkg-outline:${escHtml(ui.outline)}` : '',
+        ui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+        ui.accent ? `--ui-pkg-accent:${escHtml(ui.accent)}` : '',
+        ui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(ui.glowColor, 0.22))}` : ''
+      ].filter(Boolean).join(';');
+      return `<div class="pkg${p.featured ? ' feat' : ''}${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" ${hasItemUi ? 'data-item-ui="1"' : ''} ${style ? `style="${style}"` : ''} onclick="openBooking('${escHtml(p.id)}')" role="button" tabindex="0">
         ${p.badge ? `<div class="pkg-pop">${escHtml(p.badge)}</div>` : ''}
         <div class="pkg-name">${escHtml(p.name)}</div><div class="pkg-blurb">${escHtml(p.desc || '')}</div>
+        ${p.banner ? `<div class="pkg-banner">${escHtml(p.banner)}</div>` : ''}
         <div class="pkg-price"><sup>$</sup>${Number(p.price) || 0}</div>
         <ul class="pkg-list">${list.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>
         <div class="btn-r pkg-cta">Book This Package</div>
@@ -1744,15 +2169,27 @@ function renderPricingCards() {
     const services = Array.isArray(settings.individualServices) && settings.individualServices.length ? settings.individualServices : DEFAULT_INDIVIDUAL_SERVICES;
     indGrid.innerHTML = services.map(s => {
       const list = Array.isArray(s.features) ? s.features : String(s.features || '').split(',').map(x => x.trim()).filter(Boolean);
-      return `<div class="pkg${s.featured ? ' feat' : ''}" onclick="openBooking('${escHtml(s.id)}')" role="button" tabindex="0">
+      const ui = s.ui || {};
+      const hasItemUi = !!(ui.emphasize || ui.glow || ui.bg || ui.outline || ui.accent || ui.glowColor);
+      const style = [
+        ui.bg ? `--ui-pkg-bg:${escHtml(ui.bg)}` : '',
+        ui.outline ? `--ui-pkg-outline:${escHtml(ui.outline)}` : '',
+        ui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+        ui.accent ? `--ui-pkg-accent:${escHtml(ui.accent)}` : '',
+        ui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(ui.glowColor, 0.22))}` : ''
+      ].filter(Boolean).join(';');
+      return `<div class="pkg${s.featured ? ' feat' : ''}${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" ${hasItemUi ? 'data-item-ui="1"' : ''} ${style ? `style="${style}"` : ''} onclick="openBooking('${escHtml(s.id)}')" role="button" tabindex="0">
         ${s.badge ? `<div class="pkg-pop">${escHtml(s.badge)}</div>` : ''}
         <div class="pkg-name">${escHtml(s.name)}</div><div class="pkg-blurb">${escHtml(s.desc || '')}</div>
+        ${s.banner ? `<div class="pkg-banner">${escHtml(s.banner)}</div>` : ''}
         <div class="pkg-price"><sup>$</sup>${Number(s.price) || 0}</div>
         <ul class="pkg-list">${list.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>
         <div class="btn-r pkg-cta">Book This Package</div>
       </div>`;
-    }).join('');
+    }).join('') + '<div id="nano-pkg-host"></div>';
   }
+  // Re-populate the Nano pricing host that was just re-created above.
+  if (typeof renderNanoCards === 'function') renderNanoCards();
 }
 function renderPackageAdminUI() {
   const wrap = document.getElementById('pkg-admin-list');
@@ -1762,16 +2199,48 @@ function renderPackageAdminUI() {
     wrap.innerHTML = '<p style="font-size:12px;color:var(--mut)">No packages configured.</p>';
     return;
   }
-  wrap.innerHTML = pkgs.map((p, i) => `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;border:1px solid var(--bdr);padding:10px">
+  wrap.innerHTML = pkgs.map((p, i) => {
+    const list = Array.isArray(p.features) ? p.features : String(p.features || '').split(',').map(x => x.trim()).filter(Boolean);
+    const ui = p.ui || {};
+    const style = [
+      ui.bg ? `--ui-pkg-bg:${escHtml(ui.bg)}` : '',
+      ui.outline ? `--ui-pkg-outline:${escHtml(ui.outline)}` : '',
+      ui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+      ui.accent ? `--ui-pkg-accent:${escHtml(ui.accent)}` : '',
+      ui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(ui.glowColor, 0.22))}` : ''
+    ].filter(Boolean).join(';');
+    const preview = `<div class="adm-prev-wrap">
+      <div class="adm-prev-label">Preview</div>
+      <div class="adm-prev-card">
+        <div class="pkg${p.featured ? ' feat' : ''}${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" ${style ? `style="${style}"` : ''}>
+          ${p.badge ? `<div class="pkg-pop">${escHtml(p.badge)}</div>` : ''}
+          <div class="pkg-name">${escHtml(p.name)}</div><div class="pkg-blurb">${escHtml(p.desc || '')}</div>
+          ${p.banner ? `<div class="pkg-banner">${escHtml(p.banner)}</div>` : ''}
+          <div class="pkg-price"><sup>$</sup>${Number(p.price) || 0}</div>
+          <ul class="pkg-list">${list.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>
+          <div class="btn-r pkg-cta">Book This Package</div>
+        </div>
+      </div>
+    </div>`;
+    return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;border:1px solid var(--bdr);padding:10px">
   <input type="text" value="${escHtml(p.name)}" oninput="updatePackageField(${i},'name',this.value)">
   <input type="number" min="1" step="1" value="${Number(p.price)||0}" oninput="updatePackageField(${i},'price',this.value)">
   <input type="text" value="${escHtml(p.dur||'')}" oninput="updatePackageField(${i},'dur',this.value)">
-  <input type="text" value="${escHtml(p.desc||'')}" oninput="updatePackageField(${i},'desc',this.value)">
+  <textarea style="min-height:90px;resize:vertical" oninput="updatePackageField(${i},'desc',this.value)">${escHtml(p.desc||'')}</textarea>
   <input type="text" value="${escHtml((p.features||[]).join(', '))}" oninput="updatePackageField(${i},'features',this.value)">
-  <input type="text" value="${escHtml(p.img||'')}" oninput="updatePackageField(${i},'img',this.value)">
   <input type="text" value="${escHtml(p.badge||'')}" oninput="updatePackageField(${i},'badge',this.value)">
+  <input type="text" value="${escHtml(p.banner||'')}" oninput="updatePackageField(${i},'banner',this.value)" placeholder="Banner (optional)">
+  <label class="day-check"><input type="checkbox" ${p.ui?.emphasize ? 'checked' : ''} onchange="updatePackageField(${i},'ui.emphasize',this.checked)"><span>Emphasize</span></label>
+  <label class="day-check"><input type="checkbox" ${p.ui?.glow ? 'checked' : ''} onchange="updatePackageField(${i},'ui.glow',this.checked)"><span>Glow</span></label>
+  <div class="s-row"><label style="font-size:10px">Card Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(p.ui?.bg || 'transparent')}"></span><input type="color" value="${escHtml(p.ui?.bg || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updatePackageField(${i},'ui.bg',this.value)"><input type="text" value="${escHtml(p.ui?.bg || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updatePackageField(${i},'ui.bg','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updatePackageField(${i},'ui.bg',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Outline Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(p.ui?.outline || 'transparent')}"></span><input type="color" value="${escHtml(p.ui?.outline || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updatePackageField(${i},'ui.outline',this.value)"><input type="text" value="${escHtml(p.ui?.outline || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updatePackageField(${i},'ui.outline','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updatePackageField(${i},'ui.outline',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Accent Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(p.ui?.accent || 'transparent')}"></span><input type="color" value="${escHtml(p.ui?.accent || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updatePackageField(${i},'ui.accent',this.value)"><input type="text" value="${escHtml(p.ui?.accent || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updatePackageField(${i},'ui.accent','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updatePackageField(${i},'ui.accent',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Glow Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(p.ui?.glowColor || 'transparent')}"></span><input type="color" value="${escHtml(p.ui?.glowColor || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updatePackageField(${i},'ui.glowColor',this.value)"><input type="text" value="${escHtml(p.ui?.glowColor || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updatePackageField(${i},'ui.glowColor','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updatePackageField(${i},'ui.glowColor',this.value)}"></div></div>
   <label class="day-check"><input type="checkbox" ${p.featured ? 'checked' : ''} onchange="updatePackageField(${i},'featured',this.checked)"><span>Featured</span></label>
-  <button class="adm-act" onclick="removePackageAdmin(${i})">Remove</button></div>`).join('');
+  <button class="adm-act" onclick="removePackageAdmin(${i})">Remove</button>
+  ${preview}
+  </div>`;
+  }).join('');
 }
 function renderIndividualServiceAdminUI() {
   const wrap = document.getElementById('ind-admin-list');
@@ -1781,16 +2250,103 @@ function renderIndividualServiceAdminUI() {
     wrap.innerHTML = '<p style="font-size:12px;color:var(--mut)">No individual services configured.</p>';
     return;
   }
-  wrap.innerHTML = services.map((s, i) => `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;border:1px solid var(--bdr);padding:10px">
+  wrap.innerHTML = services.map((s, i) => {
+    const list = Array.isArray(s.features) ? s.features : String(s.features || '').split(',').map(x => x.trim()).filter(Boolean);
+    const ui = s.ui || {};
+    const style = [
+      ui.bg ? `--ui-pkg-bg:${escHtml(ui.bg)}` : '',
+      ui.outline ? `--ui-pkg-outline:${escHtml(ui.outline)}` : '',
+      ui.outline ? `--ui-pkg-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+      ui.accent ? `--ui-pkg-accent:${escHtml(ui.accent)}` : '',
+      ui.glowColor ? `--ui-pkg-glow:${escHtml(hexToRgba(ui.glowColor, 0.22))}` : ''
+    ].filter(Boolean).join(';');
+    const preview = `<div class="adm-prev-wrap">
+      <div class="adm-prev-label">Preview</div>
+      <div class="adm-prev-card">
+        <div class="pkg${s.featured ? ' feat' : ''}${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" ${style ? `style="${style}"` : ''}>
+          ${s.badge ? `<div class="pkg-pop">${escHtml(s.badge)}</div>` : ''}
+          <div class="pkg-name">${escHtml(s.name)}</div><div class="pkg-blurb">${escHtml(s.desc || '')}</div>
+          ${s.banner ? `<div class="pkg-banner">${escHtml(s.banner)}</div>` : ''}
+          <div class="pkg-price"><sup>$</sup>${Number(s.price) || 0}</div>
+          <ul class="pkg-list">${list.map(f => `<li>${escHtml(f)}</li>`).join('')}</ul>
+          <div class="btn-r pkg-cta">Book This Package</div>
+        </div>
+      </div>
+    </div>`;
+    return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;border:1px solid var(--bdr);padding:10px">
   <input type="text" value="${escHtml(s.name)}" oninput="updateIndividualServiceField(${i},'name',this.value)">
   <input type="number" min="1" step="1" value="${Number(s.price)||0}" oninput="updateIndividualServiceField(${i},'price',this.value)">
   <input type="text" value="${escHtml(s.dur||'')}" oninput="updateIndividualServiceField(${i},'dur',this.value)">
-  <input type="text" value="${escHtml(s.desc||'')}" oninput="updateIndividualServiceField(${i},'desc',this.value)">
+  <textarea style="min-height:90px;resize:vertical" oninput="updateIndividualServiceField(${i},'desc',this.value)">${escHtml(s.desc||'')}</textarea>
   <input type="text" value="${escHtml((s.features||[]).join(', '))}" oninput="updateIndividualServiceField(${i},'features',this.value)">
-  <input type="text" value="${escHtml(s.img||'')}" oninput="updateIndividualServiceField(${i},'img',this.value)">
   <input type="text" value="${escHtml(s.badge||'')}" oninput="updateIndividualServiceField(${i},'badge',this.value)">
+  <input type="text" value="${escHtml(s.banner||'')}" oninput="updateIndividualServiceField(${i},'banner',this.value)" placeholder="Banner (optional)">
+  <label class="day-check"><input type="checkbox" ${s.ui?.emphasize ? 'checked' : ''} onchange="updateIndividualServiceField(${i},'ui.emphasize',this.checked)"><span>Emphasize</span></label>
+  <label class="day-check"><input type="checkbox" ${s.ui?.glow ? 'checked' : ''} onchange="updateIndividualServiceField(${i},'ui.glow',this.checked)"><span>Glow</span></label>
+  <div class="s-row"><label style="font-size:10px">Card Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(s.ui?.bg || 'transparent')}"></span><input type="color" value="${escHtml(s.ui?.bg || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateIndividualServiceField(${i},'ui.bg',this.value)"><input type="text" value="${escHtml(s.ui?.bg || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateIndividualServiceField(${i},'ui.bg','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateIndividualServiceField(${i},'ui.bg',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Outline Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(s.ui?.outline || 'transparent')}"></span><input type="color" value="${escHtml(s.ui?.outline || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateIndividualServiceField(${i},'ui.outline',this.value)"><input type="text" value="${escHtml(s.ui?.outline || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateIndividualServiceField(${i},'ui.outline','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateIndividualServiceField(${i},'ui.outline',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Accent Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(s.ui?.accent || 'transparent')}"></span><input type="color" value="${escHtml(s.ui?.accent || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateIndividualServiceField(${i},'ui.accent',this.value)"><input type="text" value="${escHtml(s.ui?.accent || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateIndividualServiceField(${i},'ui.accent','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateIndividualServiceField(${i},'ui.accent',this.value)}"></div></div>
+  <div class="s-row"><label style="font-size:10px">Glow Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(s.ui?.glowColor || 'transparent')}"></span><input type="color" value="${escHtml(s.ui?.glowColor || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateIndividualServiceField(${i},'ui.glowColor',this.value)"><input type="text" value="${escHtml(s.ui?.glowColor || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateIndividualServiceField(${i},'ui.glowColor','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateIndividualServiceField(${i},'ui.glowColor',this.value)}"></div></div>
   <label class="day-check"><input type="checkbox" ${s.featured ? 'checked' : ''} onchange="updateIndividualServiceField(${i},'featured',this.checked)"><span>Featured</span></label>
-  <button class="adm-act" onclick="removeIndividualServiceAdmin(${i})">Remove</button></div>`).join('');
+  <button class="adm-act" onclick="removeIndividualServiceAdmin(${i})">Remove</button>
+  ${preview}
+  </div>`;
+  }).join('');
+}
+function renderServicesAdminUI() {
+  const wrap = document.getElementById('svc-admin-list');
+  if (!wrap) return;
+  const svcs = Array.isArray(settings.services) ? settings.services : [];
+  if (!svcs.length) {
+    wrap.innerHTML = '<p style="font-size:12px;color:var(--mut)">No services configured.</p>';
+    return;
+  }
+  wrap.innerHTML = svcs.map((s, i) => {
+    const ui = s.ui || {};
+    const style = [
+      ui.bg ? `--ui-svc-bg:${escHtml(ui.bg)}` : '',
+      ui.outline ? `--ui-svc-outline:${escHtml(ui.outline)}` : '',
+      ui.outline ? `--ui-svc-outline-hov:${escHtml(hexToRgba(ui.outline, 0.55))}` : '',
+      ui.accent ? `--ui-svc-accent:${escHtml(ui.accent)}` : '',
+      ui.glowColor ? `--ui-svc-glow:${escHtml(hexToRgba(ui.glowColor, 0.2))}` : ''
+    ].filter(Boolean).join(';');
+    const tagStyle = s.tagColor ? `style="color:${escHtml(s.tagColor)}"` : '';
+    const prev = `<div class="adm-prev-wrap">
+      <div class="adm-prev-label">Preview</div>
+      <div class="adm-prev-card">
+        <div class="svc${ui.emphasize ? ' emph' : ''}${ui.glow ? ' glow' : ''}${(ui.bg || ui.outline || ui.accent || ui.glowColor) ? ' use-ui' : ''}" ${style ? `style="${style}"` : ''}>
+          <div class="svc-img-wrap"><img class="svc-img" src="${escHtml(s.img || '')}" alt="${escHtml(s.name || 'Service')}"></div>
+          <div class="svc-body">
+            <div class="svc-tag" ${tagStyle}>${escHtml(s.tag || '')}</div>
+            <div class="svc-name">${escHtml(s.name || '')}</div>
+            <div class="svc-desc">${escHtml(s.desc || '')}</div>
+            <div class="svc-footer"><span class="svc-price">$${(Number(s.price)||0).toLocaleString()}</span><span class="svc-dur">${escHtml(s.dur || '')}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+    return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;border:1px solid var(--bdr);padding:10px">
+      <input type="text" value="${escHtml(s.tag || '')}" oninput="updateServiceField(${i},'tag',this.value)">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="color-swatch" style="--swatch:${escHtml(s.tagColor || '#ff3b30')}"></span>
+        <input type="color" value="${escHtml(s.tagColor || '#ff3b30')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateServiceField(${i},'tagColor',this.value)">
+        <input type="text" value="${escHtml(s.tagColor || '#ff3b30')}" placeholder="#ff3b30" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateServiceField(${i},'tagColor',this.value)}">
+      </div>
+      <input type="text" value="${escHtml(s.name || '')}" oninput="updateServiceField(${i},'name',this.value)">
+      <input type="number" min="0" step="1" value="${Number(s.price)||0}" oninput="updateServiceField(${i},'price',this.value)">
+      <input type="text" value="${escHtml(s.dur || '')}" oninput="updateServiceField(${i},'dur',this.value)">
+      <input type="url" value="${escHtml(s.img || '')}" oninput="updateServiceField(${i},'img',this.value)">
+      <textarea style="grid-column:1/-1;min-height:90px;resize:vertical" oninput="updateServiceField(${i},'desc',this.value)">${escHtml(s.desc || '')}</textarea>
+      <label class="day-check"><input type="checkbox" ${ui.emphasize ? 'checked' : ''} onchange="updateServiceField(${i},'ui.emphasize',this.checked)"><span>Emphasize</span></label>
+      <label class="day-check"><input type="checkbox" ${ui.glow ? 'checked' : ''} onchange="updateServiceField(${i},'ui.glow',this.checked)"><span>Glow</span></label>
+      <div class="s-row"><label style="font-size:10px">Card Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(ui.bg || 'transparent')}"></span><input type="color" value="${escHtml(ui.bg || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateServiceField(${i},'ui.bg',this.value)"><input type="text" value="${escHtml(ui.bg || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateServiceField(${i},'ui.bg','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateServiceField(${i},'ui.bg',this.value)}"></div></div>
+      <div class="s-row"><label style="font-size:10px">Outline Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(ui.outline || 'transparent')}"></span><input type="color" value="${escHtml(ui.outline || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateServiceField(${i},'ui.outline',this.value)"><input type="text" value="${escHtml(ui.outline || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateServiceField(${i},'ui.outline','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateServiceField(${i},'ui.outline',this.value)}"></div></div>
+      <div class="s-row"><label style="font-size:10px">Accent Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(ui.accent || 'transparent')}"></span><input type="color" value="${escHtml(ui.accent || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateServiceField(${i},'ui.accent',this.value)"><input type="text" value="${escHtml(ui.accent || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateServiceField(${i},'ui.accent','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateServiceField(${i},'ui.accent',this.value)}"></div></div>
+      <div class="s-row"><label style="font-size:10px">Glow Colour</label><div style="display:flex;align-items:center;gap:8px"><span class="color-swatch" style="--swatch:${escHtml(ui.glowColor || 'transparent')}"></span><input type="color" value="${escHtml(ui.glowColor || '#000000')}" oninput="this.previousElementSibling.style.setProperty('--swatch', this.value); this.nextElementSibling.value=this.value;updateServiceField(${i},'ui.glowColor',this.value)"><input type="text" value="${escHtml(ui.glowColor || '')}" placeholder="(none)" style="width:110px;background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:9px 10px;font-family:monospace;font-size:12px" oninput="this.value=this.value.trim(); if(this.value===''){this.previousElementSibling.value='#000000'; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch','transparent'); updateServiceField(${i},'ui.glowColor','')} else if(/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(this.value)){this.previousElementSibling.value=this.value; this.previousElementSibling.previousElementSibling.style.setProperty('--swatch', this.value); updateServiceField(${i},'ui.glowColor',this.value)}"></div></div>
+      <button class="adm-act" onclick="removeServiceAdmin(${i})">Remove</button>
+      ${prev}
+    </div>`;
+  }).join('');
 }
 function persistPackageChanges() {
   persist();
@@ -1798,13 +2354,67 @@ function persistPackageChanges() {
   renderPackageAdminUI();
   renderIndividualServiceOptions();
   renderIndividualServiceAdminUI();
+  renderPricingCards();
   if (settings.github?.autoSync) scheduleGithubSync();
+}
+function persistServiceChanges() {
+  persist();
+  renderServicesSection();
+  renderServicesAdminUI();
+  if (settings.github?.autoSync) scheduleGithubSync();
+}
+function updateServiceField(index, key, value) {
+  if (!Array.isArray(settings.services) || !settings.services[index]) return;
+  if (key === 'price') settings.services[index].price = Math.max(0, parseInt(value, 10) || 0);
+  else if (String(key).startsWith('ui.')) {
+    settings.services[index].ui = settings.services[index].ui || { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' };
+    const k = String(key).slice(3);
+    if (k === 'emphasize' || k === 'glow') settings.services[index].ui[k] = !!value;
+    else settings.services[index].ui[k] = typeof value === 'string' ? value.trim() : value;
+  } else settings.services[index][key] = typeof value === 'string' ? value.trim() : value;
+  if (!settings.services[index].id) settings.services[index].id = `svc_${Date.now()}_${index}`;
+  persistServiceChanges();
+}
+function addServiceAdmin() {
+  const tag = (document.getElementById('svc-new-tag')?.value || '').trim();
+  const tagColor = (document.getElementById('svc-new-tagc')?.value || '').trim();
+  const name = (document.getElementById('svc-new-name')?.value || '').trim();
+  const price = parseInt(document.getElementById('svc-new-price')?.value || '', 10);
+  const dur = (document.getElementById('svc-new-dur')?.value || '').trim();
+  const img = (document.getElementById('svc-new-img')?.value || '').trim();
+  const desc = (document.getElementById('svc-new-desc')?.value || '').trim();
+  if (!name) { alert('Enter service name.'); return; }
+  settings.services = Array.isArray(settings.services) ? settings.services : [];
+  settings.services.push({
+    id: `svc_${Date.now()}`,
+    tag,
+    tagColor: tagColor || '',
+    name,
+    price: Number.isFinite(price) ? Math.max(0, price) : 0,
+    dur: dur || '',
+    img: img || '',
+    desc: desc || '',
+    ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' }
+  });
+  ['svc-new-tag','svc-new-name','svc-new-price','svc-new-dur','svc-new-img','svc-new-desc'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  persistServiceChanges();
+}
+function removeServiceAdmin(index) {
+  if (!Array.isArray(settings.services)) return;
+  settings.services.splice(index, 1);
+  persistServiceChanges();
 }
 function updatePackageField(index, key, value) {
   if (!Array.isArray(settings.packages) || !settings.packages[index]) return;
   if (key === 'price') settings.packages[index].price = Math.max(1, parseInt(value, 10) || 1);
   else if (key === 'features') settings.packages[index].features = String(value || '').split(',').map(x => x.trim()).filter(Boolean);
   else if (key === 'featured') settings.packages[index].featured = !!value;
+  else if (String(key).startsWith('ui.')) {
+    settings.packages[index].ui = settings.packages[index].ui || { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' };
+    const k = String(key).slice(3);
+    if (k === 'emphasize' || k === 'glow') settings.packages[index].ui[k] = !!value;
+    else settings.packages[index].ui[k] = typeof value === 'string' ? value.trim() : value;
+  }
   else settings.packages[index][key] = typeof value === 'string' ? value.trim() : value;
   if (!settings.packages[index].id) settings.packages[index].id = `pkg_${Date.now()}_${index}`;
   persistPackageChanges();
@@ -1824,15 +2434,16 @@ function addPackageAdmin() {
     price,
     dur: dur || 'N/A',
     desc: (document.getElementById('pkg-new-desc')?.value || '').trim(),
-    img: (document.getElementById('pkg-new-img')?.value || '').trim(),
     features: String(document.getElementById('pkg-new-feat')?.value || '').split(',').map(x => x.trim()).filter(Boolean),
     badge: (document.getElementById('pkg-new-badge')?.value || '').trim(),
-    featured: document.getElementById('pkg-new-pop')?.checked === true
+    banner: '',
+    featured: document.getElementById('pkg-new-pop')?.checked === true,
+    ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' }
   });
   if (nameEl) nameEl.value = '';
   if (priceEl) priceEl.value = '';
   if (durEl) durEl.value = '';
-  ['pkg-new-desc','pkg-new-img','pkg-new-feat','pkg-new-badge'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['pkg-new-desc','pkg-new-feat','pkg-new-badge'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   const pkgPop = document.getElementById('pkg-new-pop'); if (pkgPop) pkgPop.checked = false;
   persistPackageChanges();
 }
@@ -1846,6 +2457,12 @@ function updateIndividualServiceField(index, key, value) {
   if (key === 'price') settings.individualServices[index].price = Math.max(1, parseInt(value, 10) || 1);
   else if (key === 'features') settings.individualServices[index].features = String(value || '').split(',').map(x => x.trim()).filter(Boolean);
   else if (key === 'featured') settings.individualServices[index].featured = !!value;
+  else if (String(key).startsWith('ui.')) {
+    settings.individualServices[index].ui = settings.individualServices[index].ui || { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' };
+    const k = String(key).slice(3);
+    if (k === 'emphasize' || k === 'glow') settings.individualServices[index].ui[k] = !!value;
+    else settings.individualServices[index].ui[k] = typeof value === 'string' ? value.trim() : value;
+  }
   else settings.individualServices[index][key] = typeof value === 'string' ? value.trim() : value;
   if (!settings.individualServices[index].id) settings.individualServices[index].id = `svc_${Date.now()}_${index}`;
   persistPackageChanges();
@@ -1865,15 +2482,16 @@ function addIndividualServiceAdmin() {
     price,
     dur: dur || 'N/A',
     desc: (document.getElementById('ind-new-desc')?.value || '').trim(),
-    img: (document.getElementById('ind-new-img')?.value || '').trim(),
     features: String(document.getElementById('ind-new-feat')?.value || '').split(',').map(x => x.trim()).filter(Boolean),
     badge: (document.getElementById('ind-new-badge')?.value || '').trim(),
-    featured: document.getElementById('ind-new-pop')?.checked === true
+    banner: '',
+    featured: document.getElementById('ind-new-pop')?.checked === true,
+    ui: { emphasize: false, glow: false, bg: '', outline: '', accent: '', glowColor: '' }
   });
   if (nameEl) nameEl.value = '';
   if (priceEl) priceEl.value = '';
   if (durEl) durEl.value = '';
-  ['ind-new-desc','ind-new-img','ind-new-feat','ind-new-badge'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['ind-new-desc','ind-new-feat','ind-new-badge'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   const indPop = document.getElementById('ind-new-pop'); if (indPop) indPop.checked = false;
   persistPackageChanges();
 }
@@ -1930,6 +2548,7 @@ function bindLiveSettings() {
 }
 function saveSettings() {
   syncSettingsFromUI();
+  schedulePromo();
   const btn = event.target; btn.textContent = '✓ Saved!'; btn.style.background = '#22C55E'; setTimeout(() => { btn.textContent = 'Save Changes'; btn.style.background = ''; }, 2000);
 }
 function changePw() {
@@ -2116,7 +2735,6 @@ window.addEventListener('storage', (e) => {
 updateSteps();
 renderRoute();
 </script>
-<script defer="" src="./DetailedByAustin — Premium Auto Detailing_files/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;7f7b0fd8732c4326aae4b9d58d5c514a&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
 
 
 </body></html>
