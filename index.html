@@ -1800,32 +1800,42 @@ async function syncSettingsToGithubNow() {
     const path = gh.path || 'settings.json';
     const apiPath = path.split('/').map(encodeURIComponent).join('/');
     const contentUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`;
-    let sha = undefined;
-    const existing = await fetch(contentUrl, { headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json' } });
-    if (existing.ok) {
-      const payload = await existing.json();
-      sha = payload.sha;
-    } else if (existing.status !== 404) {
-      const msg = await existing.text();
-      throw new Error(`GitHub read failed (${existing.status}): ${msg.slice(0, 160)}`);
-    }
+    const writeUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${apiPath}`;
     const syncPayload = JSON.parse(JSON.stringify(settings));
     delete syncPayload.github;
-    const body = {
-      message: `chore: sync admin settings ${new Date().toISOString()}`,
-      content: toB64Utf8(JSON.stringify(syncPayload, null, 2)),
-      branch
-    };
-    if (sha) body.sha = sha;
-    const putRes = await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${apiPath}`, {
-      method: 'PUT',
-      headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if (!putRes.ok) {
+    const payloadContent = toB64Utf8(JSON.stringify(syncPayload, null, 2));
+    let lastErr = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      let sha = undefined;
+      const existing = await fetch(contentUrl, { headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json' } });
+      if (existing.ok) {
+        const payload = await existing.json();
+        sha = payload.sha;
+      } else if (existing.status !== 404) {
+        const msg = await existing.text();
+        throw new Error(`GitHub read failed (${existing.status}): ${msg.slice(0, 160)}`);
+      }
+      const body = {
+        message: `chore: sync admin settings ${new Date().toISOString()}`,
+        content: payloadContent,
+        branch
+      };
+      if (sha) body.sha = sha;
+      const putRes = await fetch(writeUrl, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${githubToken}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (putRes.ok) { lastErr = null; break; }
       const msg = await putRes.text();
+      if (putRes.status === 409 && attempt < 3) {
+        lastErr = `GitHub write conflict, retrying (${attempt}/3)...`;
+        updateGithubStatus(lastErr, false);
+        continue;
+      }
       throw new Error(`GitHub write failed (${putRes.status}): ${msg.slice(0, 200)}`);
     }
+    if (lastErr) throw new Error(lastErr);
     updateGithubStatus(`Synced to ${owner}/${repo}@${branch}:${path} at ${new Date().toLocaleTimeString()}`);
   } catch (err) {
     updateGithubStatus(err.message || 'GitHub sync failed.', true);
