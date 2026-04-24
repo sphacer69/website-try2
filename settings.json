@@ -31,5 +31,355 @@
     "publishableKey": "",
     "paymentLink": "https://buy.stripe.com/test_8x228keYV8qj41U9aZ2VG00"
   },
-  "apiKey": "dba_b6734e8e770df1b1863579cb75357d54ff5f96e329aa90b0"
+  "apiKey": "dba_b6734e8e770df1b1863579cb75357d54ff5f96e329aa90b0",
+  "packages": [
+    {
+      "id": "exterior",
+      "name": "Exterior Wash",
+      "price": 80,
+      "dur": "1–2 hrs",
+      "desc": "Quick refresh for your car's exterior.",
+      "features": [
+        "Exterior wash & dry",
+        "Wheels & tires cleaned",
+        "Tire shine applied",
+        "1–2 hours"
+      ],
+      "badge": "",
+      "banner": "",
+      "featured": false,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "interior",
+      "name": "Interior Clean",
+      "price": 200,
+      "dur": "2–3 hrs",
+      "desc": "Deep clean inside your vehicle.",
+      "features": [
+        "Full vacuum",
+        "Plastics & leathers wiped",
+        "Windows cleaned",
+        "Floor mats cleaned",
+        "2–3 hours"
+      ],
+      "badge": "",
+      "banner": "",
+      "featured": false,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "combo",
+      "name": "Combo Detail",
+      "price": 300,
+      "dur": "4–5 hrs",
+      "desc": "Best value for regular maintenance.",
+      "features": [
+        "Deeper full interior detail",
+        "Full exterior detail",
+        "Best value package",
+        "4–5 hours"
+      ],
+      "badge": "★ Most Popular",
+      "banner": "",
+      "featured": true,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "detail",
+      "name": "Full Detail",
+      "price": 600,
+      "dur": "6+ hrs",
+      "desc": "Complete treatment, serious results.",
+      "features": [
+        "Intense interior clean",
+        "Intense exterior clean",
+        "Paint decontamination",
+        "Polish included",
+        "Any extra service required",
+        "6+ hours"
+      ],
+      "badge": "",
+      "banner": "",
+      "featured": false,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    }
+  ],
+  "seatPricing": {
+    "baseSeats": 5,
+    "perSeat": 40
+  },
+  "individualServices": [
+    {
+      "id": "polish",
+      "name": "Polish",
+      "price": 300,
+      "dur": "2–4 hours",
+      "desc": "Restore your paint's true depth and shine.",
+      "features": [
+        "Machine polish application",
+        "Removes light swirls & scratches",
+        "Eliminates oxidation",
+        "Deep mirror gloss finish",
+        "2–4 hours"
+      ],
+      "badge": "",
+      "banner": "",
+      "featured": false,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "diamond",
+      "name": "Diamond Fusion",
+      "price": 150,
+      "dur": "2–3 hours",
+      "desc": "Next-level hydrophobic paint & glass sealant.",
+      "features": [
+        "Ultra-slick hydrophobic barrier",
+        "Repels water, grime & UV",
+        "2–3 hours"
+      ],
+      "badge": "♦ Premium Sealant",
+      "banner": "",
+      "featured": false,
+      "img": "",
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    }
+  ],
+  "services": [
+    {
+      "id": "svc_exterior",
+      "tag": "Exterior",
+      "tagColor": "",
+      "name": "Exterior Wash",
+      "desc": "Thorough hand wash and dry, wheel & tire cleaning, and tire shine. Your car looking sharp — fast.",
+      "price": 80,
+      "dur": "1–2 hrs",
+      "img": "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "svc_interior",
+      "tag": "Interior",
+      "tagColor": "",
+      "name": "Interior Clean",
+      "desc": "Full vacuum, plastics & leathers wiped, windows cleaned inside, and floor mats thoroughly cleaned.",
+      "price": 200,
+      "dur": "2–3 hrs",
+      "img": "https://images.pexels.com/photos/1035108/pexels-photo-1035108.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "svc_combo",
+      "tag": "★ Best Value",
+      "tagColor": "#EAB308",
+      "name": "Combo Detail",
+      "desc": "Deeper full interior plus complete exterior detail — the best value package for regular maintenance.",
+      "price": 300,
+      "dur": "4–5 hrs",
+      "img": "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "svc_full",
+      "tag": "Full Detail",
+      "tagColor": "",
+      "name": "Full Detail",
+      "desc": "Intense interior & exterior clean, paint decontamination, polish, and any additional services required.",
+      "price": 600,
+      "dur": "6+ hrs",
+      "img": "https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "svc_polish",
+      "tag": "Paint Correction",
+      "tagColor": "",
+      "name": "Polish",
+      "desc": "Machine polish to remove light scratches, swirl marks, and oxidation — restoring a deep, mirror-like gloss to your paint before any coating or protection is applied.",
+      "price": 300,
+      "dur": "2–4 hrs",
+      "img": "https://images.pexels.com/photos/4489737/pexels-photo-4489737.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    },
+    {
+      "id": "svc_diamond",
+      "tag": "♦ Premium Protection",
+      "tagColor": "",
+      "name": "Diamond Fusion",
+      "desc": "A professional-grade glass and paint sealant that chemically bonds to your vehicle's surfaces, creating an ultra-slick hydrophobic barrier. Repels water, road grime, and UV damage — keeping your car cleaner longer between washes.",
+      "price": 150,
+      "dur": "2–3 hrs",
+      "img": "https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "featured": false,
+      "ui": {
+        "emphasize": false,
+        "glow": false,
+        "bg": "",
+        "outline": "",
+        "accent": "",
+        "glowColor": ""
+      }
+    }
+  ],
+  "nano": {
+    "id": "nano",
+    "title": "Nano Armor Protection Package",
+    "badge": "🛡 Nano Ceramic",
+    "svcImg": "https://images.pexels.com/photos/35149468/pexels-photo-35149468.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "svcAlt": "Nano ceramic coating",
+    "svcDesc": "Full exterior wash, paint decontamination, full polish, then a professional dual-coat nano ceramic coating applied for lasting gloss and defense against the elements.",
+    "svcFeatures": [
+      "Full exterior wash",
+      "Paint decontamination",
+      "Full polish",
+      "Professional dual coat nano ceramic"
+    ],
+    "shieldTitle": "Protection lasts 4–6 years",
+    "shieldDesc": "Bonds to your paint for lasting gloss and all-season protection.",
+    "price": 1250,
+    "priceColor": "#7aa0d4",
+    "ui": {
+      "emphasize": false,
+      "glow": false,
+      "bg": "",
+      "outline": "",
+      "accent": "",
+      "glowColor": ""
+    },
+    "pkgFlag": "🛡 Top Pick — Long-Term Protection",
+    "pkgBadge": "Nano Ceramic",
+    "pkgName": "Nano Armor Protection",
+    "pkgBlurb": "The smartest long-term investment for your paint. One application, years of showroom shine.",
+    "pkgFeatures": [
+      "Full exterior wash",
+      "Paint decontamination",
+      "Full polish",
+      "Professional dual coat nano ceramic"
+    ],
+    "pkgUi": {
+      "emphasize": false,
+      "glow": false,
+      "bg": "",
+      "outline": "",
+      "accent": "",
+      "glowColor": ""
+    },
+    "benefits": [
+      {
+        "icon": "🛡",
+        "title": "4–6 Year Shield",
+        "desc": "Bonds to paint for lasting defense."
+      },
+      {
+        "icon": "💧",
+        "title": "Hydrophobic",
+        "desc": "Water & dirt slide right off."
+      },
+      {
+        "icon": "☀️",
+        "title": "UV Block",
+        "desc": "Prevents fade & oxidation."
+      },
+      {
+        "icon": "✨",
+        "title": "Deeper Gloss",
+        "desc": "Richer colour, mirror finish."
+      },
+      {
+        "icon": "🚗",
+        "title": "Easy Wash",
+        "desc": "Less scrubbing, faster cleans."
+      }
+    ],
+    "cta": "Book Now",
+    "ctaLong": "Book Nano Armor →"
+  }
 }
