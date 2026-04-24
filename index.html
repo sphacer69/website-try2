@@ -1105,7 +1105,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             <div class="s-row"><label>Repo</label><input type="text" id="gh-repo" placeholder="website-try2"></div>
             <div class="s-row"><label>Branch</label><input type="text" id="gh-branch" placeholder="main"></div>
             <div class="s-row"><label>Settings File Path</label><input type="text" id="gh-path" placeholder="settings.json"></div>
-            <div class="s-row" style="grid-column:span 2"><label>Fine-grained PAT (contents:write)</label><input type="password" id="gh-token" placeholder="GitHub token (stored in this browser session only)"></div>
+            <div class="s-row" style="grid-column:span 2"><label>Fine-grained PAT (contents:write)</label><input type="password" id="gh-token" placeholder="GitHub token (saved on this browser/device)"></div>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px;">
             <button class="btn-r" onclick="connectGithubToken()" style="padding:9px 18px;font-size:10px">Connect Token</button>
@@ -1251,7 +1251,7 @@ let bookings = JSON.parse(localStorage.getItem('dba_bookings') || '[]');
 let leads = JSON.parse(localStorage.getItem('dba_leads') || '[]');
 let settings = JSON.parse(localStorage.getItem('dba_settings') || '{"code":"FIRST10","disc":10,"delay":4,"popup":true,"pass":"admin123","phone":"(XXX) XXX-XXXX","email":"hello@detailedbyaustin.com","loc":"Your City, Province/State","openTime":"8:00 AM","closeTime":"6:00 PM","days":{"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true,"sun":false},"social":{"ig":"","tk":"","fb":"","yt":"","tw":""}}');
 settings.github = settings.github || { owner: 'sphacer69', repo: 'website-try2', branch: 'main', path: 'settings.json', autoSync: false };
-let githubToken = sessionStorage.getItem('dba_github_token') || '';
+let githubToken = localStorage.getItem('dba_github_token') || '';
 let githubSyncTimer = null;
 function persist() { localStorage.setItem('dba_bookings', JSON.stringify(bookings)); localStorage.setItem('dba_leads', JSON.stringify(leads)); localStorage.setItem('dba_settings', JSON.stringify(settings)); }
 
@@ -1616,8 +1616,8 @@ function loadSettingsUI() {
   const ghBranch = document.getElementById('gh-branch'); if (ghBranch) ghBranch.value = gh.branch || 'main';
   const ghPath = document.getElementById('gh-path'); if (ghPath) ghPath.value = gh.path || 'settings.json';
   const ghAuto = document.getElementById('gh-auto'); if (ghAuto) ghAuto.checked = gh.autoSync === true;
-  const ghToken = document.getElementById('gh-token'); if (ghToken) ghToken.value = githubToken ? '********' : '';
-  updateGithubStatus(githubToken ? 'Token connected in this browser session.' : 'Token not connected.');
+  const ghToken = document.getElementById('gh-token'); if (ghToken) ghToken.value = githubToken || '';
+  updateGithubStatus(githubToken ? 'Token saved on this device and ready to sync.' : 'Token not connected.');
 }
 function syncSettingsFromUI() {
   if (!document.getElementById('s-name')) return;
@@ -1758,14 +1758,13 @@ function connectGithubToken() {
   const inp = document.getElementById('gh-token');
   if (!inp) return;
   const token = inp.value.trim();
-  if (!token || token === '********') {
+  if (!token) {
     updateGithubStatus('Enter a valid token to connect.', true);
     return;
   }
   githubToken = token;
-  sessionStorage.setItem('dba_github_token', githubToken);
-  inp.value = '********';
-  updateGithubStatus('GitHub token connected. Ready to sync.');
+  localStorage.setItem('dba_github_token', githubToken);
+  updateGithubStatus('GitHub token saved on this browser. Ready to sync.');
 }
 function scheduleGithubSync() {
   clearTimeout(githubSyncTimer);
