@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)https://admin-hash-routing.preview.emergentagent.com/app.html#/admin -->
+<!-- saved from url=(0046)file:///C:/Users/austj/Downloads/index_19.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DetailedByAustin — Premium Auto Detailing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -392,8 +392,16 @@ footer{padding:36px 48px;border-top:1px solid rgba(255,255,255,.07);display:flex
 .slots-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#52525B;margin-bottom:11px;}
 .slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
 .slot-btn{background:var(--surf);border:1px solid var(--bdr);padding:11px 6px;font-size:12px;font-weight:600;color:var(--mut);cursor:pointer;text-align:center;transition:all .2s;}
-.slot-btn:hover{border-color:rgba(255,255,255,.2);color:#fff;transform:translateY(-1px);}
+.slot-btn:hover:not(:disabled){border-color:rgba(255,255,255,.2);color:#fff;transform:translateY(-1px);}
 .slot-btn.sel{border-color:var(--red);background:rgba(255,59,48,.1);color:#fff;}
+/* A slot is "dis" when an existing booking on the same date overlaps it,
+   or when starting a multi-hour service here would extend into another booking. */
+.slot-btn.dis{opacity:.4;text-decoration:line-through;cursor:not-allowed;background:#0A0A0C;color:#52525B;}
+.slot-btn.dis:hover{border-color:var(--bdr);color:#52525B;transform:none;}
+.slots-legend{grid-column:1/-1;font-size:10px;color:var(--mut);letter-spacing:.05em;text-transform:uppercase;margin-top:4px;display:flex;gap:14px;flex-wrap:wrap;}
+.slots-legend span{display:inline-flex;align-items:center;gap:6px;}
+.slots-legend .swatch{display:inline-block;width:10px;height:10px;border:1px solid var(--bdr);}
+.slots-legend .swatch.dis{background:#0A0A0C;opacity:.4;}
 .form-box{background:var(--surf);border:1px solid var(--bdr);padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 /* ── Live price estimate (sp2: Your Information) ── */
 .your-info-estimate{background:#0A0A0C;border:1px solid var(--bdr);padding:18px 22px;margin-bottom:16px;}
@@ -781,39 +789,39 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 <body>
 
 <!-- NAV -->
-<nav id="navbar" class="" style="display: none;">
+<nav id="navbar" class="" style="">
   <div class="nav-inner">
-    <a href="#" class="logo">DETAILED<em>BY</em>AUSTIN</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#" class="logo">DETAILED<em>BY</em>AUSTIN</a>
     <ul class="nav-links">
-      <li><a href="#services-wrap">Services</a></li>
-      <li><a href="#pricing-wrap">Pricing</a></li>
-      <li><a href="#testi-wrap">Reviews</a></li>
-      <li><a href="#quote-wrap">Quote</a></li>
-      <li><a href="#contact-wrap">Contact</a></li>
+      <li><a href="file:///C:/Users/austj/Downloads/index_19.html#services-wrap">Services</a></li>
+      <li><a href="file:///C:/Users/austj/Downloads/index_19.html#pricing-wrap">Pricing</a></li>
+      <li><a href="file:///C:/Users/austj/Downloads/index_19.html#testi-wrap">Reviews</a></li>
+      <li><a href="file:///C:/Users/austj/Downloads/index_19.html#quote-wrap">Quote</a></li>
+      <li><a href="file:///C:/Users/austj/Downloads/index_19.html#contact-wrap">Contact</a></li>
       <li><button class="btn-r" onclick="openBooking()">Book Now</button></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()">☰</button>
   </div>
   <div class="mob-menu" id="mob-menu">
-    <a href="#services-wrap" onclick="closeMob()">Services</a>
-    <a href="#pricing-wrap" onclick="closeMob()">Pricing</a>
-    <a href="#testi-wrap" onclick="closeMob()">Reviews</a>
-    <a href="#quote-wrap" onclick="closeMob()">Quote</a>
-    <a href="#contact-wrap" onclick="closeMob()">Contact</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#services-wrap" onclick="closeMob()">Services</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#pricing-wrap" onclick="closeMob()">Pricing</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#testi-wrap" onclick="closeMob()">Reviews</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#quote-wrap" onclick="closeMob()">Quote</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#contact-wrap" onclick="closeMob()">Contact</a>
     <button class="btn-r" onclick="closeMob();openBooking()">Book Now</button>
   </div>
 </nav>
 
 <!-- PROMO FLOAT BUTTON -->
-<div id="promo-float" hidden="">
+<div id="promo-float">
   <button onclick="reopenPromo()">
     <span style="font-size:18px">🏷️</span>
-    <span id="promo-float-pct" style="font-family:'Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:2px;opacity:1">10% OFF</span> <span id="promo-float-label">Limited Promo</span>
+    <span id="promo-float-pct" style="font-family:&#39;Inter&#39;,sans-serif;font-weight:700;font-size:18px;letter-spacing:2px;opacity:1">10% OFF</span> <span id="promo-float-label">Limited Promo</span>
   </button>
 </div>
 
 <!-- HERO -->
-<section id="hero" class="loaded" style="display: none;">
+<section id="hero" class="loaded" style="">
   <div class="hero-bg"></div>
   <div class="hero-ov"></div>
   <div class="hero-content">
@@ -822,27 +830,27 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
     <p class="hero-sub">Professional car detailing that goes beyond clean. We deliver showroom-quality results, every time.</p>
     <div class="hero-btns">
       <button class="btn-r" style="padding:15px 32px;font-size:12px" onclick="openBooking()">Book Your Detail &nbsp;→</button>
-      <a href="#services-wrap" class="btn-outline">View Services</a>
+      <a href="file:///C:/Users/austj/Downloads/index_19.html#services-wrap" class="btn-outline">View Services</a>
     </div>
   </div>
   <div class="hero-stats">
     <div><div class="h-stat-val" id="hero-cars">500+</div><div class="h-stat-label">Cars Detailed</div></div>
-    <div><div class="h-stat-val" id="hero-rating">5★</div><div class="h-stat-label">Avg Rating</div></div>
+    <div><div class="h-stat-val" id="hero-rating">4.8★</div><div class="h-stat-label">Avg Rating</div></div>
     <div><div class="h-stat-val">4–6yr</div><div class="h-stat-label">Nano Protection</div></div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
 </section>
 
 <!-- SERVICES -->
-<section id="services-wrap" style="display: none;">
+<section id="services-wrap" style="">
   <div class="sec">
     <div class="reveal vis">
       <p class="eyebrow">What We Do</p>
       <h2 class="sec-h">Our <span class="acc">Services</span></h2>
     </div>
     <div class="svc-grid">
-      <div id="nano-svc-host"><div class="svc nano-svc reveal vis" style="transition-delay:.35s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-35149468.jpeg" alt="Nano ceramic coating"></div>
+      <div id="nano-svc-host"><div class="svc nano-svc reveal" style="transition-delay:.35s;">
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-35149468.jpeg" alt="Nano ceramic coating"></div>
       <div class="svc-body">
         <div class="nano-badge2">🛡 Nano Ceramic</div>
         <div class="svc-name" style="font-size:26px;letter-spacing:3px">Nano Armor Protection Package</div>
@@ -856,7 +864,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       </div>
     </div></div>
       <div id="services-dyn" class="svc-dyn"><div class="svc reveal" style="transition-delay:0.05s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-164634.jpeg" alt="Exterior Wash"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-164634.jpeg" alt="Exterior Wash"></div>
       <div class="svc-body">
         <div class="svc-tag">Exterior</div>
         <div class="svc-name">Exterior Wash</div>
@@ -865,7 +873,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="svc-footer"><span class="svc-price">$80</span><span class="svc-dur">1–2 hrs</span></div>
       </div>
     </div><div class="svc reveal" style="transition-delay:0.1s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-1035108.jpeg" alt="Interior Clean"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-1035108.jpeg" alt="Interior Clean"></div>
       <div class="svc-body">
         <div class="svc-tag">Interior</div>
         <div class="svc-name">Interior Clean</div>
@@ -874,7 +882,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="svc-footer"><span class="svc-price">$200</span><span class="svc-dur">2–3 hrs</span></div>
       </div>
     </div><div class="svc reveal" style="transition-delay:0.15000000000000002s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-120049.jpeg" alt="Combo Detail"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-120049.jpeg" alt="Combo Detail"></div>
       <div class="svc-body">
         <div class="svc-tag" style="color:#EAB308">★ Best Value</div>
         <div class="svc-name">Combo Detail</div>
@@ -883,7 +891,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">4–5 hrs</span></div>
       </div>
     </div><div class="svc reveal" style="transition-delay:0.2s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-1592384.jpeg" alt="Full Detail"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-1592384.jpeg" alt="Full Detail"></div>
       <div class="svc-body">
         <div class="svc-tag">Full Detail</div>
         <div class="svc-name">Full Detail</div>
@@ -892,7 +900,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="svc-footer"><span class="svc-price">$600</span><span class="svc-dur">6+ hrs</span></div>
       </div>
     </div><div class="svc reveal" style="transition-delay:0.25s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-4489737.jpeg" alt="Polish"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-4489737.jpeg" alt="Polish"></div>
       <div class="svc-body">
         <div class="svc-tag">Paint Correction</div>
         <div class="svc-name">Polish</div>
@@ -901,7 +909,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="svc-footer"><span class="svc-price">$300</span><span class="svc-dur">2–4 hrs</span></div>
       </div>
     </div><div class="svc reveal" style="transition-delay:0.3s;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-3802510.jpeg" alt="Diamond Fusion"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-3802510.jpeg" alt="Diamond Fusion"></div>
       <div class="svc-body">
         <div class="svc-tag">♦ Premium Protection</div>
         <div class="svc-name">Diamond Fusion</div>
@@ -916,7 +924,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- PRICING -->
-<section id="pricing-wrap" style="display: none;">
+<section id="pricing-wrap" style="">
   <div class="sec">
     <div class="reveal vis"><p class="eyebrow">Packages</p><h2 class="sec-h">Choose Your <span class="acc">Package</span></h2></div>
     <div class="pkg-grid reveal vis" id="pricing-pkg-grid"><div class="pkg" onclick="openBooking(&#39;exterior&#39;)" role="button" tabindex="0">
@@ -966,7 +974,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="pkg-price"><sup>$</sup>150</div>
         <ul class="pkg-list"><li>Ultra-slick hydrophobic barrier</li><li>Repels water, grime &amp; UV</li><li>2–3 hours</li></ul>
         <div class="btn-r pkg-cta">Book This Package</div>
-      </div><div id="nano-pkg-host"><div class="nano-pkg reveal emph vis" onclick="openBooking(&#39;nano&#39;)" role="button" tabindex="0" style="cursor:pointer;">
+      </div><div id="nano-pkg-host"><div class="nano-pkg reveal emph" onclick="openBooking(&#39;nano&#39;)" role="button" tabindex="0" style="cursor:pointer;">
       <div class="nano-pkg-flag">🛡 Top Pick — Long-Term Protection</div>
       <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
         <div class="nano-badge2">Nano Ceramic</div>
@@ -984,7 +992,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- ADD-ONS -->
-<section id="addons-wrap" style="display: none;">
+<section id="addons-wrap" style="">
   <div class="sec">
     <div class="reveal vis"><p class="eyebrow">Customize Your Detail</p><h2 class="sec-h">Popular <span class="acc">Add-Ons</span></h2></div>
     <div class="addons-grid reveal vis" id="main-addons-grid">
@@ -1058,7 +1066,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- TESTIMONIALS -->
-<section id="testi-wrap" style="display: none;">
+<section id="testi-wrap" style="">
   <div class="sec">
     <div class="reveal vis"><p class="eyebrow">Reviews</p><h2 class="sec-h">What Clients <span class="acc">Say</span></h2></div>
     <div class="testi-grid">
@@ -1097,7 +1105,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- REQUEST A QUOTE -->
-<section id="quote-wrap" style="display:none;">
+<section id="quote-wrap" style="">
   <div class="sec">
     <div class="reveal vis" style="text-align:center;margin-bottom:42px">
       <p class="eyebrow">Request a Quote</p>
@@ -1106,15 +1114,15 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
     </div>
     <div class="quote-grid">
       <div>
-        <form id="quote-form" class="quote-form reveal vis" autocomplete="on" novalidate>
-          <div class="fg full"><label for="q-name">Full Name *</label><input type="text" id="q-name" required><span class="err-msg">Please enter your name.</span></div>
-          <div class="fg"><label for="q-email">Email *</label><input type="email" id="q-email" required><span class="err-msg">Enter a valid email.</span></div>
-          <div class="fg"><label for="q-phone">Phone *</label><input type="tel" id="q-phone" required placeholder="(555) 555-0100"><span class="err-msg">Enter a valid phone number.</span></div>
+        <form id="quote-form" class="quote-form reveal vis" autocomplete="on" novalidate="" data-bound="1">
+          <div class="fg full"><label for="q-name">Full Name *</label><input type="text" id="q-name" required=""><span class="err-msg">Please enter your name.</span></div>
+          <div class="fg"><label for="q-email">Email *</label><input type="email" id="q-email" required=""><span class="err-msg">Enter a valid email.</span></div>
+          <div class="fg"><label for="q-phone">Phone *</label><input type="tel" id="q-phone" required="" placeholder="(555) 555-0100"><span class="err-msg">Enter a valid phone number.</span></div>
           <div class="fg"><label for="q-year">Vehicle Year</label><input type="number" id="q-year" inputmode="numeric" min="1900" max="2100" step="1" placeholder="e.g. 2018"></div>
           <div class="fg"><label for="q-make">Make</label><input type="text" id="q-make" placeholder="Toyota, Tesla, BMW…"></div>
           <div class="fg full"><label for="q-model">Model</label><input type="text" id="q-model" placeholder="e.g. Camry, Model 3, M3"></div>
           <div class="fg full"><label for="q-service">Service Requested *</label>
-            <select id="q-service" required>
+            <select id="q-service" required="">
               <option value="">— Select a service —</option>
               <option value="interior">Interior</option>
               <option value="exterior">Exterior</option>
@@ -1124,13 +1132,13 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             </select>
             <span class="err-msg">Please choose a service.</span>
           </div>
-          <div class="fg full"><label for="q-desc">Describe Your Request *</label><textarea id="q-desc" required placeholder="Tell us about the vehicle's condition, what you're hoping for, timeline, etc."></textarea><span class="err-msg">Please describe what you need.</span></div>
+          <div class="fg full"><label for="q-desc">Describe Your Request *</label><textarea id="q-desc" required="" placeholder="Tell us about the vehicle&#39;s condition, what you&#39;re hoping for, timeline, etc."></textarea><span class="err-msg">Please describe what you need.</span></div>
           <div class="fg full">
             <label>Photos <span style="color:#52525B;letter-spacing:.05em;text-transform:none;font-weight:400">(optional, up to 5)</span></label>
-            <div id="q-drop" class="quote-drop" onclick="document.getElementById('q-photos').click()">
+            <div id="q-drop" class="quote-drop" onclick="document.getElementById(&#39;q-photos&#39;).click()">
               <strong>Drag &amp; drop or click to upload</strong>
               <p>JPG, PNG, WebP — auto-compressed before sending</p>
-              <input type="file" id="q-photos" accept="image/*" multiple style="display:none">
+              <input type="file" id="q-photos" accept="image/*" multiple="" style="display:none">
             </div>
             <div id="q-thumbs" class="quote-thumbs"></div>
           </div>
@@ -1142,7 +1150,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       </div>
       <div class="reveal-left vis">
         <p class="eyebrow">What Happens Next</p>
-        <h3 style="font-family:'Inter';font-weight:700;font-size:32px;color:#fff;letter-spacing:.04em;margin:8px 0 16px">A Personal, No-Pressure Quote</h3>
+        <h3 style="font-family:&#39;Inter&#39;;font-weight:700;font-size:32px;color:#fff;letter-spacing:.04em;margin:8px 0 16px">A Personal, No-Pressure Quote</h3>
         <p style="color:var(--mut);font-size:14px;line-height:1.8">After you send your request, Austin reviews the photos and details personally and reaches out by phone or email — usually within one business day — with a transparent quote tailored to your vehicle.</p>
         <div class="quote-info-card">
           <h4>Why Send Photos?</h4>
@@ -1158,7 +1166,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- CONTACT -->
-<section id="contact-wrap" style="display: none;">
+<section id="contact-wrap" style="">
   <div class="sec">
     <div class="contact-grid">
       <div class="reveal-left vis">
@@ -1178,23 +1186,23 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </section>
 
 <!-- FOOTER -->
-<footer style="display: none;">
+<footer style="">
   <div class="footer-logo">DETAILED<em>BY</em>AUSTIN</div>
   <div class="footer-soc" id="footer-soc">
     <a href="https://www.instagram.com/detailedbyaustin1/" id="soc-ig" aria-label="Instagram" style="display: flex;">IG</a>
-    <a href="#" id="soc-tk" aria-label="TikTok" style="display:none">TK</a>
-    <a href="#" id="soc-fb" aria-label="Facebook" style="display:none">FB</a>
-    <a href="#" id="soc-yt" aria-label="YouTube" style="display:none">YT</a>
-    <a href="#" id="soc-tw" aria-label="Twitter/X" style="display:none">𝕏</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#" id="soc-tk" aria-label="TikTok" style="display:none">TK</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#" id="soc-fb" aria-label="Facebook" style="display:none">FB</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#" id="soc-yt" aria-label="YouTube" style="display:none">YT</a>
+    <a href="file:///C:/Users/austj/Downloads/index_19.html#" id="soc-tw" aria-label="Twitter/X" style="display:none">𝕏</a>
   </div>
   <p class="footer-copy">© 2025 DetailedByAustin. All rights reserved. &nbsp;|&nbsp; <button class="footer-admin-btn" onclick="goAdmin()">Admin</button></p>
 </footer>
 
 <!-- PROMO POPUP -->
-<div id="promo-overlay" style="display: none;">
-  <div class="promo-box">
+<div id="promo-overlay" style="" class="show">
+  <div class="promo-box animate">
     <div class="promo-img-wrap">
-      <img class="promo-img" src="./asdasdasd_files/pexels-photo-120049.jpeg" alt="Car detail">
+      <img class="promo-img" src="./index_files/pexels-photo-120049(1).jpeg" alt="Car detail">
       <div class="promo-badge"><span id="promo-badge-pct">10%</span><small>OFF</small></div>
     </div>
     <div class="promo-body">
@@ -1223,7 +1231,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </div>
 
 <!-- BOOKING MODAL -->
-<div id="booking-overlay" onclick="bkOvClick(event)" style="display: none;">
+<div id="booking-overlay" onclick="bkOvClick(event)" style="">
   <div class="bk-modal">
     <div class="bk-header">
       <span class="bk-logo">DETAILED<em>BY</em>AUSTIN</span>
@@ -1272,8 +1280,8 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
         <div class="form-box">
           <div class="fsec">Personal Details</div>
           <div class="fg"><label for="fn">Full Name</label><input id="fn" type="text" placeholder="John Doe" oninput="chkNx()"></div>
-          <div class="fg"><label for="fe">Email</label><input id="fe" type="email" placeholder="john@email.com" oninput="onContactInput('fe')" onblur="markTouched('fe')"><span class="err-msg" id="fe-err">Enter a valid email address.</span></div>
-          <div class="fg full"><label for="fp">Phone</label><input id="fp" type="tel" placeholder="(555) 555-0100" oninput="onContactInput('fp')" onblur="markTouched('fp')"><span class="err-msg" id="fp-err">Enter a valid phone number (at least 7 digits).</span></div>
+          <div class="fg"><label for="fe">Email</label><input id="fe" type="email" placeholder="john@email.com" oninput="onContactInput(&#39;fe&#39;)" onblur="markTouched(&#39;fe&#39;)"><span class="err-msg" id="fe-err">Enter a valid email address.</span></div>
+          <div class="fg full"><label for="fp">Phone</label><input id="fp" type="tel" placeholder="(555) 555-0100" oninput="onContactInput(&#39;fp&#39;)" onblur="markTouched(&#39;fp&#39;)"><span class="err-msg" id="fp-err">Enter a valid phone number (at least 7 digits).</span></div>
           <div class="fg full"><label for="fc">Promo Code (Optional)</label><input id="fc" type="text" placeholder="e.g. FIRST10" style="text-transform:uppercase" oninput="updatePriceEstimate()"></div>
           <div class="fsec" style="margin-top:4px">Vehicle Details</div>
           <div class="fg"><label for="fm">Make</label><select id="fm" onchange="chkNx()"><option value="">Select Make</option><option>Toyota</option><option>Honda</option><option>Ford</option><option>Chevrolet</option><option>BMW</option><option>Mercedes</option><option>Audi</option><option>Tesla</option><option>Lexus</option><option>Porsche</option><option>Dodge</option><option>RAM</option><option>Hyundai</option><option>Kia</option><option>Subaru</option><option>Other</option></select></div>
@@ -1304,7 +1312,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </div>
 
 <!-- SUCCESS -->
-<div id="success-overlay" style="display: none;">
+<div id="success-overlay" style="">
   <div class="succ-box">
     <div class="succ-icon">✅</div>
     <h2 class="succ-h">Booking Confirmed!</h2>
@@ -1314,7 +1322,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
 </div>
 
 <!-- ADMIN PANEL -->
-<div id="admin-overlay" style="display: block;">
+<div id="admin-overlay" style="display: none;">
   <div class="adm-nav">
     <span class="adm-logo">DETAILED<em>BY</em>AUSTIN <span>Admin</span></span>
     <button class="adm-close" onclick="goHome()">✕ Close</button>
@@ -1331,7 +1339,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
     </div>
     <div id="adm-dash" style="display: block;" data-live-bound="1">
       <div style="display:flex;justify-content:flex-end;margin-bottom:18px;margin-top:4px">
-        <button id="admin-undo-btn" type="button" disabled onclick="performUndo()" title="Undo your most recent admin change" style="background:#1a1a1f;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 14px;font-family:Inter;font-size:12px;letter-spacing:.05em;cursor:not-allowed;opacity:.4;transition:all .2s">↶ Undo</button>
+        <button id="admin-undo-btn" type="button" disabled="" onclick="performUndo()" title="Undo your most recent admin change" style="background:#1a1a1f;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 14px;font-family:Inter;font-size:12px;letter-spacing:.05em;cursor:not-allowed;opacity:.4;transition:all .2s">↶ Undo</button>
       </div>
       <nav class="adm-tabnav" aria-label="Admin sections">
         <div class="adm-tabnav-group" role="group" aria-labelledby="nv-ops">
@@ -1403,7 +1411,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <!-- Quote Requests -->
       <div class="adm-panel" id="tab-quotes">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-          <h3 style="font-family:'Inter';font-weight:700;font-size:20px;letter-spacing:2px;color:#fff">Quote Requests</h3>
+          <h3 style="font-family:&#39;Inter&#39;;font-weight:700;font-size:20px;letter-spacing:2px;color:#fff">Quote Requests</h3>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
             <select id="q-filter-status" onchange="renderQuotes()" style="background:#050507;border:1px solid var(--bdr);color:#D4D4D8;padding:8px 10px;font-size:11px;font-family:Inter">
               <option value="">All statuses</option>
@@ -1777,9 +1785,9 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             <div style="grid-column:1/-1;border-top:1px solid var(--bdr);margin-top:4px;padding-top:12px">
               <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-bottom:8px">Service Card Banner <span style="color:#52525B;letter-spacing:.1em;font-weight:400;text-transform:none">(the highlight block on the Nano service card — e.g. "Protection lasts 4–6 years")</span></div>
               <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:8px">
-                <input type="text" id="nano-shield-icon" placeholder="🛡" style="text-align:center" oninput="updateNanoBannerPreview('nano')">
-                <input type="text" id="nano-shield-title" placeholder="Banner title (e.g. Protection lasts 4–6 years)" oninput="updateNanoBannerPreview('nano')">
-                <input type="text" id="nano-shield-desc" placeholder="Banner description (small line below)" oninput="updateNanoBannerPreview('nano')">
+                <input type="text" id="nano-shield-icon" placeholder="🛡" style="text-align:center" oninput="updateNanoBannerPreview(&#39;nano&#39;)">
+                <input type="text" id="nano-shield-title" placeholder="Banner title (e.g. Protection lasts 4–6 years)" oninput="updateNanoBannerPreview(&#39;nano&#39;)">
+                <input type="text" id="nano-shield-desc" placeholder="Banner description (small line below)" oninput="updateNanoBannerPreview(&#39;nano&#39;)">
               </div>
               <div style="margin-top:10px"><div class="adm-prev-label" style="margin-bottom:6px">Live banner preview</div><div id="nano-shield-preview" class="nano-shield"><span style="font-size:20px;flex-shrink:0">🛡</span><div><strong></strong></div></div></div>
             </div>
@@ -1826,9 +1834,9 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
             <textarea id="nsvc-desc" placeholder="Short description" style="grid-column:1/-1;min-height:70px;resize:vertical"></textarea>
             <textarea id="nsvc-feats" placeholder="Features (comma separated)" style="grid-column:1/-1;min-height:60px;resize:vertical"></textarea>
             <div style="grid-column:1/-1;display:grid;grid-template-columns:80px 1fr 1fr;gap:10px">
-              <input type="text" id="nsvc-shield-icon" placeholder="🛡" style="text-align:center" oninput="updateNanoBannerPreview('nsvc')">
-              <input type="text" id="nsvc-shield-title" placeholder="Banner title (e.g. Protection lasts 4–6 years)" oninput="updateNanoBannerPreview('nsvc')">
-              <input type="text" id="nsvc-shield-desc" placeholder="Banner description (small line below)" oninput="updateNanoBannerPreview('nsvc')">
+              <input type="text" id="nsvc-shield-icon" placeholder="🛡" style="text-align:center" oninput="updateNanoBannerPreview(&#39;nsvc&#39;)">
+              <input type="text" id="nsvc-shield-title" placeholder="Banner title (e.g. Protection lasts 4–6 years)" oninput="updateNanoBannerPreview(&#39;nsvc&#39;)">
+              <input type="text" id="nsvc-shield-desc" placeholder="Banner description (small line below)" oninput="updateNanoBannerPreview(&#39;nsvc&#39;)">
             </div>
             <div style="grid-column:1/-1"><div class="adm-prev-label" style="margin-bottom:6px">Live banner preview</div><div id="nsvc-shield-preview" class="nano-shield"><span style="font-size:20px;flex-shrink:0">🛡</span><div><strong></strong></div></div></div>
             <input type="number" id="nsvc-price" min="0" step="1" placeholder="Price">
@@ -1871,7 +1879,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
           <div class="adm-prev-wrap">
             <div class="adm-prev-label">Preview</div>
             <div class="adm-prev-card" id="nsvc-preview" style="max-width:880px"><div class="svc nano-svc" style="cursor:default;">
-      <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-35149468.jpeg" alt="Nano ceramic coating"></div>
+      <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-35149468(1).jpeg" alt="Nano ceramic coating"></div>
       <div class="svc-body">
         <div class="nano-badge2">🛡 Nano Ceramic</div>
         <div class="svc-name" style="font-size:24px;letter-spacing:3px">Nano Armor Protection Package</div>
@@ -1975,7 +1983,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-164634.jpeg" alt="Exterior Wash"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-164634(1).jpeg" alt="Exterior Wash"></div>
           <div class="svc-body">
             <div class="svc-tag">Exterior</div>
             <div class="svc-name">Exterior Wash</div>
@@ -2071,7 +2079,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-1035108.jpeg" alt="Interior Clean"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-1035108(1).jpeg" alt="Interior Clean"></div>
           <div class="svc-body">
             <div class="svc-tag">Interior</div>
             <div class="svc-name">Interior Clean</div>
@@ -2167,7 +2175,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-120049.jpeg" alt="Combo Detail"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-120049(1).jpeg" alt="Combo Detail"></div>
           <div class="svc-body">
             <div class="svc-tag" style="color:#EAB308">★ Best Value</div>
             <div class="svc-name">Combo Detail</div>
@@ -2263,7 +2271,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-1592384.jpeg" alt="Full Detail"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-1592384(1).jpeg" alt="Full Detail"></div>
           <div class="svc-body">
             <div class="svc-tag">Full Detail</div>
             <div class="svc-name">Full Detail</div>
@@ -2359,7 +2367,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-4489737.jpeg" alt="Polish"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-4489737(1).jpeg" alt="Polish"></div>
           <div class="svc-body">
             <div class="svc-tag">Paint Correction</div>
             <div class="svc-name">Polish</div>
@@ -2455,7 +2463,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
       <div class="adm-prev-label">Preview</div>
       <div class="adm-prev-card">
         <div class="svc">
-          <div class="svc-img-wrap"><img class="svc-img" src="./asdasdasd_files/pexels-photo-3802510.jpeg" alt="Diamond Fusion"></div>
+          <div class="svc-img-wrap"><img class="svc-img" src="./index_files/pexels-photo-3802510(1).jpeg" alt="Diamond Fusion"></div>
           <div class="svc-body">
             <div class="svc-tag">♦ Premium Protection</div>
             <div class="svc-name">Diamond Fusion</div>
@@ -2642,14 +2650,15 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
               <summary style="cursor:pointer;color:#D4D4D8;letter-spacing:.05em">▸ How to set up email notifications (Zapier, free)</summary>
               <div style="padding:10px 0 4px">
                 <ol style="margin:8px 0 0 18px;padding:0">
-                  <li>Sign up free at <a href="https://zapier.com" target="_blank" style="color:var(--red);text-decoration:none">zapier.com</a></li>
-                  <li>Create a Zap → Trigger: <strong>Webhooks by Zapier → Catch Hook</strong></li>
-                  <li>Copy the webhook URL Zapier gives you and paste it into <em>Webhook URL</em> above</li>
-                  <li>Action: <strong>Email by Zapier → Send Outbound Email</strong> (or Gmail / Outlook)</li>
-                  <li>Map fields like <code style="background:#0A0A0C;padding:1px 5px">customer_name</code>, <code style="background:#0A0A0C;padding:1px 5px">date</code>, <code style="background:#0A0A0C;padding:1px 5px">time</code>, <code style="background:#0A0A0C;padding:1px 5px">service</code>, <code style="background:#0A0A0C;padding:1px 5px">final_price</code> into your email body</li>
-                  <li>Click <em>Send Test Email</em> above to verify it works</li>
+                  <li>Sign up free at <a href="https://zapier.com/" target="_blank" style="color:var(--red);text-decoration:none">zapier.com</a></li>
+                  <li>Create a Zap → Trigger: <strong>Webhooks by Zapier → Catch Hook</strong> (no "child key" needed)</li>
+                  <li>Copy the webhook URL Zapier gives you and paste it into <em>Webhook URL</em> above, then save</li>
+                  <li>Click <em>Send Test Email</em> above — Zapier should now show fields like <code style="background:#0A0A0C;padding:1px 5px">customer_name</code>, <code style="background:#0A0A0C;padding:1px 5px">date</code>, <code style="background:#0A0A0C;padding:1px 5px">time</code>, <code style="background:#0A0A0C;padding:1px 5px">service</code>, <code style="background:#0A0A0C;padding:1px 5px">final_price</code> when you set up the trigger</li>
+                  <li>Action: <strong>Email by Zapier → Send Outbound Email</strong> (or Gmail / Outlook). Map those fields into the email body.</li>
+                  <li><strong>Important:</strong> Click the <em>Publish</em> button in the top-right of Zapier to turn the Zap ON. A draft Zap will return an error.</li>
                 </ol>
-                <p style="margin-top:10px"><strong>Alternative:</strong> <a href="https://formspree.io" target="_blank" style="color:var(--red);text-decoration:none">Formspree</a> works the same way — create a form, copy its endpoint URL, paste it above. Formspree emails you whenever a booking is posted, no Zapier needed.</p>
+                <p style="margin-top:10px;padding:8px 10px;background:rgba(255,193,7,.06);border-left:2px solid #facc15;color:#fde68a"><strong>Most common issue:</strong> the Zap is still in "Draft" mode. Open the Zap in Zapier — if you see a "Publish" button in the top-right, click it. The Zap must be Published (and toggled ON) before webhooks will reach it.</p>
+                <p style="margin-top:8px"><strong>Alternative:</strong> <a href="https://formspree.io/" target="_blank" style="color:var(--red);text-decoration:none">Formspree</a> works the same way — create a form, copy its endpoint URL, paste it above. Formspree emails you whenever a booking is posted, no Zapier needed.</p>
               </div>
             </details>
           </div>
@@ -2672,7 +2681,7 @@ input::placeholder,textarea::placeholder{color:#2a2a2a;}
               <summary style="cursor:pointer;color:#D4D4D8;letter-spacing:.05em">▸ How to set up the calendar webhook (Zapier → Google Calendar)</summary>
               <div style="padding:10px 0 4px">
                 <ol style="margin:8px 0 0 18px;padding:0">
-                  <li>Create a free <a href="https://zapier.com" target="_blank" style="color:var(--red);text-decoration:none">Zapier</a> account</li>
+                  <li>Create a free <a href="https://zapier.com/" target="_blank" style="color:var(--red);text-decoration:none">Zapier</a> account</li>
                   <li>New Zap → Trigger: <strong>Webhooks by Zapier → Catch Hook</strong></li>
                   <li>Copy the webhook URL → paste into <em>Calendar Webhook URL</em> above</li>
                   <li>Action: <strong>Google Calendar → Create Detailed Event</strong> (or Outlook / Apple Calendar)</li>
@@ -3394,7 +3403,85 @@ function pickAddon(b) {
 // calendar
 const TIMES = ['8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
 const DNS = ['Su','Mo','Tu','We','Th','Fr','Sa'], MNS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-function initCal() { const n = new Date(); calY = calY || n.getFullYear(); calMo = calMo != null ? calMo : n.getMonth(); renderCal(); }
+
+// ── BOOKING DURATION + CONFLICT DETECTION ─────────────────────────────────
+// Each service id maps to its expected duration in hours. Values use the
+// upper end of the displayed "1–2 hrs" / "2–3 hrs" ranges so we err on the
+// side of OVER-blocking — a customer being told "sorry, that's taken" is
+// recoverable; a double-booked slot is not.
+const SERVICE_DURATIONS = {
+  exterior: 2,   // "1–2 hrs"
+  interior: 3,   // "2–3 hrs"
+  combo: 5,      // "4–5 hrs"
+  detail: 6,     // "6+ hrs"
+  polish: 4,     // "2–4 hours"
+  diamond: 3,    // "2–3 hours"
+  nano: 3        // applied coating, no duration shown — assume ~3 hrs
+};
+const ADDON_DURATION_HOURS = 0.5;   // each addon adds 30 min
+const DEFAULT_SVC_DURATION = 2;     // fallback for unknown services
+
+// Total hours a booking will occupy = sum of its services + half-hour per addon.
+// Floor of 1 hour so an empty/unknown booking still blocks at least its slot.
+function getBookingDurationHours(items, addons) {
+  const svcHrs = (items || []).reduce(
+    (sum, i) => sum + (SERVICE_DURATIONS[i.id] || DEFAULT_SVC_DURATION), 0
+  );
+  const addonHrs = ((addons || []).length) * ADDON_DURATION_HOURS;
+  return Math.max(1, svcHrs + addonHrs);
+}
+
+// Parse "12:00 PM" / "8:00 AM" → decimal 24-hour hours (e.g. 12, 8).
+function parseTimeToHour(timeStr) {
+  if (!timeStr) return null;
+  const m = String(timeStr).match(/^(\d{1,2}):?(\d{2})?\s*(AM|PM)?$/i);
+  if (!m) return null;
+  let h = parseInt(m[1], 10);
+  const mins = parseInt(m[2] || '0', 10);
+  const ampm = (m[3] || '').toUpperCase();
+  if (ampm === 'PM' && h < 12) h += 12;
+  if (ampm === 'AM' && h === 12) h = 0;
+  return h + mins / 60;
+}
+
+// Bookings store dates in a few different shapes (Date object set during
+// the flow, or a "Apr 30, 2026" string after persistence/round-trip). Compare
+// at calendar-day granularity.
+function isSameCalendarDate(a, b) {
+  const da = (a instanceof Date) ? a : new Date(a);
+  const db = (b instanceof Date) ? b : new Date(b);
+  if (isNaN(da.getTime()) || isNaN(db.getTime())) return false;
+  return da.getFullYear() === db.getFullYear()
+      && da.getMonth() === db.getMonth()
+      && da.getDate() === db.getDate();
+}
+
+// All [startHour, endHour) tuples occupied on `date` by existing non-canceled
+// bookings. Used by showSlots() to render conflicting slots as unavailable.
+function getBookedRangesForDate(date) {
+  if (!date || !Array.isArray(bookings)) return [];
+  return bookings
+    .filter(b => b.status !== 'canceled' && b.status !== 'cancelled')
+    .filter(b => isSameCalendarDate(b.date, date))
+    .map(b => {
+      const start = parseTimeToHour(b.time);
+      if (start == null) return null;
+      const dur = getBookingDurationHours(b.items, b.addons);
+      return [start, start + dur];
+    })
+    .filter(Boolean);
+}
+
+function initCal() {
+  const n = new Date();
+  calY = calY || n.getFullYear();
+  calMo = calMo != null ? calMo : n.getMonth();
+  renderCal();
+  // If a date was already picked (e.g. user went back to step 0 to add more
+  // services and is returning), re-render the slots so the new total
+  // duration is reflected and any newly-conflicting slots get crossed out.
+  if (bk.date) showSlots();
+}
 function renderCal() {
   document.getElementById('cal-lbl').textContent = `${MNS[calMo]} ${calY}`;
   const g = document.getElementById('cal-grid');
@@ -3418,10 +3505,46 @@ function pickDate(y, m, d) { bk.date = new Date(y, m, d); bk.dateStr = bk.date.t
 function showSlots() {
   document.getElementById('slots-hint').style.display = 'none';
   const g = document.getElementById('slots-grid'); g.style.display = 'grid';
-  g.innerHTML = TIMES.map(t => `<button class="slot-btn${bk.time === t ? ' sel' : ''}" onclick="pickTime('${t}')">${t}</button>`).join('');
+
+  // What hours are already taken on this date, and how long is THIS booking?
+  const blockedRanges = getBookedRangesForDate(bk.date);
+  const newDur = getBookingDurationHours(bk.items, bk.addons);
+  let blockedCount = 0;
+
+  // A slot is unavailable iff starting the new booking there would overlap
+  // any existing range. Two ranges [a,b) and [c,d) overlap iff a<d AND c<b.
+  const slotsHtml = TIMES.map(t => {
+    const slotStart = parseTimeToHour(t);
+    const slotEnd = slotStart + newDur;
+    const conflicts = blockedRanges.some(([bs, be]) => slotStart < be && bs < slotEnd);
+    if (conflicts) blockedCount++;
+    const isSel = bk.time === t && !conflicts;
+    const classes = ['slot-btn'];
+    if (isSel) classes.push('sel');
+    if (conflicts) classes.push('dis');
+    const onclick = conflicts ? '' : `onclick="pickTime('${t}')"`;
+    const title = conflicts ? ' title="Already booked — choose another time"' : '';
+    const dis = conflicts ? ' disabled' : '';
+    return `<button class="${classes.join(' ')}"${dis}${title} ${onclick}>${t}</button>`;
+  }).join('');
+
+  // Show a tiny legend only if at least one slot is crossed out, so the
+  // customer understands why some times look different.
+  const legend = blockedCount > 0
+    ? `<div class="slots-legend"><span><span class="swatch"></span>Available</span><span><span class="swatch dis"></span>Booked</span></div>`
+    : '';
+  g.innerHTML = slotsHtml + legend;
+
+  // If the user already picked a time and then added more services that made
+  // their booking longer (so it now overlaps another booking), un-pick it.
+  if (bk.time) {
+    const ts = parseTimeToHour(bk.time);
+    const stillConflicts = blockedRanges.some(([bs, be]) => ts < be && bs < ts + newDur);
+    if (stillConflicts) bk.time = null;
+  }
   chkNx();
 }
-function pickTime(t) { bk.time = t; document.querySelectorAll('.slot-btn').forEach(b => b.classList.toggle('sel', b.textContent === t)); chkNx(); }
+function pickTime(t) { bk.time = t; document.querySelectorAll('.slot-btn').forEach(b => b.classList.toggle('sel', b.textContent === t && !b.classList.contains('dis'))); chkNx(); }
 // Strict validation helpers used by step 2 of the booking flow.
 // Email: standard pattern. Phone: must have at least 7 digit characters
 // (works for both formatted "(555) 555-0100" and raw "5551234567" inputs).
@@ -3740,20 +3863,42 @@ function buildBookingPayload(booking) {
   };
 }
 
-// Fire-and-forget POST to a webhook. Returns true on success, false otherwise.
-// Always resolves — never throws — so the booking flow is unaffected.
+// POST a payload to a webhook URL. Always resolves with a result object; never throws.
+//
+// Why form-urlencoded instead of JSON?
+// Browsers treat `Content-Type: application/json` as a non-"simple" request and
+// require a CORS preflight (an OPTIONS call before the POST). Many webhook
+// services — including Zapier's hooks.zapier.com — don't return the CORS
+// headers needed to satisfy that preflight, so the browser silently blocks
+// the actual POST. Switching to URLSearchParams forces
+// `application/x-www-form-urlencoded`, which IS a "simple" content type, so
+// the browser sends the POST directly with no preflight. Zapier's standard
+// "Catch Hook" trigger reads form-encoded data the exact same way it reads
+// JSON — every field still appears as its own mappable field in the Zap UI.
+//
+// Returns: { ok: bool, status?: number, error?: string }
 async function postWebhook(url, payload) {
-  if (!url) return false;
+  if (!url) return { ok: false, error: 'No webhook URL configured' };
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    return res.ok;
+    // Flatten the payload to URL-encoded form fields. Arrays get joined with
+    // commas (Zapier displays them as a single string field, which is what
+    // most users want for "items"). Null/undefined become empty strings.
+    const formBody = new URLSearchParams();
+    for (const [k, v] of Object.entries(payload)) {
+      if (v === null || v === undefined) formBody.append(k, '');
+      else if (Array.isArray(v)) formBody.append(k, v.join(', '));
+      else if (typeof v === 'object') formBody.append(k, JSON.stringify(v));
+      else formBody.append(k, String(v));
+    }
+    const res = await fetch(url, { method: 'POST', body: formBody });
+    if (res.ok) return { ok: true, status: res.status };
+    return { ok: false, status: res.status, error: `HTTP ${res.status} ${res.statusText || ''}`.trim() };
   } catch (e) {
+    // Most common cause here: network error or — despite our form-encoding
+    // workaround — the host still blocked the request. Return the message
+    // so the test buttons can show a useful hint.
     console.warn('Webhook POST failed', url, e);
-    return false;
+    return { ok: false, error: `Network error: ${e.message || 'Could not reach webhook'}` };
   }
 }
 
@@ -3762,7 +3907,8 @@ async function sendBookingNotification(booking) {
   if (!n.enabled || !n.webhookUrl) return false;
   const payload = buildBookingPayload(booking);
   payload.event_type = 'booking_created';
-  return postWebhook(n.webhookUrl, payload);
+  const result = await postWebhook(n.webhookUrl, payload);
+  return result.ok;
 }
 
 // Two paths: webhook (silent automation) + auto-open Google Calendar (manual click-to-save).
@@ -3828,8 +3974,11 @@ function showInlineStatus(elId, text, ok) {
   el.style.border = `1px solid ${ok ? '#22C55E' : '#f87171'}`;
   el.style.color = ok ? '#bbf7d0' : '#fecaca';
   el.style.padding = '10px 12px';
+  el.style.lineHeight = '1.55';
+  el.style.wordBreak = 'break-word';
   el.textContent = text;
-  setTimeout(() => { el.style.display = 'none'; }, 6000);
+  // Errors can be long and worth reading carefully — give them more time on screen.
+  setTimeout(() => { el.style.display = 'none'; }, ok ? 6000 : 14000);
 }
 async function sendTestNotification() {
   syncSettingsFromUI(); // make sure we're testing what's currently typed
@@ -3841,8 +3990,12 @@ async function sendTestNotification() {
   const payload = buildBookingPayload(buildSampleBooking());
   payload.event_type = 'test_notification';
   payload.note = 'This is a test from the DetailedByAustin admin panel.';
-  const ok = await postWebhook(n.webhookUrl, payload);
-  showInlineStatus('notify-status', ok ? 'Test sent! Check your inbox in a minute.' : 'Webhook returned an error — double-check the URL and that the Zap is turned on.', ok);
+  const result = await postWebhook(n.webhookUrl, payload);
+  if (result.ok) {
+    showInlineStatus('notify-status', '✓ Test sent successfully (HTTP ' + result.status + '). Check your inbox in a minute — and check the Zap History in Zapier to confirm it ran.', true);
+  } else {
+    showInlineStatus('notify-status', '✗ ' + (result.error || 'Webhook failed') + '. Most common fixes: (1) make sure your Zap is turned ON in Zapier, (2) verify the webhook URL is pasted exactly with no extra spaces, (3) the URL should look like https://hooks.zapier.com/hooks/catch/XXXXXX/YYYYYY/.', false);
+  }
 }
 async function sendTestCalendar() {
   syncSettingsFromUI();
@@ -3852,19 +4005,19 @@ async function sendTestCalendar() {
     return;
   }
   const sample = buildSampleBooking();
-  let webhookOk = true;
+  let webhookResult = { ok: true };
   if (cal.webhookUrl) {
     const payload = buildBookingPayload(sample);
     payload.event_type = 'test_calendar';
-    webhookOk = await postWebhook(cal.webhookUrl, payload);
+    webhookResult = await postWebhook(cal.webhookUrl, payload);
   }
   if (cal.autoOpen) {
     addBookingToCalendar(sample); // opens Google Calendar tab
   }
   const parts = [];
-  if (cal.webhookUrl) parts.push(webhookOk ? 'Webhook test sent' : 'Webhook failed (check URL)');
-  if (cal.autoOpen) parts.push('Google Calendar tab opened');
-  showInlineStatus('cal-status', parts.join(' · '), webhookOk);
+  if (cal.webhookUrl) parts.push(webhookResult.ok ? '✓ Webhook test sent (HTTP ' + webhookResult.status + ')' : '✗ Webhook failed: ' + (webhookResult.error || 'unknown error'));
+  if (cal.autoOpen) parts.push('✓ Google Calendar tab opened');
+  showInlineStatus('cal-status', parts.join(' · '), webhookResult.ok);
 }
 window.sendTestNotification = sendTestNotification;
 window.sendTestCalendar = sendTestCalendar;
@@ -6245,7 +6398,7 @@ renderRoute();
 <div id="quote-detail" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;padding:24px;overflow-y:auto" onclick="if(event.target===this)closeQuoteDetail()">
   <div style="background:var(--surf);border:1px solid var(--bdr);max-width:720px;width:100%;max-height:90vh;overflow-y:auto;padding:28px;position:relative">
     <button type="button" onclick="closeQuoteDetail()" style="position:absolute;top:12px;right:12px;background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1">×</button>
-    <h3 style="font-family:'Inter';font-weight:700;font-size:24px;letter-spacing:.08em;color:#fff;margin-bottom:14px">Quote Request</h3>
+    <h3 style="font-family:&#39;Inter&#39;;font-weight:700;font-size:24px;letter-spacing:.08em;color:#fff;margin-bottom:14px">Quote Request</h3>
     <div id="quote-detail-body"></div>
   </div>
 </div>
@@ -6264,15 +6417,15 @@ renderRoute();
 </div>
 
 <!-- Booking edit modal -->
-<div id="bk-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal('bk-edit-modal')">
+<div id="bk-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal(&#39;bk-edit-modal&#39;)">
   <div class="dbd" style="max-width:880px">
-    <button type="button" class="dbd-close" onclick="closeModal('bk-edit-modal')">×</button>
+    <button type="button" class="dbd-close" onclick="closeModal(&#39;bk-edit-modal&#39;)">×</button>
     <h3>Edit Booking</h3>
     <div class="dbd-sub">Order <span id="bk-edit-id">—</span></div>
     <form id="bk-edit-form" onsubmit="saveBookingEdit(event)">
       <div class="dbd-section-title">Customer</div>
       <div class="dbd-grid">
-        <div class="dbd-row"><label>Full name</label><input type="text" id="be-name" required></div>
+        <div class="dbd-row"><label>Full name</label><input type="text" id="be-name" required=""></div>
         <div class="dbd-row"><label>Email</label><input type="email" id="be-email"></div>
         <div class="dbd-row"><label>Phone</label><input type="tel" id="be-phone"></div>
         <div class="dbd-row"><label>Status</label>
@@ -6300,7 +6453,7 @@ renderRoute();
         </div>
       </div>
 
-      <div class="dbd-section-title">Service & Schedule</div>
+      <div class="dbd-section-title">Service &amp; Schedule</div>
       <div class="dbd-grid">
         <div class="dbd-row col2"><label>Service description</label><input type="text" id="be-svc"></div>
         <div class="dbd-row"><label>Date</label><input type="text" id="be-date" placeholder="e.g., Apr 28, 2026"></div>
@@ -6317,17 +6470,17 @@ renderRoute();
 
       <div class="dbd-section-title">Before photos</div>
       <div class="pg-drop" id="pg-booking-before-drop">Click or drop images here to add <strong>before</strong> photos</div>
-      <input type="file" id="pg-booking-before-input" accept="image/*" multiple style="display:none">
+      <input type="file" id="pg-booking-before-input" accept="image/*" multiple="" style="display:none">
       <div id="pg-booking-before-grid-edit" class="pg-grid"></div>
 
       <div class="dbd-section-title">After photos</div>
       <div class="pg-drop" id="pg-booking-after-drop">Click or drop images here to add <strong>after</strong> photos</div>
-      <input type="file" id="pg-booking-after-input" accept="image/*" multiple style="display:none">
+      <input type="file" id="pg-booking-after-input" accept="image/*" multiple="" style="display:none">
       <div id="pg-booking-after-grid-edit" class="pg-grid"></div>
 
       <div class="dbd-actions">
-        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById('bk-edit-form').dataset.id);closeModal('bk-edit-modal');deleteBooking(id);">Delete booking</button>
-        <button type="button" class="adm-act" onclick="closeModal('bk-edit-modal')">Cancel</button>
+        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById(&#39;bk-edit-form&#39;).dataset.id);closeModal(&#39;bk-edit-modal&#39;);deleteBooking(id);">Delete booking</button>
+        <button type="button" class="adm-act" onclick="closeModal(&#39;bk-edit-modal&#39;)">Cancel</button>
         <button type="submit" class="adm-act primary">Save changes</button>
       </div>
     </form>
@@ -6335,15 +6488,15 @@ renderRoute();
 </div>
 
 <!-- Quote edit modal -->
-<div id="q-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal('q-edit-modal')">
+<div id="q-edit-modal" class="dbd-ov" onclick="if(event.target===this)closeModal(&#39;q-edit-modal&#39;)">
   <div class="dbd" style="max-width:880px">
-    <button type="button" class="dbd-close" onclick="closeModal('q-edit-modal')">×</button>
+    <button type="button" class="dbd-close" onclick="closeModal(&#39;q-edit-modal&#39;)">×</button>
     <h3>Edit Quote Request</h3>
     <div class="dbd-sub">Quote <span id="q-edit-id">—</span></div>
     <form id="q-edit-form" onsubmit="saveQuoteEdit(event)">
       <div class="dbd-section-title">Customer</div>
       <div class="dbd-grid">
-        <div class="dbd-row"><label>Full name</label><input type="text" id="qe-name" required></div>
+        <div class="dbd-row"><label>Full name</label><input type="text" id="qe-name" required=""></div>
         <div class="dbd-row"><label>Email</label><input type="email" id="qe-email"></div>
         <div class="dbd-row"><label>Phone</label><input type="tel" id="qe-phone"></div>
         <div class="dbd-row"><label>Status</label>
@@ -6373,7 +6526,7 @@ renderRoute();
         </div>
       </div>
 
-      <div class="dbd-section-title">Pricing & Description</div>
+      <div class="dbd-section-title">Pricing &amp; Description</div>
       <div class="dbd-grid">
         <div class="dbd-row"><label>Quoted price ($) — optional</label><input type="number" id="qe-quoted" min="0" step="1" placeholder="Leave blank if not quoted"></div>
         <div class="dbd-row"></div>
@@ -6385,23 +6538,23 @@ renderRoute();
 
       <div class="dbd-section-title">Before photos (admin)</div>
       <div class="pg-drop" id="pg-quote-before-drop">Click or drop images here to add <strong>before</strong> photos</div>
-      <input type="file" id="pg-quote-before-input" accept="image/*" multiple style="display:none">
+      <input type="file" id="pg-quote-before-input" accept="image/*" multiple="" style="display:none">
       <div id="pg-quote-before-grid-edit" class="pg-grid"></div>
 
       <div class="dbd-section-title">After photos (admin)</div>
       <div class="pg-drop" id="pg-quote-after-drop">Click or drop images here to add <strong>after</strong> photos</div>
-      <input type="file" id="pg-quote-after-input" accept="image/*" multiple style="display:none">
+      <input type="file" id="pg-quote-after-input" accept="image/*" multiple="" style="display:none">
       <div id="pg-quote-after-grid-edit" class="pg-grid"></div>
 
       <div class="dbd-actions">
-        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById('q-edit-form').dataset.id);closeModal('q-edit-modal');deleteQuote(id);">Delete quote</button>
-        <button type="button" class="adm-act" onclick="closeModal('q-edit-modal')">Cancel</button>
+        <button type="button" class="adm-act danger left" onclick="const id=Number(document.getElementById(&#39;q-edit-form&#39;).dataset.id);closeModal(&#39;q-edit-modal&#39;);deleteQuote(id);">Delete quote</button>
+        <button type="button" class="adm-act" onclick="closeModal(&#39;q-edit-modal&#39;)">Cancel</button>
         <button type="submit" class="adm-act primary">Save changes</button>
       </div>
     </form>
   </div>
 </div>
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f167cabfcf1a14f',t:'MTc3NzA0ODE2OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;" src="./asdasdasd_files/saved_resource.html"></iframe><script defer="" src="./asdasdasd_files/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;7f7b0fd8732c4326aae4b9d58d5c514a&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f167cabfcf1a14f',t:'MTc3NzA0ODE2OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;" src="./index_files/saved_resource.html"></iframe><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;" src="./index_files/saved_resource(1).html"></iframe><script defer="" src="./index_files/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;7f7b0fd8732c4326aae4b9d58d5c514a&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
 
 </body></html>
