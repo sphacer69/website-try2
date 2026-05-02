@@ -27,7 +27,7 @@
   },
   "name": "DetailedByAustin",
   "stripe": {
-    "enabled": true,
+    "enabled": false,
     "mode": "dynamic",
     "publishableKey": "",
     "paymentLink": "https://buy.stripe.com/test_8x228keYV8qj41U9aZ2VG00",
@@ -524,5 +524,12 @@
     "tz": "America/Denver",
     "webhookUrl": "",
     "autoOpen": false
+  },
+  "confirm": {
+    "enabled": false,
+    "fromName": "Austin from DetailedByAustin",
+    "replyTo": "detailedbyaustin@gmail.com",
+    "subject": "Your DetailedByAustin booking is confirmed — {date}",
+    "body": "Hi {customer_name},\n\nThanks for booking with {business_name}! Your appointment is confirmed.\n\n   Service:  {service}\n   Date:     {date}\n   Time:     {time}\n   Vehicle:  {vehicle}\n   Total:    ${final_price}\n\nIf you need to reschedule or have questions, just reply to this email or reach us at {business_phone}.\n\nSee you soon!\n— Austin\n{business_name}\n{business_phone}\n{business_email}"
   }
 }
