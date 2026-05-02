@@ -512,5 +512,17 @@
       "type": "percent",
       "value": 20
     }
+  },
+  "notify": {
+    "enabled": true,
+    "email": "detailedbyaustin@gmail.com",
+    "webhookUrl": "https://hooks.zapier.com/hooks/catch/27446849/uvlostx/"
+  },
+  "calendar": {
+    "enabled": false,
+    "duration": 120,
+    "tz": "America/Denver",
+    "webhookUrl": "",
+    "autoOpen": false
   }
 }
